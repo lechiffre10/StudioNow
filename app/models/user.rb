@@ -13,5 +13,12 @@ class User < ActiveRecord::Base
   has_attached_file :image, :styles => {:standard => "150x150"}
   validates_attachment :image, :content_type => {:content_type => /^image\/jpeg|png|gif|tiff)$/}
   validates :password, :length => { :within => 6..20 }
+  validate :valid_email
+
+  def valid_email
+   unless self.email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+     errors.add(:email, "must be valid... please.")
+   end
+ end
 
 end
