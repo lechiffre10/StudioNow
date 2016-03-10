@@ -1,4 +1,39 @@
 Rails.application.routes.draw do
+
+  resources :users, except: [:index] do
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+    resources :ratings, only: [:create, :update, :destroy]
+  end
+  resources :studios do
+    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+    resources :ratings, only: [:create, :update, :destroy]
+    resources :availabilities do
+      resources :bookings, only:[:create, :destroy]
+    end
+  end
+
+  root 'welcome#index'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
