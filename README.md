@@ -1,5 +1,6 @@
 ####Project Name
-StudioNow
+StudioNow  
+[![Build Status](https://travis-ci.org/lechiffre10/StudioNow.svg?branch=master)](https://travis-ci.org/lechiffre10/StudioNow)
 
 ####Team Name
 Danger Zone
