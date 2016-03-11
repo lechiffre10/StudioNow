@@ -5,12 +5,22 @@
 <% end %>
 
 <p>Preferred Music Styles: <%=@user.genres %></p>
-<p>Reviews: </p>
+<p>Your Average Rating: <%=@user.average_rating  %> </p>
+
+<h3><%=@user.username %>'s reviews of Other Users: </h3>
+
+<% @user.written_reviews.each do |review| %>
+	<%= render partial: "reviews/review", locals: {review: review } %>
+<% end %>
+
+<h3>Reviews of <%= @user.username %> </h3>
 
 <% @user.reviews.each do |review| %>
 	<%= render partial: "reviews/review", locals: {review: review } %>
 <% end %>
 
 
-<p>Your Average Rating: <%=@user.average_rating  %> </p>
+
+
+
 
