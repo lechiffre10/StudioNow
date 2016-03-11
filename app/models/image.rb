@@ -5,11 +5,7 @@ class Image < ActiveRecord::Base
       :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
-
-  p  "S3 BUCKET = #{ENV['S3_BUCKET_NAME']}"
-  p  "S3 ACCESS KEY = #{ENV['AWS_ACCESS_KEY_ID']}"
-  p  "S3 KEY ID = #{ENV['AWS_SECRET_ACCESS_KEY']}"
-
+    
   validates_attachment_presence :media
   validates_attachment :media, :content_type => {:content_type => /^image\/(jpeg|png|gif|tiff)$/}
 end
