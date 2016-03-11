@@ -69,6 +69,8 @@ GEM
     execjs (2.6.0)
     faker (1.6.3)
       i18n (~> 0.5)
+    fullcalendar_engine (1.0.6)
+      rails (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -196,6 +198,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   faker
+  fullcalendar_engine (~> 1.0, >= 1.0.6)
   jbuilder (~> 2.0)
   jquery-rails
   paperclip
