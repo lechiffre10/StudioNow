@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :test do
   gem 'simplecov', :require => false
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
 end
 
 group :development, :test do
