@@ -1,1 +1,12 @@
-<h1>this is a form to create new users</h1>
+<h1>Register</h1>
+
+<%= form_for @user do |f| %>
+	First Name: <%= f.text_field :first_name %>
+	Last Name: <%= f.text_field :last_name %>
+	A few words about yourself: <%= f.text_area :description %>
+	Email: <%= f.text_field :email %>
+	Music Style: <%= f.text_field :genres %>
+	Username: <%= f.text_field :username %>
+	Password: <%= f.text_field :password, type: "password" %>
+	<%= f.submit "Register" %>
+<% end %> 
