@@ -7,8 +7,8 @@ class CreateStudios < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.integer :zip_code
-      t.float :lat, {:precision => 10, :scale => 6}
-      t.float :lng, {:precision => 10, :scale => 6}
+      t.float :latitude, {:precision => 10, :scale => 6}
+      t.float :longitude, {:precision => 10, :scale => 6}
       t.text :description
       t.float :price
       t.string :website
