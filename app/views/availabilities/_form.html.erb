@@ -1,0 +1,19 @@
+<%#remote_form_for @event, :url => {:action => :create}, :before => "$('#creating_events').show();", :complete => "$('#creating_events').hide();" do |f| %>
+<%= form_for [@studio,@availability], :html => { :id => 'event_form' } do |f| %>
+
+<p>
+  <%=f.label :start_time, 'Start Time' %>
+  <br/>
+  <%=f.datetime_select :start_time %>
+</p>
+<p>
+  <%=f.label :end_time, 'End Time' %>
+  <br/>
+  <%=f.datetime_select :end_time %>
+</p>
+
+<%=f.hidden_field :id, :value => @availability.id %>
+<p>
+  <%=f.submit 'Create' %> <span id = "creating_events" class="spinner" style = "display:none;">Creating, Please wait...</span>
+</p>
+<%end %>
