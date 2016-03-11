@@ -7,10 +7,13 @@ Rails.application.routes.draw do
   resources :studios do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
     resources :ratings, only: [:create, :update, :destroy]
+    resources :images, only: [:index, :show, :new, :create, :destroy]
     resources :availabilities do
       resources :bookings, only:[:create, :destroy]
     end
   end
+
+
 
   root 'welcome#index'
 

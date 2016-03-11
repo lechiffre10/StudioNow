@@ -4,6 +4,7 @@ class Studio < ActiveRecord::Base
   has_many :reviews, as: :reviewable
   has_many :ratings, as: :ratable
   has_many :bookings, through: :availabilities
+  has_many :images
 
   validates :name, :address, :city, :state, :zip_code, :price, :description, presence: true
 
