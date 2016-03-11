@@ -1,1 +1,5 @@
 <h1>SHOWIN DA USER</h1>
+
+<% if logged_in? %>
+	<p>Hello <%= current_user.first_name %>!</p>
+<% end %>
