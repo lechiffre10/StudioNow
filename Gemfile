@@ -4,6 +4,7 @@ gem 'geocoder'
 gem 'faker'
 gem 'activesupport'
 gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
@@ -37,6 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :test do
   gem 'simplecov', :require => false
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
 end
 
 group :development, :test do
