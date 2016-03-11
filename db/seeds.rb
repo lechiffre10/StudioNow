@@ -17,7 +17,8 @@ end
 nums = [40.00, 35.50, 25.25, 88.50, 90.00, 33.40, 50.00, 55.00]
 
 studios = 10.times.map do
-  Studio.create!(name: Faker::Team.name, owner: studio_owners.rotate![0], address: Faker::Address.street_address, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, city: Faker::Address.city, state: Faker::Address.state, description: Faker::Hipster.sentence(rand(3..20)), price: nums.rotate![0], website: Faker::Internet.url, zip_code: Faker::Address.zip_code)
+  addresses = ["5 N Wabash Ave", "907 Caprice Dr.", "15377 Silver Bell Rd.", "351 W Hubbard St", "900 N. Wood St.", "16263 West Wyandot", "908 Caprice Dr.", "233 S Wacker Dr", "233 S Wacker Dr", "3159 N Southport Ave."]
+  Studio.create!(name: Faker::Team.name, owner: studio_owners.rotate![0], address: addresses.sample, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, city: Faker::Address.city, state: Faker::Address.state, description: Faker::Hipster.sentence(rand(3..20)), price: nums.rotate![0], website: Faker::Internet.url, zip_code: Faker::Address.zip_code)
 end
 
 15.times.map do

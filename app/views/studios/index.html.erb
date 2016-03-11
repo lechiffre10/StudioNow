@@ -1,6 +1,6 @@
 <h1>These are all the studios that you searched for!</h1>
 
-<form id="location-search">
+<form id="location-search" action="/studios", method: "get">
   <input name="search" type="text" placeholder="Search for a studio">
   <input type="submit" value="search">
 </form>
@@ -9,8 +9,16 @@
   <div id="map"></div>
 </div>
 
-<% @studios.each do |studio| %>
-  <%= studio.name %>
+<section>
+
+</section>
+
+<% if @studios %>
+  <div id="studio-list">
+    <% @studios.each do |studio| %>
+      <%= render partial: "studios/studio", locals: { studio: studio } %>
+    <% end %>
+  </div>
 <% end %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>

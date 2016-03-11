@@ -9,20 +9,20 @@ function initMap() {
 $(document).ready(function() {
   initMap();
 
-  $("#location-search").on("submit", function(event){
-    event.preventDefault();
-    var formData = $("#location-search").serialize();
-    var request = $.ajax({
-      method: "GET",
-      url: "/studios",
-      data: formData,
-    });
+  // $("#location-search").on("submit", function(event){
+  //   // event.preventDefault();
+  //   var formData = $("#location-search").serialize();
+  //   var request = $.ajax({
+  //     method: "GET",
+  //     url: "/studios",
+  //     data: formData,
+  //   });
 
-  request.done(function(response){
-    console.log(response);
-  });
+  // request.done(function(response){
+  //   console.log(response);
+  // });
 
-  });
+  // });
 
 
 

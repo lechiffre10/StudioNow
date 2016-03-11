@@ -7,12 +7,12 @@ class Studio < ActiveRecord::Base
   has_many :images
 
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: :address_changed?
 
   validates :name, :address, :city, :state, :zip_code, :price, :description, presence: true
 
   def self.search(searched_location)
-    Studio.near(searched_location)
+    Studio.near(searched_location, 30)
     #need to take in the inputs from the search box and get the coordinates of them from google api, then find the studios within a certain range based on their coordinates, then return a collection of those studios
   end
 end
