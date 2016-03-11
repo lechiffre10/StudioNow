@@ -16,8 +16,8 @@ end
 
 nums = [40.00, 35.50, 25.25, 88.50, 90.00, 33.40, 50.00, 55.00]
 
-studios = 15.times.map do
-  Studio.create!(name: Faker::Team.name, owner: studio_owners.rotate![0], address: Faker::Address.street_address, lat: Faker::Address.latitude, lng: Faker::Address.longitude, city: Faker::Address.city, state: Faker::Address.state, description: Faker::Hipster.sentence(rand(3..20)), price: nums.rotate![0], website: Faker::Internet.url, zip_code: Faker::Address.zip_code)
+studios = 10.times.map do
+  Studio.create!(name: Faker::Team.name, owner: studio_owners.rotate![0], address: Faker::Address.street_address, latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, city: Faker::Address.city, state: Faker::Address.state, description: Faker::Hipster.sentence(rand(3..20)), price: nums.rotate![0], website: Faker::Internet.url, zip_code: Faker::Address.zip_code)
 end
 
 15.times.map do

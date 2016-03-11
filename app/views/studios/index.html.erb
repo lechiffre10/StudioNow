@@ -1,9 +1,17 @@
 <h1>These are all the studios that you searched for!</h1>
-<input id="location-search" type="text" placeholder="Search for a studio">
+
+<form id="location-search">
+  <input name="search" type="text" placeholder="Search for a studio">
+  <input type="submit" value="search">
+</form>
 
 <div id="map-container">
   <div id="map"></div>
 </div>
+
+<% @studios.each do |studio| %>
+  <%= studio.name %>
+<% end %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
 

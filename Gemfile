@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'geocoder'
 gem 'faker'
 gem 'activesupport'
 gem 'paperclip'
