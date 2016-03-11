@@ -23,8 +23,13 @@
           }
         });
       });
+
       $('#calendar').fullCalendar({
           editable: true,
+          selectable: true,
+          select: function(){
+            alert("yolo");
+          },
           header: {
               left: 'prev,next today',
               center: 'title',

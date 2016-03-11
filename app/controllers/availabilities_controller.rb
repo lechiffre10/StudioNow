@@ -1,7 +1,14 @@
 class AvailabilitiesController < ApplicationController
-  def new
-
+  def index
+    @studio = Studio.find_by(id: params[:studio_id])
   end
+
+  def new
+    @studio = Studio.find_by(id: params[:studio_id])
+    @availability = Availability.new(:end_time => 1.hour.from_now)
+    render :json => {:form => render_to_string(:partial => 'form')}
+  end
+
 
   def get_availabilities
     @availabilities = Availability.all
