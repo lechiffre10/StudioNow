@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
    end
  end
 
+ def average_rating
+  self.ratings.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count
+ end
+
 end
