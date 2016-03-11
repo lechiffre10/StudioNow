@@ -1,6 +1,7 @@
 class StudiosController < ApplicationController
   def index
     @google_api_key = ENV['GOOGLE_MAPS_API_KEY']
+    puts params[:search]
     if params[:search]
       @studios = Studio.search(params[:search])
     else
