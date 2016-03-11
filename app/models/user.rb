@@ -22,7 +22,13 @@ class User < ActiveRecord::Base
  end
 
  def average_rating
-  self.ratings.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count
- end
-
+  total = self.ratings
+  if total.length == 0
+    total_rating = 0
+  else
+    total_rating = total.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count
+   end
+   total_rating
+  end
+  
 end

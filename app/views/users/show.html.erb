@@ -4,7 +4,13 @@
 	<p>Hello <%= current_user.first_name %>!</p>
 <% end %>
 
+<p>Preferred Music Styles: <%=@user.genres %></p>
+<p>Reviews: </p>
 
-<p>Your Average Rating: <%=current_user.average_rating  %> </p>
-
+<% @user.reviews.each do |review| %>
+	<%= render partial: "reviews/review", locals: {review: review } %>
 <% end %>
+
+
+<p>Your Average Rating: <%=@user.average_rating  %> </p>
+
