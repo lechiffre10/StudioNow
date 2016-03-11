@@ -1,5 +1,5 @@
 ####Project Name
-StudioNow  
+StudioNow
 [![Build Status](https://travis-ci.org/lechiffre10/StudioNow.svg?branch=master)](https://travis-ci.org/lechiffre10/StudioNow)
 
 ####Team Name
@@ -62,6 +62,7 @@ Possibly user React for frontend if the need arises
 - As a studio owner I want to be able to rate and review users who rented my studio
 - As a studio owner I want to be able to create a profile
 - As a user I want to be able to create a profile
+- As a studio owner I want to be able to set my availability using a calendar
 
 
 ####Stretch User Stories
