@@ -39,7 +39,7 @@ end
 availabilities = 30.times.map do
   day = rand(10..30)
 
-  studios.rotate![0].availabilities.create!(start_time: Faker::Time.forward(day, :morning), end_time: Faker::Time.forward(day, :evening))
+  studios.rotate![0].availabilities.create!(start_time: Faker::Time.forward(start_day = day, :morning), end_time: Faker::Time.forward(start_day, :evening))
 end
 
 40.times.map do
