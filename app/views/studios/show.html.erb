@@ -21,8 +21,40 @@
     <%= image_tag image.media.url(:standard)  %>
   <% end %>
 <% end %><br>
-
+<%= link_to 'Set Availabilities', studio_availabilities_path(@studio) %><br>
 <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
+
+<h3>Request Studio Time:</h3>
+<form id="basicExample">
+    <input type="text" class="date start" />
+    <input type="text" class="time start" /> to
+    <input type="text" class="date end" />
+    <input type="text" class="time end" />
+    <input type="submit" value="Request Studio Time">
+</form>
+
+
+<link rel="stylesheet" type="text/css" href="jquery.timepicker.css" />
+<link rel="stylesheet" type="text/css" href="bootstrap-datepicker.css" />
+<script type="text/javascript" src="bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="jquery.timepicker.js"></script>
+<script type="text/javascript" src="jquery.timepicker.min.js"></script>
+<script type="text/javascript" src="datepair.js"></script>
+<script>
+    $('#basicExample .time').timepicker({
+        'showDuration': true,
+        'timeFormat': 'g:ia'
+    });
+
+    $('#basicExample .date').datepicker({
+        'format': 'm/d/yyyy',
+        'autoclose': true
+    });
+
+    // initialize datepair
+    var basicExampleEl = document.getElementById('basicExample');
+    var datepair = new Datepair(basicExampleEl);
+</script>
 
 <div id="map-container">
   <div id="map"></div>
@@ -43,8 +75,5 @@
   });
 
 </script>
-
-
-
 
 

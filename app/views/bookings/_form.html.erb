@@ -1,0 +1,9 @@
+<%= form_for([@studio, @availability, @availability.bookings.build]) do |f| %>
+  <%= f.label :start_time %>
+  <%= f.text_field :start_time %><br>
+  <%= f.label :end_time %>
+  <%= f.text_field :end_time %>
+  <%= f.hidden_field :studio_id, value: @studio.id  %>
+  <%= f.hidden_field :availability_id, value: @availability.id %><br>
+  <%= f.submit %>
+<% end %>
