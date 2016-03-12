@@ -2,21 +2,15 @@
 <html>
 <head>
   <title>StudioNow</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
   <%= yield %>
-  <div id='foo' data-lat=<%=ENV['GOOGLE_MAPS_API_KEY'] %>></div>
-  <script>
-    var key =$('#foo').data('lat');
-    var script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=" + key + "&callback=initMap";
-    document.body.appendChild(script);
-  </script>
+
 
 </body>
 

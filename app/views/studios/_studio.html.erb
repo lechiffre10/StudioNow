@@ -1,8 +1,7 @@
-<p><%= studio.name %></p>
+<p><%= link_to studio.name, studio %></p>
 <% if studio.images.any? %>
   <%= image_tag studio.images[0].media.url(:standard)  %>
 <% end %>
 <p><%= studio.description %></p>
 <p><%= studio.price %></p>
-<p><%= studio.id %></p>
 
