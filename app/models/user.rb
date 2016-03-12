@@ -30,5 +30,11 @@ class User < ActiveRecord::Base
    end
    total_rating
   end
+
+  def has_studios
+    unless self.studios.count == 0
+      return true
+    end
+  end
   
 end
