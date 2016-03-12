@@ -70,17 +70,14 @@ ActiveRecord::Schema.define(version: 20160310211139) do
   create_table "studios", force: :cascade do |t|
     t.string   "name"
     t.integer  "owner_id"
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.integer  "zip_code"
+    t.string   "full_address"
     t.float    "latitude"
     t.float    "longitude"
     t.text     "description"
     t.float    "price"
     t.string   "website"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "users", force: :cascade do |t|
