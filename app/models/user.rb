@@ -21,4 +21,20 @@ class User < ActiveRecord::Base
    end
  end
 
+ def average_rating
+  total = self.ratings
+  if total.length == 0
+    total_rating = 0
+  else
+    total_rating = total.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count
+   end
+   total_rating
+  end
+
+  def has_studios
+    unless self.studios.count == 0
+      return true
+    end
+  end
+  
 end

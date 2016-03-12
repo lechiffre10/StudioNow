@@ -27,13 +27,28 @@
       $('#calendar').fullCalendar({
           editable: true,
           selectable: true,
-          select: function(){
-            alert("yolo");
+          selectHelper: true,
+          select: function(start, end){
+            var eventData;
+            var eventData = {
+              allDay: false,
+              title: 'Available',
+              start: moment(start).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
+              end: moment(end).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
+            }
+            $('#calendar').fullCalendar('renderEvent',eventData);
+            var address = $('#studio_path').data('address');
+            $.ajax({
+            url: address,
+            method: 'POST',
+            data: {availability: {start_time: moment(start).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"), end_time: moment(end).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")}},
+            success: refetch_events_and_close_dialog
+            });
           },
           header: {
               left: 'prev,next today',
               center: 'title',
-              right: 'month,agendaWeek,agendaDay'
+              right: 'agendaWeek,agendaDay'
           },
           defaultView: 'agendaWeek',
           height: 500,
