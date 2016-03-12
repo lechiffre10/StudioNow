@@ -27,7 +27,7 @@
     } else {
       var marker = handler.addMarker({
         lat: <%= @searched_coords[0] %>,
-        lng: <%= @searched_coords[1] %>
+        lng: <%= @searched_coords[1] %>,
       });
       handler.map.centerOn(marker);
     }
@@ -36,8 +36,7 @@
   function displayOnMap(position){
     var marker = handler.addMarker({
       lat: position.coords.latitude,
-      lng: position.coords.longitude
-      icon:
+      lng: position.coords.longitude,
     });
     handler.map.centerOn(marker);
   };
