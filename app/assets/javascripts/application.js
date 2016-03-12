@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require moment
 //= require turbolinks
 //= require_tree .
 
@@ -20,7 +21,7 @@ function moveEvent(event, dayDelta, minuteDelta, allDay){
         data: 'id=' + event.id + '&title=' + event.title + '&day_delta=' + dayDelta + '&minute_delta=' + minuteDelta + '&all_day=' + allDay,
         dataType: 'script',
         type: 'post',
-        url: "/events/move"
+        url: "/availabilities/move"
     });
 }
 
@@ -29,7 +30,7 @@ function resizeEvent(event, dayDelta, minuteDelta){
         data: 'id=' + event.id + '&title=' + event.title + '&day_delta=' + dayDelta + '&minute_delta=' + minuteDelta,
         dataType: 'script',
         type: 'post',
-        url: "/events/resize"
+        url: "/availabilities/resize"
     });
 }
 
@@ -69,11 +70,13 @@ function editEvent(event_id){
 }
 
 function deleteEvent(event_id, delete_all){
+  var address = $('#studio_path').data('address');
+  var url = address + "/" + event_id;
   jQuery.ajax({
     data: 'delete_all=' + delete_all,
     dataType: 'script',
     type: 'delete',
-    url: "/events/" + event_id,
+    url: url,
     success: refetch_events_and_close_dialog
   });
 }
@@ -111,30 +114,34 @@ function showPeriodAndFrequency(value){
 
 
 }
-$(document).ready(function(){
-  $('#create_event_dialog, #desc_dialog').on('submit', "#event_form", function(event) {
-    var $spinner = $('.spinner');
-    event.preventDefault();
-    $.ajax({
-      type: "POST",
-      data: $(this).serialize(),
-      url: $(this).attr('action'),
-      beforeSend: show_spinner,
-      complete: hide_spinner,
-      success: refetch_events_and_close_dialog,
-      error: handle_error
-    });
 
-    function show_spinner() {
-      $spinner.show();
-    }
+// hi it's ray again. This seems to be the part that should actually generate the post request to create the events when the event form is submitted. I tried putting that alert for 'yolo' in there and couldn't get it to show up at all. I'm not sure it's going here just yet. If we could actually make it work, we may be able to not pass all the shitty data it's passing now. See below for how it's currently passing it. Ideally we could just pass in like start_time: 2016-3-12 5:00PM or something
+/*
+availability[start_time(1i)]:2016
+availability[start_time(2i)]:3
+availability[start_time(3i)]:12
+availability[start_time(4i)]:13
+availability[start_time(5i)]:32
+availability[end_time(1i)]:2016
+availability[end_time(2i)]:3
+availability[end_time(3i)]:12
+availability[end_time(4i)]:14
+availability[end_time(5i)]:32*/
 
-    function hide_spinner() {
-      $spinner.hide();
-    }
+// $(document).ready(function(){
+//   $('#create_event_dialog, #desc_dialog').on('submit', "#event_form", function(event) {
+//     event.preventDefault();
+//     alert('yolo');
+//     $.ajax({
+//       type: "POST",
+//       data: $(this).serialize(),
+//       url: $(this).attr('action'),
+//       success: refetch_events_and_close_dialog,
+//       error: handle_error
+//     });
 
-    function handle_error(xhr) {
-      alert(xhr.responseText);
-    }
-  })
-});
+//     function handle_error(xhr) {
+//       alert(xhr.responseText);
+//     }
+//   })
+// });
