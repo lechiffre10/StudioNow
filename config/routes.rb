@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   post '/login' => 'users#login', as: 'login'
 
   get '/availabilities/get' => 'availabilities#get_availabilities'
-
+  post '/availabilities/move' => 'availabilities#move'
+  post '/availabilities/resize' => 'availabilities#resize'
   root 'welcome#index'
 
 

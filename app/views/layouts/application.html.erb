@@ -2,12 +2,15 @@
 <html>
 <head>
   <title>StudioNow</title>
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
+  <script>
+  moment().format();
+  </script>
 </head>
 <body>
+
 	<% if logged_in? %>
 		 <p>Welcome <%= current_user.username %> </p>
 		<p> <%= link_to("Logout", logout_path) %></p>
@@ -18,4 +21,5 @@
 <%= yield %>
 
 </body>
+
 </html>

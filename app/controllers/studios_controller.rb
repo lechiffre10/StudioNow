@@ -1,15 +1,36 @@
 class StudiosController < ApplicationController
   def index
-    @google_api_key = ENV['GOOGLE_MAPS_API_KEY']
-    if params[:search]
+    if params[:search] && params[:search] != ''
+
       @studios = Studio.search(params[:search])
+
+      @hash = Gmaps4rails.build_markers(@studios) do |studio, marker|
+        marker.lat studio.latitude
+        marker.lng studio.longitude
+      end
+
+      matchers = Geocoder.search(params[:search])
+
+      if !matchers.empty?
+        @searched_coords = matchers[0].coordinates
+      else
+        @hash = []
+        @searched_coords = ['soooooooooOOOOOooooooOOOOOOOoooooooooOOOOOOOOOOOo', 'mOOse']
+        @studios = nil
+      end
+
     else
       @studios = nil
+      @hash = []
+      @searched_coords = ['catie', 'stinks']
     end
   end
 
   def show
     @studio = Studio.find_by_id(params[:id])
+    if @studio.images.any?
+      @images = @studio.images
+    end
   end
 
   def new
@@ -39,7 +60,7 @@ class StudiosController < ApplicationController
 
   private
   def studio_params
-    params.require(:studio).permit(:name, :address, :city, :state, :zip_code, :description, :price, :lat, :lng, :website)
+    params.require(:studio).permit(:name, :address, :city, :state, :zip_code, :description, :price, :latitude, :longitude, :website)
   end
 
 end

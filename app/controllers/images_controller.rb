@@ -14,6 +14,7 @@ class ImagesController < ApplicationController
   end
 
   def show
+    @studio = Studio.find(params[:studio_id])
     @image = Image.find(params[:id])
   end
 

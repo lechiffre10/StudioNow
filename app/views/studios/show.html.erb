@@ -1,12 +1,22 @@
-<h1>This is the studio show page! Look at it!</h1>
+<h1>Studio Details</h1>
 
 <h3><%= @studio.name %></h3>
 
-<p><%= @studio.address %><br>
-<%= @studio.city %>, <%= @studio.state %>  <%= @studio.zip_code %></p>
+<p>Address:<br>
+<p><%= @studio.full_address %></p>
 
 <p><%= @studio.description %></p>
 
-<p><%= @studio.price %></p>
+<p>$<%= @studio.price %> per hour</p>
 
 <p><%= @studio.website %></p>
+
+<% if @studio.images.any? %>
+  <% @studio.images.each do |image| %>
+    <%= image_tag image.media.url(:standard)  %>
+  <% end %>
+<% end %><br>
+
+<%= link_to 'Add Photos', new_studio_image_path(@studio) %>
+
+

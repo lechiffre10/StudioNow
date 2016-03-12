@@ -3,10 +3,7 @@ class CreateStudios < ActiveRecord::Migration
     create_table :studios do |t|
       t.string :name
       t.integer :owner_id
-      t.string :address
-      t.string :city
-      t.string :state
-      t.integer :zip_code
+      t.string :full_address
       t.float :latitude, {:precision => 10, :scale => 6}
       t.float :longitude, {:precision => 10, :scale => 6}
       t.text :description
