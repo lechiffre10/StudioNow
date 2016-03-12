@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   get '/logout' => 'users#destroy', as: 'logout'
+  post '/login' => 'users#login', as: 'login'
 
   get '/availabilities/get' => 'availabilities#get_availabilities'
 

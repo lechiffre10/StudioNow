@@ -10,3 +10,10 @@
 	Password: <%= f.text_field :password, type: "password" %>
 	<%= f.submit "Register" %>
 <% end %> 
+
+<p>Login</p>
+<%= form_for @user, url: login_path do |f| %>
+	Username: <%= f.text_field :username %>
+	Password: <%= f.text_field :password, type: "password" %>
+	<%= f.submit "Login" %>
+<% end %> 

@@ -11,13 +11,10 @@
 	<% if logged_in? %>
 		 <p>Welcome <%= current_user.username %> </p>
 		<p> <%= link_to("Logout", logout_path) %></p>
-
 	<% else %>
 		<p> <%= link_to("Register", new_user_path) %></p>
 		<p> <%= link_to("Login", new_user_path) %></p>
-
 	<% end %>
-
 <%= yield %>
 
 </body>
