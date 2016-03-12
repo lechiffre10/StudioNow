@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   get '/availabilities/get' => 'availabilities#get_availabilities'
+  get '/availabilities/move' => 'availabilities#move'
 
   root 'welcome#index'
 

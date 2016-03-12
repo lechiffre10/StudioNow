@@ -27,8 +27,17 @@
       $('#calendar').fullCalendar({
           editable: true,
           selectable: true,
-          select: function(){
-            alert("yolo");
+          selectHelper: true,
+          select: function(start, end){
+            var eventData;
+            var eventData = {
+              allDay: false,
+              title: 'Available',
+              start: moment(start).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
+              end: moment(end).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
+            }
+            console.log(eventData),
+            $('#calendar').fullCalendar('renderEvent',eventData, true);
           },
           header: {
               left: 'prev,next today',
