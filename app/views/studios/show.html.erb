@@ -3,6 +3,19 @@
 <h3><%= @studio.name %></h3>
 <p>Average Rating: <%=@studio.average_rating  %> </p>
 
+<h3> <%=@studio.name%>'s Availabilities</h3>
+	<% if @studio.availabilities.nil? %>
+		<p>This Studio currently has no availabilities</p>
+	<% else %>
+		<ul>
+			<% @studio.availabilities.each do |availability| %>
+				<li><%= render partial: "availabilities/show", locals: {availability: availability } %></li>
+			<% end %>
+		</ul>	
+	<% end %>
+
+
+
 <p>Address:<br>
 <p><%= @studio.full_address %></p>
 
