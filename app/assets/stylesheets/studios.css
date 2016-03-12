@@ -7,7 +7,12 @@
    margin-top: 25px;
    border-width: 7px;
  }
+
  #map {
    height: 384px;
    width: 100%;
+ }
+
+ .info-window {
+    margin: 0;
  }
