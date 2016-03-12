@@ -1,22 +1,22 @@
 <h1>SHOWIN DA USER</h1>
 
-<% if logged_in? %>
-	<p>Hello <%= current_user.first_name %>!</p>
+<% if session_user? %>
+	<p>Hello <%= @user.first_name %>!</p>
 <% end %>
 
 <p>Preferred Music Styles: <%=@user.genres %></p>
-<p>Your Average Rating: <%=@user.average_rating  %> </p>
+<p>Average Rating: <%=@user.average_rating  %> </p>
 
 <% if @user.has_studios %>
 	<% @user.studios.each do |studio| %>
-	<%= render partial: "studios/studio", locals: {studio: studio } %>
+		<%= render partial: "studios/studio", locals: {studio: studio } %>
+	<% end %>
 <% end %>
 
 <h3><%=@user.username %>'s reviews of Other Users: </h3>
 
 <% @user.written_reviews.each do |review| %>
 	<%= render partial: "reviews/review", locals: {review: review } %>
-	<% end %>
 <% end %>
 
 <h3>Reviews of <%= @user.username %> </h3>
