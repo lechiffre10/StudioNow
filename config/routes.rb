@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/logout' => 'users#destroy', as: 'logout'
+
   get '/availabilities/get' => 'availabilities#get_availabilities'
 
   root 'welcome#index'

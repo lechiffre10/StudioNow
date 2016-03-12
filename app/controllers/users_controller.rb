@@ -26,7 +26,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-
+    session[:user_id] = nil
+    render "destroy"
   end
 
   private

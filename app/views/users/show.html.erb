@@ -1,11 +1,16 @@
 <h1>SHOWIN DA USER</h1>
 
-<% if logged_in? %>
+<% if session_user? %>
 	<p>Hello <%= current_user.first_name %>!</p>
 <% end %>
 
 <p>Preferred Music Styles: <%=@user.genres %></p>
 <p>Your Average Rating: <%=@user.average_rating  %> </p>
+
+<% if session_user? %>
+	<p>hello!</p>
+	
+<% end %>
 
 <% if @user.has_studios %>
 	<% @user.studios.each do |studio| %>
