@@ -41,14 +41,23 @@ end
 availabilities = 30.times.map do
   day = rand(10..30)
 
-  studios.rotate![0].availabilities.create!(start_time: Faker::Time.forward(start_day = day, :morning), end_time: Faker::Time.forward(start_day, :evening))
+  studios.rotate![0].availabilities.create!(start_time: Faker::Time.forward(day = day, :morning), end_time: Faker::Time.forward(day, :evening))
 end
+
+past_availabilities = 30.times.map do
+  old_day = rand(10..30)
+  studios.rotate![0].availabilities.create!(start_time: Faker::Time.backward(old_day, :morning), end_time: Faker::Time.backward(old_day, :evening))
+end
+
+
 
 40.times.map do
   studios.rotate![0].availabilities.to_a.rotate![0].bookings.create(user: users.sample, start_time: availabilities.first.start_time, end_time: availabilities[0].start_time + 60.minutes, total_price: 100.00)
 end
 
-
+40.times.map do
+  studios.rotate![0].availabilities.to_a.rotate![0].bookings.create(user: users.sample, start_time: past_availabilities.first.start_time, end_time: past_availabilities[0].start_time + 60.minutes, total_price: 100.00)
+end
 
 
 

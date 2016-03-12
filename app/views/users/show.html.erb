@@ -1,9 +1,21 @@
 <h1>SHOWIN DA USER</h1>
 
-<% if session_user? %>
-	<p>Hello <%= @user.first_name %>!</p>
-<% end %>
 
+<h3>add helper method here</h3>
+	<p>Hello <%= @user.first_name %>!</p>
+	<p>Here are your upcoming studio bookings:</p>
+	<ul>
+		<% @user.future_bookings.each do |booking| %>
+			<%= render partial: "bookings/show", locals: {booking: booking } %>
+		<% end %>
+	</ul>
+
+	<p>Here are your past studio bookings:</p>
+	<ul>
+		<% @user.past_bookings.each do |booking| %>
+			<%= render partial: "bookings/show", locals: {booking: booking } %>
+		<% end %>
+	</ul>	
 <p>Preferred Music Styles: <%=@user.genres %></p>
 <p>Average Rating: <%=@user.average_rating  %> </p>
 

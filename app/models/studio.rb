@@ -14,4 +14,9 @@ class Studio < ActiveRecord::Base
   def self.search(searched_location)
     Studio.near(searched_location, 30)
   end
+
+  def average_rating
+    total = self.ratings.length
+    total != 0 ? self.ratings.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count : 0
+  end
 end
