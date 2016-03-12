@@ -28,6 +28,9 @@ class StudiosController < ApplicationController
 
   def show
     @studio = Studio.find_by_id(params[:id])
+    if @studio.images.any?
+      @images = @studio.images
+    end
   end
 
   def new
@@ -57,7 +60,7 @@ class StudiosController < ApplicationController
 
   private
   def studio_params
-    params.require(:studio).permit(:name, :address, :city, :state, :zip_code, :description, :price, :lat, :lng, :website)
+    params.require(:studio).permit(:name, :address, :city, :state, :zip_code, :description, :price, :latitude, :longitude, :website)
   end
 
 end
