@@ -33,12 +33,12 @@ class User < ActiveRecord::Base
   end
 
   def future_bookings
-    self.bookings.reject { |booking| booking.start_time.future? }
+    self.bookings.reject { |booking| booking.start_time.past? }
   end
 
 
   def past_bookings
-    self.bookings.reject { |booking| booking.start_time.past? }
+    self.bookings.reject { |booking| booking.start_time.future? }
   end
   
 end

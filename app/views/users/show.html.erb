@@ -6,18 +6,14 @@
 	<p>Here are your upcoming studio bookings:</p>
 	<ul>
 		<% @user.future_bookings.each do |booking| %>
-			<li>Studio: <%=booking.availability.studio %> </li>
-			<li>Start Time: <%=booking.start_time%> </li>
-			<li>End Time: <%=booking.end_time%> </li>
+			<%= render partial: "bookings/show", locals: {booking: booking } %>
 		<% end %>
 	</ul>
 
 	<p>Here are your past studio bookings:</p>
 	<ul>
 		<% @user.past_bookings.each do |booking| %>
-			<li>Studio: <%=booking.availability.studio.name %> </li>
-			<li>Start Time: <%=booking.start_time%> </li>
-			<li>End Time: <%=booking.end_time%> </li>
+			<%= render partial: "bookings/show", locals: {booking: booking } %>
 		<% end %>
 	</ul>	
 <p>Preferred Music Styles: <%=@user.genres %></p>
