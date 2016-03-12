@@ -3,10 +3,10 @@ class User < ActiveRecord::Base
 
   has_many :bookings
   has_many :studios, foreign_key: :owner_id
-  has_many :submitted_ratings, foreign_key: :rater_id
+  has_many :submitted_ratings, foreign_key: :rater_id, class_name: "Rating"
   has_many :ratings, as: :ratable
-  has_many :written_reviews, foreign_key: :reviewer_id
   has_many :reviews, as: :reviewable
+  has_many :written_reviews, foreign_key: :reviewer_id, class_name: "Review"
 
   validates :username, presence: true, uniqueness: true
   validates :first_name, :last_name, :email, presence: true
@@ -21,4 +21,20 @@ class User < ActiveRecord::Base
    end
  end
 
+ def average_rating
+  total = self.ratings
+  if total.length == 0
+    total_rating = 0
+  else
+    total_rating = total.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count
+   end
+   total_rating
+  end
+
+  def has_studios
+    unless self.studios.count == 0
+      return true
+    end
+  end
+  
 end
