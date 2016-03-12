@@ -29,6 +29,8 @@ class StudiosController < ApplicationController
 
   def show
     @studio = Studio.find_by_id(params[:id])
+    @latitude = @studio.latitude
+    @longitude = @studio.longitude
     if @studio.images.any?
       @images = @studio.images
     end
