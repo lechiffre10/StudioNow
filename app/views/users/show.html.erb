@@ -1,7 +1,7 @@
 <h1>SHOWIN DA USER</h1>
 
 
-<h3>add helper method here</h3>
+<% if current_user == @user %>
 	<p>Hello <%= @user.first_name %>!</p>
 	<p>Here are your upcoming studio bookings:</p>
 	<ul>
@@ -15,7 +15,8 @@
 		<% @user.past_bookings.each do |booking| %>
 			<%= render partial: "bookings/show", locals: {booking: booking } %>
 		<% end %>
-	</ul>	
+	</ul>
+<% end %>
 <p>Preferred Music Styles: <%=@user.genres %></p>
 <p>Average Rating: <%=@user.average_rating  %> </p>
 
@@ -24,6 +25,8 @@
 		<%= render partial: "studios/studio", locals: {studio: studio } %>
 	<% end %>
 <% end %>
+
+
 
 <h3><%=@user.username %>'s reviews of Other Users: </h3>
 
