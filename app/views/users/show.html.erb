@@ -1,9 +1,25 @@
 <h1>SHOWIN DA USER</h1>
 
-<% if session_user? %>
-	<p>Hello <%= @user.first_name %>!</p>
-<% end %>
 
+<h3>add helper method here</h3>
+	<p>Hello <%= @user.first_name %>!</p>
+	<p>Here are your upcoming studio bookings:</p>
+	<ul>
+		<% @user.future_bookings.each do |booking| %>
+			<li>Studio: <%=booking.availability.studio %> </li>
+			<li>Start Time: <%=booking.start_time%> </li>
+			<li>End Time: <%=booking.end_time%> </li>
+		<% end %>
+	</ul>
+
+	<p>Here are your past studio bookings:</p>
+	<ul>
+		<% @user.past_bookings.each do |booking| %>
+			<li>Studio: <%=booking.availability.studio.name %> </li>
+			<li>Start Time: <%=booking.start_time%> </li>
+			<li>End Time: <%=booking.end_time%> </li>
+		<% end %>
+	</ul>	
 <p>Preferred Music Styles: <%=@user.genres %></p>
 <p>Average Rating: <%=@user.average_rating  %> </p>
 
