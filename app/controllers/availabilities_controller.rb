@@ -1,6 +1,7 @@
 class AvailabilitiesController < ApplicationController
   def index
     @studio = Studio.find_by(id: params[:studio_id])
+    session[:studio_id] = @studio.id
   end
 
   def new
@@ -24,8 +25,8 @@ class AvailabilitiesController < ApplicationController
     # hi it's ray. we need to somehow filter based on studio id to only get the availabilities for this studio. Right now we call the get_availabilities method from our availabilities_calendar.js file, but don't pass the studio id at any point. I don't have an answer to this but wanted to call it out while I was thinking about it.
     # puts params
     # @studio = Studio.find_by_id(params[:studio_id])
-    # puts @studio
-    @availabilities = Availability.all
+    @studio = Studio.find_by(id: session[:studio_id])
+    @availabilities = @studio.availabilities
     availabilities = []
     @availabilities.each do |availability|
       availabilities << {:id => availability.id, :title => 'Available for Booking', :start => "#{availability.start_time.iso8601}", :end => "#{availability.end_time.iso8601}", :allDay => false}

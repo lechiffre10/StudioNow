@@ -24,6 +24,7 @@
         });
       });
 
+
       $('#calendar').fullCalendar({
           editable: true,
           selectable: true,

@@ -28,6 +28,7 @@ class StudiosController < ApplicationController
 
   def show
     @studio = Studio.find_by_id(params[:id])
+    @availability = @studio.availabilities[0]
     if @studio.images.any?
       @images = @studio.images
     end
