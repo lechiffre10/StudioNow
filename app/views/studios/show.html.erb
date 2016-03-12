@@ -8,7 +8,8 @@
 		<p>This Studio currently has no availabilities</p>
 	<% else %>
 		<ul>
-			<% @studio.future_availabilities.each do |availability| %>
+			<% @studio.sorted_availabilities.each do |availability| %>
+				<p>New availability </p>
 				<% availability.unbooked_times.each do |time| %>
 					<li><%= render partial: "availabilities/show", locals: {time: time } %></li>
 				<% end %>

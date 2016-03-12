@@ -17,10 +17,15 @@ class Studio < ActiveRecord::Base
 
   def future_availabilities
     self.availabilities.reject { |availability| availability.start_time.past? }
+  end
+
+  def sorted_availabilities
+    future_availabilities.sort_by { |availability| availability.start_time }    
   end  
 
   def average_rating
     total = self.ratings.length
     total != 0 ? self.ratings.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count : 0
   end
+
 end
