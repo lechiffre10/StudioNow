@@ -5,6 +5,7 @@ class StudiosController < ApplicationController
       @studios = Studio.search(params[:search])
 
       @hash = Gmaps4rails.build_markers(@studios) do |studio, marker|
+        marker.infowindow render_to_string(:partial => "/studios/infowindow", :locals => { :studio => studio})
         marker.lat studio.latitude
         marker.lng studio.longitude
       end
@@ -28,6 +29,8 @@ class StudiosController < ApplicationController
 
   def show
     @studio = Studio.find_by_id(params[:id])
+    @latitude = @studio.latitude
+    @longitude = @studio.longitude
     if @studio.images.any?
       @images = @studio.images
     end
