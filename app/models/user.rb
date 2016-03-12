@@ -21,20 +21,24 @@ class User < ActiveRecord::Base
    end
  end
 
- def average_rating
-  total = self.ratings
-  if total.length == 0
-    total_rating = 0
-  else
-    total_rating = total.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count
-   end
-   total_rating
+  def average_rating
+    total = self.ratings.length
+    total != 0 ? self.ratings.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count : 0
   end
 
   def has_studios
     unless self.studios.count == 0
       return true
     end
+  end
+
+  def future_bookings
+    self.bookings.reject { |booking| booking.start_time.past? }
+  end
+
+
+  def past_bookings
+    self.bookings.reject { |booking| booking.start_time.future? }
   end
   
 end

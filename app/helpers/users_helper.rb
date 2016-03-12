@@ -5,5 +5,9 @@ module UsersHelper
 
   def logged_in?
   	!current_user.nil?
-  end	
+  end
+
+  def session_user?
+  	session[:user_id] = params[:id] ? true : false
+  end
 end
