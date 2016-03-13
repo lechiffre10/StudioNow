@@ -8,13 +8,13 @@
 
 <% if current_user == @user %>
 	<%= link_to "Edit Profile", edit_user_path(current_user) %><br>
-	<p>Here are your upcoming studio bookings:</p>
+	<h5>Here are your upcoming studio bookings:</h5>
 	<ul>
 		<% @user.future_bookings.each do |booking| %>
 			<%= render partial: "bookings/show", locals: {booking: booking } %>
 		<% end %>
 	</ul>
-	<p>Here are your past studio bookings:</p>
+	<h5>Here are your past studio bookings:</h5>
 	<ul>
 		<% @user.past_bookings.each do |booking| %>
 			<%= render partial: "bookings/show", locals: {booking: booking } %>
@@ -22,9 +22,10 @@
 	</ul>
 <% end %>
 
-<p>Preferred Music Styles: <%=@user.genres %></p>
-<p>Average Rating: <%=@user.average_rating  %> </p>
+<h5>Preferred Music Styles: <%=@user.genres %></h5>
+<h5>Average Rating: <%=@user.average_rating  %> </h5>
 
+<h5>Your Studio Listings:</h5>
 <% if @user.has_studios %>
 	<% @user.studios.each do |studio| %>
 		<%= render partial: "studios/studio", locals: {studio: studio } %>
@@ -32,13 +33,13 @@
 <% end %>
 
 
-<h3><%=@user.first_name %>'s reviews of Other Users: </h3>
+<h5><%=@user.first_name %>'s reviews of Other Users: </h5>
 
 <% @user.written_reviews.each do |review| %>
 	<%= render partial: "reviews/review", locals: {review: review } %>
 <% end %>
 
-<h3>Reviews of <%= @user.first_name %> </h3>
+<h5>Reviews of <%= @user.first_name %> </h5>
 
 <% @user.reviews.each do |review| %>
 	<%= render partial: "reviews/review", locals: {review: review } %>

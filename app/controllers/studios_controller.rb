@@ -42,7 +42,8 @@ class StudiosController < ApplicationController
   end
 
   def create
-    @studio = Studio.new(studio_params)
+    user = User.find_by_id(session[:user_id])
+    @studio = user.studios.new(studio_params)
     if @studio.save
       redirect_to studio_path(@studio)
     else
