@@ -11,14 +11,19 @@
 </head>
 <body>
 
-	<% if logged_in? %>
-		 <p>Welcome <%= current_user.username %> </p>
-		<p> <%= link_to("Logout", logout_path) %></p>
-	<% else %>
-		<p> <%= link_to("Register", new_user_path) %></p>
-		<p> <%= link_to("Login", new_user_path) %></p>
-	<% end %>
-<%= yield %>
+  <nav class="clearfix mar-b-1">
+    <ul class="no-bullets no-margin pad-l-1 left">
+      <% if logged_in? %>
+        <li class="pipe-separate t-light-blue left">Welcome <%= link_to current_user.username, user_path(current_user) %></li>
+        <li class="pipe-separate t-light-blue left"><%= link_to("Logout", logout_path) %></li>
+      <% else %>
+        <li class="pipe-separate t-light-blue left"><%= link_to("Register", new_user_path) %></li>
+        <li class="pipe-separate t-light-blue left"><%= link_to("Login", new_user_path) %></li>
+      <% end %>
+    </ul>
+  </nav>
+
+  <%= yield %>
 
 </body>
 
