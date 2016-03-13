@@ -1,4 +1,7 @@
 <h1>Upload photos for <%= @studio.name %></h1>
+
+<%= link_to "Back to Studio", studio_path(@studio) %>
+
 <%= form_for([@studio, @image], multipart: true) do |f| %>
   <div class="field">
     <%= f.label :media %>
