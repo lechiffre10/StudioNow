@@ -3,7 +3,7 @@ class Availability < ActiveRecord::Base
   belongs_to :studio
 
   validates :start_time, :end_time, presence: true
-  validate :valid_availability
+  # validate :valid_availability
 
   def unbooked_times
     all_times = [self.start_time]

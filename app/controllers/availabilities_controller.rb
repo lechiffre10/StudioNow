@@ -29,7 +29,7 @@ class AvailabilitiesController < ApplicationController
     @availabilities = @studio.availabilities
     availabilities = []
     @availabilities.each do |availability|
-      availabilities << {:id => availability.id, :title => 'Available for Booking', :start => "#{availability.start_time.iso8601}", :end => "#{availability.end_time.iso8601}", :allDay => false}
+      availabilities << {:id => availability.id, :title => 'Available for Booking', :start => "#{availability.start_time.iso8601}", :end => "#{availability.end_time.iso8601}", :allDay => false, :overlap => false}
     end
     render :text => availabilities.to_json
   end
