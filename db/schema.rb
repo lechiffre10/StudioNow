@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20160310211139) do
     t.float    "latitude"
     t.float    "longitude"
     t.text     "description"
-    t.integer  "price"
+    t.float    "price"
     t.string   "website"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
