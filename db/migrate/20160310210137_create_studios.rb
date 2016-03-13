@@ -7,7 +7,7 @@ class CreateStudios < ActiveRecord::Migration
       t.float :latitude, {:precision => 10, :scale => 6}
       t.float :longitude, {:precision => 10, :scale => 6}
       t.text :description
-      t.float :price
+      t.integer :price
       t.string :website
 
       t.timestamps null: false
