@@ -1,3 +1,16 @@
 <h1>This is where you create new studios</h1>
 
 <%= render 'form' %>
+
+
+<% if @studio.errors.any? %>
+<div class="errors">
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>
+
+
