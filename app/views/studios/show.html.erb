@@ -50,7 +50,7 @@
   <% end %>
 </div>
 
-
+<p id="basicExampleStatus"></p>
 <h3>Request Studio Time:</h3>
 <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
@@ -60,8 +60,6 @@
   <input type="text" class="time end" name="e_time"/>
   <input type="submit" value="Request Studio Time">
 </form>
-
-
 
 
 
@@ -79,6 +77,11 @@
     // initialize datepair
     var basicExampleEl = document.getElementById('basicExample');
     var datepair = new Datepair(basicExampleEl);
+
+    $('#basicExample').on('rangeIncomplete', function(){
+        $('#basicExampleStatus').text('Incomplete range');
+    });
+
 </script>
 
 <div class="row">

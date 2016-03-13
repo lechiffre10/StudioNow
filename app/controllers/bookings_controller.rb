@@ -8,21 +8,13 @@ class BookingsController < ApplicationController
     @studio = Studio.find_by(id: params[:studio_id])
     @availability = Availability.find_by(id: 10)
 
-    input_start_date = params[:start_date]
-    input_start_time = params[:s_time]
-    input_end_date = params[:end_date]
-    input_end_time = params[:e_time]
+    concat_start = "#{params[:start_date]} #{params[:s_time]}"
+    concat_end = "#{params[:end_date]} #{params[:e_time]}"
 
-    concat_start = "#{input_start_date} #{input_start_time}"
-    concat_end = "#{input_end_date} #{input_end_time}"
+    requested_start_time = Booking.convert_to_datetime(concat_start)
+    requested_end_time = Booking.convert_to_datetime(concat_end)
 
-    start_time = Booking.time_to_datetime(concat_start)
-    end_time = Booking.time_to_datetime(concat_end)
-
-    price = Booking.total_price(start_time, end_time, @studio.price)
-
-    puts '**************'
-    puts @studio.price
+    price = Booking.total_price(requested_start_time, requested_end_time, @studio.price)
 
     @booking = @availability.bookings.new(start_time: start_time, end_time: end_time, user_id: session[:user_id], total_price: price)
 
