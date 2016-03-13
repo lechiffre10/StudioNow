@@ -28,29 +28,16 @@ class Availability < ActiveRecord::Base
   end
 
   def valid_availability
-    puts "hello"
-    puts valid_start
-    puts valid_end
-   valid_start && valid_end
+    valid_start && valid_end
   end
 
   def valid_start
     studio = Studio.find_by(id: self.studio_id)
-    puts "~~~~~~~~~~~~~~~~~~~~~~~~"
-    puts studio.availabilities.length
-    puts "~~~~~~~~~~~~~~~~~~~~~~~~"
-
-    puts "self start time yo #{self.start_time}"
-
     unavailable_times = studio.availabilities.select do |av|
       existing_start = av.start_time
       existing_end = av.end_time
       self.start_time.between?(existing_start, existing_end) == true
-        puts "start time true for #{existing_start} and #{existing_end}"
     end
-    puts "start time"
-    puts unavailable_times.length
-
     if unavailable_times.length > 0
       return false
     else
@@ -60,15 +47,11 @@ class Availability < ActiveRecord::Base
 
   def valid_end
     studio = Studio.find_by(id: self.studio_id)
-    puts "self end time yo #{self.start_time}"
     unavailable_times = studio.availabilities.select do |av|
       existing_start = av.start_time
       existing_end = av.end_time
       self.start_time.between?(existing_start, existing_end) == true
-        puts "end time true for #{existing_start} and #{existing_end}"
     end
-    puts "end time"
-    puts unavailable_times.length
     if unavailable_times.length > 0
       return false
     else

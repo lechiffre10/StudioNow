@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
 
   def create
     @studio = Studio.find_by(id: params[:studio_id])
-    @availability = Availability.find_by(id: params[:availability_id])
+    @availability = Availability.find_by(id: 10)
     @booking = Booking.create(booking_params)
     if @booking.save
       redirect_to studio_path(@studio), notice: "Your booking has been submitted."

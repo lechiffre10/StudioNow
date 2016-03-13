@@ -41,12 +41,12 @@
 <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
 
 <h3>Request Studio Time:</h3>
-<form id="basicExample">
-    <input type="text" class="date start" />
-    <input type="text" class="time start" /> to
-    <input type="text" class="date end" />
-    <input type="text" class="time end" />
-    <input type="submit" value="Request Studio Time">
+<form id="basicExample" action='/studios/<%= @studio.id %>/availabilities/10/bookings' method='POST'>
+  <input type="text" class="date start" />
+  <input type="text" class="time start" /> to
+  <input type="text" class="date end" />
+  <input type="text" class="time end" />
+  <input type="submit" value="Request Studio Time">
 </form>
 
 <script>
