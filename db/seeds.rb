@@ -14,7 +14,7 @@ studio_owners = 15.times.map do
   User.create!(username: Faker::Internet.user_name, password: "passwords", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::StarWars.quote, email: Faker::Internet.email, genres: Faker::Book.genre)
 end
 
-nums = [40.00, 35.50, 25.25, 88.50, 90.00, 33.40, 50.00, 55.00]
+nums = [40, 35, 25, 88, 90, 33, 50, 55]
 
 addresses = ["351 W Hubbard St, Chicago, IL 60654", "907 Caprice Dr. Shorewood IL, 60404", "15377 Silver Bell Rd. Orland Park, IL 60462", "2833 N Sheffield Ave, Chicago, IL 60657", "900 N. Wood St. Chicago, IL 60622", "16263 West Wyandot Lockport, IL 60441", "908 Caprice Dr. Shorewood, IL 60404", "233 S Wacker Dr, Chicago, IL 60606", "1035 N Western Ave, Chicago, IL 60622", "3159 N Southport Ave, Chicago, IL 60657"]
 
