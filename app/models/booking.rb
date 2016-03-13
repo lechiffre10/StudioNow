@@ -5,7 +5,6 @@ class Booking < ActiveRecord::Base
 
   validates :start_time, :end_time, presence: true
 
-
   def self.find_timeslot(start_time,end_time,studio)
     current_timeslots = studio.unbooked_times
     slots_valid_start = current_timeslots.select{|timeslot| DateTime.parse(timeslot[0].to_s) <= start_time}
@@ -23,6 +22,16 @@ class Booking < ActiveRecord::Base
 
  	def pretty_print_end_time
   	self.end_time.strftime('%a, %d %b %Y %H:%M:%S')
+  end
+
+  # This method takes in a date and time string and returns a datetime object:
+  def self.convert_to_datetime(time)
+    DateTime.strptime(time, '%m/%d/%Y %I:%M%p')
+  end
+
+  def self.total_price(start_time, end_time, price)
+    hours = ((end_time - start_time) * 24).to_i
+    total_price = price * hours
   end
 
 end

@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20160310211139) do
     t.integer  "availability_id"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.float    "total_price"
+    t.integer  "total_price"
     t.boolean  "confirmed"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20160310211139) do
     t.float    "latitude"
     t.float    "longitude"
     t.text     "description"
-    t.float    "price"
+    t.integer  "price"
     t.string   "website"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
