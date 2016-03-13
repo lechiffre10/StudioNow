@@ -29,22 +29,40 @@
           editable: true,
           selectable: true,
           selectHelper: true,
+          selectOverlap: false,
           select: function(start, end){
-            var eventData;
-            var eventData = {
-              allDay: false,
-              title: 'Available',
-              start: moment(start).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
-              end: moment(end).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
-            }
-            $('#calendar').fullCalendar('renderEvent',eventData);
-            var address = $('#studio_path').data('address');
-            $.ajax({
-            url: address,
-            method: 'POST',
-            data: {availability: {start_time: moment(start).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"), end_time: moment(end).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")}},
-            success: refetch_events_and_close_dialog
+
+             var overlap = $('#calendar').fullCalendar('clientEvents', function(ev) {
+                var estart = new Date(ev.start);
+                var eend = new Date(ev.end);
+
+                return (
+                    ( Math.round(start) > Math.round(estart) && Math.round(start) < Math.round(eend) )
+                    ||
+                    ( Math.round(end) > Math.round(estart) && Math.round(end) < Math.round(eend) )
+                    ||
+                    ( Math.round(start) < Math.round(estart) && Math.round(end) > Math.round(eend) )
+                );
             });
+            if (overlap.length){
+              return false;
+             } else {
+              var eventData;
+              var eventData = {
+                allDay: false,
+                title: 'Available',
+                start: moment(start).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"),
+                end: moment(end).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")
+              }
+              $('#calendar').fullCalendar('renderEvent',eventData);
+              var address = $('#studio_path').data('address');
+              $.ajax({
+              url: address,
+              method: 'POST',
+              data: {availability: {start_time: moment(start).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]"), end_time: moment(end).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]")}},
+              success: refetch_events_and_close_dialog
+              });
+            }
           },
           header: {
               left: 'prev,next today',
@@ -63,22 +81,60 @@
           events: "/availabilities/get",
           timeFormat: 'hh:mm t{ - hh:mm t} ',
           dragOpacity: "0.5",
+          eventOverlap: function(stillEvent, movingEvent) {
+            return false;
+          },
           eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc){
-//              if (confirm("Are you sure about this change?")) {
-                  moveEvent(event, dayDelta, minuteDelta, allDay);
-//              }
-//              else {
-//                  revertFunc();
-//              }
+
+            var start = new Date(event.start);
+            var end = new Date(event.end);
+
+            var overlap = $('#calendar').fullCalendar('clientEvents', function(ev) {
+                if( ev == event) {
+                    return false;
+                }
+                var estart = new Date(ev.start);
+                var eend = new Date(ev.end);
+
+                return (
+                    ( Math.round(start) > Math.round(estart) && Math.round(start) < Math.round(eend) )
+                    ||
+                    ( Math.round(end) > Math.round(estart) && Math.round(end) < Math.round(eend) )
+                    ||
+                    ( Math.round(start) < Math.round(estart) && Math.round(end) > Math.round(eend) )
+                );
+            });
+            if (overlap.length){
+                revertFunc();
+                return false;
+            }else {moveEvent(event, dayDelta, minuteDelta, allDay);}
+
           },
 
           eventResize: function(event, dayDelta, minuteDelta, revertFunc){
 //              if (confirm("Are you sure about this change?")) {
-                  resizeEvent(event, dayDelta, minuteDelta);
-//              }
-//              else {
-//                  revertFunc();
-//              }
+             var start = new Date(event.start);
+            var end = new Date(event.end);
+
+            var overlap = $('#calendar').fullCalendar('clientEvents', function(ev) {
+                if( ev == event) {
+                    return false;
+                }
+                var estart = new Date(ev.start);
+                var eend = new Date(ev.end);
+
+                return (
+                    ( Math.round(start) > Math.round(estart) && Math.round(start) < Math.round(eend) )
+                    ||
+                    ( Math.round(end) > Math.round(estart) && Math.round(end) < Math.round(eend) )
+                    ||
+                    ( Math.round(start) < Math.round(estart) && Math.round(end) > Math.round(eend) )
+                );
+            });
+            if (overlap.length){
+                revertFunc();
+                return false;
+            }else {resizeEvent(event, dayDelta, minuteDelta);}
           },
 
           eventClick: function(event, jsEvent, view){
