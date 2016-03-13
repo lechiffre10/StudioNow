@@ -20,12 +20,19 @@ class Studio < ActiveRecord::Base
   end
 
   def sorted_availabilities
-    future_availabilities.sort_by { |availability| availability.start_time }    
-  end  
+    future_availabilities.sort_by { |availability| availability.start_time }
+  end
 
   def average_rating
     total = self.ratings.length
     total != 0 ? self.ratings.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count : 0
+  end
+
+  def unbooked_times
+    all_unbooked_times = availabilities.map do |availability|
+      availability.unbooked_times.map{ |array_of_times| array_of_times << availability.id}
+    end
+    all_unbooked_times.flatten(1)
   end
 
 end
