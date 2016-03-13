@@ -40,14 +40,30 @@
 <%= link_to 'Set Availabilities', studio_availabilities_path(@studio) %><br>
 <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
 
+<% if @errors %>
+<div class="errors">
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>
+
+
 <h3>Request Studio Time:</h3>
-<form id="basicExample" action='/studios/<%= @studio.id %>/availabilities/10/bookings' method='POST'>
-  <input type="text" class="date start" />
-  <input type="text" class="time start" /> to
-  <input type="text" class="date end" />
-  <input type="text" class="time end" />
+<form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
+  <input type="text" class="date start" name="start_date"/>
+  <input type="text" class="time start" name="s_time"/> to
+  <input type="text" class="date end" name="end_date"/>
+  <input type="text" class="time end" name="e_time"/>
   <input type="submit" value="Request Studio Time">
 </form>
+
+
+
+
 
 <script>
     $('#basicExample .time').timepicker({
