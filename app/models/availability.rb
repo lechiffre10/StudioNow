@@ -3,11 +3,12 @@ class Availability < ActiveRecord::Base
   belongs_to :studio
 
   validates :start_time, :end_time, presence: true
+  validate :valid_availability
 
   def unbooked_times
     all_times = [self.start_time]
     all_bookings = self.bookings.sort_by {|booking| booking.start_time }
-    until all_bookings.length == 0 do 
+    until all_bookings.length == 0 do
     	all_times << all_bookings.first.start_time
     	all_times << all_bookings.first.end_time
     	all_bookings.shift
@@ -19,16 +20,62 @@ class Availability < ActiveRecord::Base
   def create_multi_level_array(array)
   	final_array = []
   	i = 0
-  	until i == (array.length - 1) do 
-  		final_array << [beautify(array[i]), beautify(array[i+1])]
+  	until i == (array.length - 1) do
+  		final_array << [array[i], array[i+1]]
   		i += 1
   	end
   	final_array
   end
 
-
-  def beautify(time) 
-  	time.strftime('%a, %d %b %Y %H:%M:%S')
+  def valid_availability
+    puts "hello"
+    puts valid_start
+    puts valid_end
+   valid_start && valid_end
   end
+
+  def valid_start
+    studio = Studio.find_by(id: self.studio_id)
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts studio.availabilities.length
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~"
+
+    puts "self start time yo #{self.start_time}"
+
+    unavailable_times = studio.availabilities.select do |av|
+      existing_start = av.start_time
+      existing_end = av.end_time
+      self.start_time.between?(existing_start, existing_end) == true
+        puts "start time true for #{existing_start} and #{existing_end}"
+    end
+    puts "start time"
+    puts unavailable_times.length
+
+    if unavailable_times.length > 0
+      return false
+    else
+      return true
+    end
+  end
+
+  def valid_end
+    studio = Studio.find_by(id: self.studio_id)
+    puts "self end time yo #{self.start_time}"
+    unavailable_times = studio.availabilities.select do |av|
+      existing_start = av.start_time
+      existing_end = av.end_time
+      self.start_time.between?(existing_start, existing_end) == true
+        puts "end time true for #{existing_start} and #{existing_end}"
+    end
+    puts "end time"
+    puts unavailable_times.length
+    if unavailable_times.length > 0
+      return false
+    else
+      return true
+    end
+  end
+
+
 
 end
