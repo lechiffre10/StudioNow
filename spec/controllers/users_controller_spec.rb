@@ -13,9 +13,7 @@ RSpec.describe UsersController, type: :controller do
   describe 'users#create' do
     it 'increases the count of users when passed the right information' do
       number_of_users = User.count
-      puts number_of_users
       post :create, user: {first_name: 'Tyler', last_name: 'Mac', username: 'tytyty', password: 'password', email: 'tyler@tyler.com'}
-      puts User.count
       expect(User.count).to eq(number_of_users + 1)
     end
 

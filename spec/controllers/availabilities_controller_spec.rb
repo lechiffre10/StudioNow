@@ -31,4 +31,72 @@ RSpec.describe AvailabilitiesController, type: :controller do
       expect(response).to have_http_status(422)
     end
   end
+
+  describe '#index' do
+    it 'finds the right studio based on id' do
+      get :index, studio_id: @studio1.id
+      expect(assigns(:studio)).to eq @studio1
+    end
+
+    it 'adds the studio id to the session' do
+      get :index, studio_id: @studio1.id
+      expect(session[:studio_id]).to eq @studio1.id
+    end
+  end
+
+  describe '#new' do
+    it 'finds the right studio based on id' do
+      get :new, studio_id: @studio1.id
+      expect(assigns(:studio)).to eq @studio1
+    end
+
+    it 'creates a new availability instance' do
+      get :new, studio_id: @studio1.id
+      expect(assigns(:studio)).to be_kind_of Studio
+    end
+  end
+
+  describe '#get_availabilities' do
+    it 'assigns the studio as the right studio' do
+     session[:studio_id] = @studio1.id
+     get :get_availabilities
+     expect(assigns(:studio)).to eq @studio1
+   end
+
+   it 'assigns the studio as the right studio' do
+     session[:studio_id] = @studio1.id
+     get :get_availabilities
+     expect(assigns(:availabilities)).to include @availability1
+   end
+  end
+
+  describe '#move' do
+    it 'finds the right availability by id' do
+      post :move, id: @availability1.id, minute_delta: 60, day_delta: 1
+      expect(assigns(:availability)).to eq @availability1
+    end
+  end
+
+  describe '#resize' do
+    it 'finds the right availability by id' do
+      post :resize, id: @availability1.id, minute_delta: 60, day_delta: 1
+      expect(assigns(:availability)).to eq @availability1
+    end
+  end
+
+  describe '#destroy' do
+    it 'finds the right availability by id' do
+      post :destroy, id: @availability1.id, studio_id: @studio1.id
+      expect(assigns(:availability)).to eq @availability1
+    end
+
+    it 'finds the right availability by id' do
+      post :destroy, id: @availability1.id, studio_id: @studio1.id
+      expect(assigns(:studio)).to eq @studio1
+    end
+  end
 end
+
+
+
+
