@@ -20,9 +20,9 @@ class Availability < ActiveRecord::Base
   def create_multi_level_array(array)
     final_array = []
     i = 0
-    until i == (array.length - 1) do
+    until i == (array.length) do
       final_array << [array[i], array[i+1]]
-      i += 1
+      i += 2
     end
     final_array
   end

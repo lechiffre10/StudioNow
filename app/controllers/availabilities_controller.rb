@@ -22,9 +22,6 @@ class AvailabilitiesController < ApplicationController
 
 
   def get_availabilities
-    # hi it's ray. we need to somehow filter based on studio id to only get the availabilities for this studio. Right now we call the get_availabilities method from our availabilities_calendar.js file, but don't pass the studio id at any point. I don't have an answer to this but wanted to call it out while I was thinking about it.
-    # puts params
-    # @studio = Studio.find_by_id(params[:studio_id])
     @studio = Studio.find_by(id: session[:studio_id])
     @availabilities = @studio.availabilities
     availabilities = []
@@ -65,15 +62,6 @@ class AvailabilitiesController < ApplicationController
     params.require(:availability).permit(:start_time, :end_time)
   end
 
-
-  # def availability_params
-  #   params.require(:availability).permit('title', 'description', 'starttime(1i)', 'starttime(2i)', 'starttime(3i)', 'starttime(4i)', 'starttime(5i)', 'endtime(1i)', 'endtime(2i)', 'endtime(3i)', 'endtime(4i)', 'endtime(5i)', 'all_day', 'period', 'frequency', 'commit_button')
-  # end
 end
 
 
-# add this to the end of each availability to add recurring or all day functionality
-#, :allDay => availability.all_day, :recurring => (availability.event_series_id)? true: false
-
-# this was at the end of the availability.find instead of availability.all method and it wasn't returning any results. Not sure why yet.
-# find(:all, :conditions => ["start_time >= '#{Time.at(params['start'].to_i).to_formatted_s(:db)}' and end_time <= '#{Time.at(params['end'].to_i).to_formatted_s(:db)}'"] )

@@ -62,14 +62,14 @@ function showEventDetails(event){
 }
 
 
-function editEvent(event_id){
-    jQuery.ajax({
-      url: "/events/" + event_id + "/edit",
-      success: function(data) {
-        $('#event_desc').html(data['form']);
-      }
-    });
-}
+// function editEvent(event_id){
+//     jQuery.ajax({
+//       url: "/events/" + event_id + "/edit",
+//       success: function(data) {
+//         $('#event_desc').html(data['form']);
+//       }
+//     });
+// }
 
 function deleteEvent(event_id, delete_all){
   var address = $('#studio_path').data('address');
@@ -88,62 +88,3 @@ function refetch_events_and_close_dialog() {
   $('.dialog:visible').dialog('destroy');
 }
 
-function showPeriodAndFrequency(value){
-
-    switch (value) {
-        case 'Daily':
-            $('#period').html('day');
-            $('#frequency').show();
-            break;
-        case 'Weekly':
-            $('#period').html('week');
-            $('#frequency').show();
-            break;
-        case 'Monthly':
-            $('#period').html('month');
-            $('#frequency').show();
-            break;
-        case 'Yearly':
-            $('#period').html('year');
-            $('#frequency').show();
-            break;
-
-        default:
-            $('#frequency').hide();
-    }
-
-
-
-
-}
-
-// hi it's ray again. This seems to be the part that should actually generate the post request to create the events when the event form is submitted. I tried putting that alert for 'yolo' in there and couldn't get it to show up at all. I'm not sure it's going here just yet. If we could actually make it work, we may be able to not pass all the shitty data it's passing now. See below for how it's currently passing it. Ideally we could just pass in like start_time: 2016-3-12 5:00PM or something
-/*
-availability[start_time(1i)]:2016
-availability[start_time(2i)]:3
-availability[start_time(3i)]:12
-availability[start_time(4i)]:13
-availability[start_time(5i)]:32
-availability[end_time(1i)]:2016
-availability[end_time(2i)]:3
-availability[end_time(3i)]:12
-availability[end_time(4i)]:14
-availability[end_time(5i)]:32*/
-
-// $(document).ready(function(){
-//   $('#create_event_dialog, #desc_dialog').on('submit', "#event_form", function(event) {
-//     event.preventDefault();
-//     alert('yolo');
-//     $.ajax({
-//       type: "POST",
-//       data: $(this).serialize(),
-//       url: $(this).attr('action'),
-//       success: refetch_events_and_close_dialog,
-//       error: handle_error
-//     });
-
-//     function handle_error(xhr) {
-//       alert(xhr.responseText);
-//     }
-//   })
-// });
