@@ -19,14 +19,22 @@ class AvailabilitiesController < ApplicationController
       render :text => availability.errors.full_messages.to_sentence, :status => 422
     end
   end
-
+def get_available_timeslots
+    @studio = Studio.find_by(id: session[:studio_id])
+    @timeslots = @studio.unbooked_times
+    timeslots = []
+    @timeslots.each do |timeslot|
+      timeslots << { :color => '#34AADC', :title => 'Open', :start => DateTime.parse(timeslot[0].to_s).iso8601, :end => DateTime.parse(timeslot[1].to_s).iso8601, :allDay => false, :overlap => false}
+    end
+    render :text => timeslots.to_json
+  end
 
   def get_availabilities
     @studio = Studio.find_by(id: session[:studio_id])
     @availabilities = @studio.availabilities
     availabilities = []
     @availabilities.each do |availability|
-      availabilities << {:id => availability.id, :title => 'Available for Booking', :start => "#{availability.start_time.iso8601}", :end => "#{availability.end_time.iso8601}", :allDay => false, :overlap => false}
+      availabilities << {:id => availability.id, :color => '#34AADC', :title => 'Available for Booking', :start => "#{availability.start_time.iso8601}", :end => "#{availability.end_time.iso8601}", :allDay => false, :overlap => false}
     end
     render :text => availabilities.to_json
   end

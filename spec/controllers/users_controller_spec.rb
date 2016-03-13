@@ -81,7 +81,7 @@ RSpec.describe UsersController, type: :controller do
 
     it 'renders the destroy page when logged out' do
       delete :destroy
-      expect(response).to render_template :destroy
+      expect(response).to redirect_to '/'
     end
   end
 end
