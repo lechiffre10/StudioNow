@@ -56,8 +56,9 @@
       <%= render partial: "studios/studio", locals: { studio: studio } %>
     <% end %>
   </div>
-<% elsif @studios == nil %>
+<% elsif @studios == nil && @searched_coords[1] == 'mOOse' %>
   <div class="no-location-found-error">No location was found for your search. Please try again!</div>
+<% elsif @studios == nil %>
 <% elsif @studios.empty? %>
   <div class="no-studio-error">No studios were found in that area.</div>
 <% end %>
