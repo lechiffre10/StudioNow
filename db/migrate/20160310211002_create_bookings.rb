@@ -5,7 +5,7 @@ class CreateBookings < ActiveRecord::Migration
       t.integer :availability_id
       t.datetime :start_time
       t.datetime :end_time
-      t.float :total_price
+      t.integer :total_price
       t.boolean :confirmed
 
       t.timestamps null: false

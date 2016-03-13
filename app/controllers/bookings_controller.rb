@@ -5,30 +5,28 @@ class BookingsController < ApplicationController
   end
 
   def create
-    p "%%%%%%%%%%%%%%%%%%%%%%%%"
-    start_date = params[:start_date]
-    s_time = params[:s_time]
-    end_date = params[:end_date]
-    e_time = params[:e_time]
-    start = "#{start_date} #{s_time}"
-    e = "#{end_date} #{e_time}"
-
-    start_time = DateTime.strptime(start, '%m/%d/%Y %I:%M%p')
-    end_time = DateTime.strptime(e, '%m/%d/%Y %I:%M%p')
-
     @studio = Studio.find_by(id: params[:studio_id])
     @availability = Availability.find_by(id: 10)
 
-    p "This is the availability object!!!!"
-    p @availability
+    input_start_date = params[:start_date]
+    input_start_time = params[:s_time]
+    input_end_date = params[:end_date]
+    input_end_time = params[:e_time]
 
-    @booking = @availability.bookings.new(start_time: start_time, end_time: end_time, user_id: session[:user_id])
+    concat_start = "#{input_start_date} #{input_start_time}"
+    concat_end = "#{input_end_date} #{input_end_time}"
 
-    p "This is the booking object!!!!"
-    p @booking
+    start_time = Booking.time_to_datetime(concat_start)
+    end_time = Booking.time_to_datetime(concat_end)
+
+    price = Booking.total_price(start_time, end_time, @studio.price)
+
+    puts '**************'
+    puts @studio.price
+
+    @booking = @availability.bookings.new(start_time: start_time, end_time: end_time, user_id: session[:user_id], total_price: price)
 
     if @booking.save
-      p "You are inside the 'save' if statement!!!!!"
       redirect_to studio_path(@studio), notice: "Your booking has been submitted."
     else
       @errors = @booking.errors.full_messages
