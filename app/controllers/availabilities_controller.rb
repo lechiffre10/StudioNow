@@ -36,6 +36,10 @@ def get_available_timeslots
     @availabilities.each do |availability|
       availabilities << {:id => availability.id, :color => '#34AADC', :title => 'Available for Booking', :start => "#{availability.start_time.iso8601}", :end => "#{availability.end_time.iso8601}", :allDay => false, :overlap => false}
     end
+    @bookings = @studio.bookings
+    @bookings.each do |booking|
+      availabilities << { :color => 'red', :title => 'Booked', :start => "#{booking.start_time.iso8601}", :end => "#{booking.start_time.iso8601}", :allDay => false, :overlap => false}
+    end
     render :text => availabilities.to_json
   end
 
