@@ -14,9 +14,11 @@
   <nav class="clearfix mar-b-1">
     <ul class="no-bullets no-margin pad-l-1 left">
       <% if logged_in? %>
+        <li class="pipe-separate t-light-blue left"><%= link_to("StudioNow", root_path) %></li>
         <li class="pipe-separate t-light-blue left">Welcome <%= link_to current_user.username, user_path(current_user) %></li>
         <li class="pipe-separate t-light-blue left"><%= link_to("Logout", logout_path) %></li>
       <% else %>
+        <li class="pipe-separate t-light-blue left"><%= link_to("StudioNow", root_path) %></li>
         <li class="pipe-separate t-light-blue left"><%= link_to("Register", new_user_path) %></li>
         <li class="pipe-separate t-light-blue left"><%= link_to("Login", new_user_path) %></li>
       <% end %>

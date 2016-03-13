@@ -1,4 +1,8 @@
-<%= link_to "Home", root_path %><br>
+<div>
+	<% if flash[:notice] %>
+	   <%= flash[:notice] %>
+	 <% end %>
+</div>
 
 <h2><%= current_user.first_name %></h2>
 
