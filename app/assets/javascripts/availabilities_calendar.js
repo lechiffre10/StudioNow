@@ -34,6 +34,9 @@ $(document).ready(function(){
         select: function(start, end){
 
          var overlap = $('#calendar').fullCalendar('clientEvents', function(ev) {
+          if(ev.id === undefined) {
+            return false
+          }
           var estart = new Date(ev.start);
           var eend = new Date(ev.end);
 
@@ -92,7 +95,7 @@ $(document).ready(function(){
         var end = new Date(event.end);
 
         var overlap = $('#calendar').fullCalendar('clientEvents', function(ev) {
-          if( ev == event) {
+          if( ev == event || ev.id == undefined) {
             return false;
           }
           var estart = new Date(ev.start);
@@ -114,34 +117,34 @@ $(document).ready(function(){
       },
 
       eventResize: function(event, dayDelta, minuteDelta, revertFunc){
-//              if (confirm("Are you sure about this change?")) {
- var start = new Date(event.start);
- var end = new Date(event.end);
+        //              if (confirm("Are you sure about this change?")) {
+         var start = new Date(event.start);
+         var end = new Date(event.end);
 
- var overlap = $('#calendar').fullCalendar('clientEvents', function(ev) {
-  if( ev == event) {
-    return false;
-  }
-  var estart = new Date(ev.start);
-  var eend = new Date(ev.end);
+         var overlap = $('#calendar').fullCalendar('clientEvents', function(ev) {
+          if( ev == event || ev.id === undefined) {
+            return false;
+          }
+          var estart = new Date(ev.start);
+          var eend = new Date(ev.end);
 
-  return (
-    ( Math.round(start) > Math.round(estart) && Math.round(start) < Math.round(eend) )
-    ||
-    ( Math.round(end) > Math.round(estart) && Math.round(end) < Math.round(eend) )
-    ||
-    ( Math.round(start) < Math.round(estart) && Math.round(end) > Math.round(eend) )
-    );
-});
- if (overlap.length){
-  revertFunc();
-  return false;
-}else {resizeEvent(event, dayDelta, minuteDelta);}
-},
+          return (
+            ( Math.round(start) > Math.round(estart) && Math.round(start) < Math.round(eend) )
+            ||
+            ( Math.round(end) > Math.round(estart) && Math.round(end) < Math.round(eend) )
+            ||
+            ( Math.round(start) < Math.round(estart) && Math.round(end) > Math.round(eend) )
+            );
+        });
+         if (overlap.length){
+          revertFunc();
+          return false;
+        }else {resizeEvent(event, dayDelta, minuteDelta);}
+      },
 
-eventClick: function(event, jsEvent, view){
-  showEventDetails(event);
-},
+      eventClick: function(event, jsEvent, view){
+        showEventDetails(event);
+      },
 
 
 
