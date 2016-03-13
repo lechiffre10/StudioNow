@@ -2,7 +2,7 @@ class Booking < ActiveRecord::Base
   belongs_to :user
   belongs_to :availability
   has_one :studio, through: :availability
-
+  validate :valid_booking
   validates :start_time, :end_time, presence: true
 
   def self.find_timeslot(start_time,end_time,studio)
@@ -20,7 +20,7 @@ class Booking < ActiveRecord::Base
   	self.start_time.strftime('%a, %d %b %Y %H:%M:%S')
   end
 
- 	def pretty_print_end_time
+  def pretty_print_end_time
   	self.end_time.strftime('%a, %d %b %Y %H:%M:%S')
   end
 
@@ -32,6 +32,13 @@ class Booking < ActiveRecord::Base
   def self.total_price(start_time, end_time, price)
     hours = ((end_time - start_time) * 24).to_i
     total_price = price * hours
+  end
+
+  def valid_booking
+    if self.start_time >= self.end_time
+      errors.add(:invalid_booking, "Your booking start date cannot be after the end date")
+      puts errors.full_messages
+    end
   end
 
 end

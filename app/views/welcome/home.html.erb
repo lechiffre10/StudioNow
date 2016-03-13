@@ -1,3 +1,27 @@
-<h1>hai world!! Welcome to Studio NOWWWW home page</h1>
-
 <%= link_to 'Create a Studio', new_studio_path %>
+
+<div>
+  <%= image_tag "jumbotron.png" %>
+</div>
+
+<form id="location-search" action="/studios", method: "get">
+  <input name="search" type="text" placeholder="Search for a studio">
+  <input type="submit" value="search">
+</form>
+
+<section class=>
+  <h3>We are StudioNow</h3>
+  <div>
+    <%= image_tag "jumbotron.png" %>
+  </div>
+  <div>
+    <p>We are passionate about fostering creativity.</p>
+  </div>
+</section>
+
+<h3>Featured Studios</h3>
+<% if @studios && @studios.any? %>
+  <% @studios.each do |studio| %>
+    <%= render partial: "studios/studio", locals: { studio: studio } %>
+  <% end %>
+<% end %>
