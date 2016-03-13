@@ -10,7 +10,7 @@ RSpec.describe StudiosController, type: :controller do
 
     describe "studio#index" do
       it "lists the studios near a given address" do
-        get :index, {"search" => "907 Caprice Dr. Shorewood, IL"}
+        get :index, search: "907 Caprice Dr. Shorewood, IL"
         expect(assigns(:studios)).to include(@studio1)
       end
 
