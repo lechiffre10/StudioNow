@@ -46,8 +46,8 @@ class StudiosController < ApplicationController
     if @studio.save
       redirect_to studio_path(@studio)
     else
-      flash[:notice] = "Unable to create studio"
-      redirect_to 'welcome#index'
+      @errors = @studio.errors.full_messages
+      render :new
     end
   end
 
