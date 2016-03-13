@@ -1,0 +1,40 @@
+<%= form_for @user do |f| %>
+<p>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+</p>
+
+<p>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+</p>
+
+<p>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+</p>
+
+<p>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+</p>
+
+<p>
+  <%= f.label :genres %>
+  <%= f.text_field :genres %>
+</p>
+
+<p>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+</p>
+
+<p>
+  <%= f.label :password %>
+  <%= f.password_field :password, type: "password" %>
+</p>
+
+<p>
+  <%= f.submit "Update" %>
+</p>
+<% end %>
