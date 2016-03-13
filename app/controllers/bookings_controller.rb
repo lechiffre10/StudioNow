@@ -6,7 +6,6 @@ class BookingsController < ApplicationController
 
   def create
     @studio = Studio.find_by(id: params[:studio_id])
-    @availability = Availability.find_by(id: 10)
 
     concat_start = "#{params[:start_date]} #{params[:s_time]}"
     concat_end = "#{params[:end_date]} #{params[:e_time]}"
@@ -14,15 +13,23 @@ class BookingsController < ApplicationController
     requested_start_time = Booking.convert_to_datetime(concat_start)
     requested_end_time = Booking.convert_to_datetime(concat_end)
 
+    @availability = Booking.find_timeslot(requested_start_time, requested_end_time, @studio)
+
     price = Booking.total_price(requested_start_time, requested_end_time, @studio.price)
 
-    @booking = @availability.bookings.new(start_time: start_time, end_time: end_time, user_id: session[:user_id], total_price: price)
+    if @availability
+      @booking = @availability.bookings.new(start_time: requested_start_time, end_time: requested_end_time, user_id: session[:user_id], total_price: price)
 
-    if @booking.save
-      redirect_to studio_path(@studio), notice: "Your booking has been submitted."
+      if @booking.save
+        flash[:notice] = "Your booking has been submitted."
+        redirect_to studio_path(@studio)
+      else
+        flash[:errors] = @booking.errors.full_messages
+        redirect_to studio_path(@studio)
+      end
     else
-      @errors = @booking.errors.full_messages
-      render 'studio/show'
+      flash[:errors] = ['There are no availabilities that match those requested times.']
+      redirect_to studio_path(@studio)
     end
   end
 
