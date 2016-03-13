@@ -10,3 +10,5 @@ before_script:
   - bundle exec rake db:migrate
   - bundle exec rake db:test:prepare
 bundler_args: --binstubs=./bundler_stubs
+after_deploy:
+- curl "https://api.monkeytest.it/travis/test?secret=$MONKEY_KEY&on_load=true&on_click=true&page_weight=true&seo=true&broken_links=true&asset_count=true&url=http://studionow.herokuapp.com"
