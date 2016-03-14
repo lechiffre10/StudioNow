@@ -586,6 +586,48 @@ nav#footer p{
 	display: inline-block;
 }
 
+.col-md-6 {
+	margin-top: 20px;
+}
+
+.button-link {
+	color: white;
+}
+
+.float-left.btn.tf-btn.btn-default {
+	float: left;
+}
+
+.border-left {
+	border-width: 3px 3px 3px 0;
+   border-style: solid;
+   -webkit-border-image:
+     -webkit-gradient(radial-linear, 0 0, 0 100%, from(#C6C6C6), to(rgba(0, 0, 0, 0))) 1 100%;
+   -webkit-border-image:
+     -webkit-radial-gradient(#C6C6C6, rgba(0 , 0, 0, 0)) 1 100%;
+   -moz-border-image:
+     -moz-radial-gradient(#C6C6C6, rgba(0, 0, 0, 0)) 1 100%;
+   -o-border-image:
+     -o-radial-gradient(#C6C6C6, rgba(0, 0, 0, 0)) 1 100%;
+   border-image:
+     radial-gradient(rgba(0, 0, 0, 0)) 1 100%;
+}
+
+.col-md-6.route-right {
+	padding-left: 6%;
+}
+
+.col-md-6.border-left.route-left {
+	padding-right: 5%;
+}
+
+.container .about {
+	margin-left: 350px;
+}
+
+
+
+
 
 
 
