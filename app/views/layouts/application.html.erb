@@ -18,9 +18,12 @@
         <li class="pipe-separate t-light-blue left">Welcome <%= link_to current_user.username, user_path(current_user) %></li>
         <li class="pipe-separate t-light-blue left"><%= link_to("Logout", logout_path) %></li>
       <% else %>
+      <div id="login">
         <li class="pipe-separate t-light-blue left"><%= link_to("StudioNow", root_path) %></li>
         <li class="pipe-separate t-light-blue left"><%= link_to("Register", new_user_path) %></li>
-        <li class="pipe-separate t-light-blue left"><%= link_to("Login", new_user_path) %></li>
+
+        <li class="pipe-separate t-light-blue left"><%= link_to "Login", new_user_path, remote: true %></li>
+        </div>
       <% end %>
     </ul>
   </nav>

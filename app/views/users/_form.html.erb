@@ -25,8 +25,8 @@
 </p>
 
 <p>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+  <%= f.label :username unless logged_in? %>
+  <%= f.text_field :username unless logged_in? %>
 </p>
 
 <p>
