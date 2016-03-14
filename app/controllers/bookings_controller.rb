@@ -1,8 +1,6 @@
 class BookingsController < ApplicationController
 
-  def new
-
-  end
+  before_action :logged_in_user, only: [:new, :create, :destroy]
 
   def create
     @studio = Studio.find_by(id: params[:studio_id])
@@ -32,13 +30,6 @@ class BookingsController < ApplicationController
       redirect_to studio_path(@studio)
     end
   end
-
-  def destroy
-
-  end
-
-
-
 
   private
   def booking_params

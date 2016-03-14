@@ -1,4 +1,8 @@
 class StudiosController < ApplicationController
+
+  before_action :logged_in_user, only: [:new, :create, :edit]
+
+
   def index
     if params[:search] && params[:search] != ''
 
@@ -42,14 +46,14 @@ class StudiosController < ApplicationController
   end
 
   def create
-    user = User.find_by_id(session[:user_id])
-    @studio = user.studios.new(studio_params)
-    if @studio.save
-      redirect_to studio_path(@studio)
-    else
-      @errors = @studio.errors.full_messages
-      render :new
-    end
+      user = User.find_by_id(session[:user_id])
+      @studio = user.studios.new(studio_params)
+      if @studio.save
+        redirect_to studio_path(@studio)
+      else
+        @errors = @studio.errors.full_messages
+        render :new
+      end
   end
 
   def edit

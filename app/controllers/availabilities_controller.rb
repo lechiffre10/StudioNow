@@ -1,7 +1,15 @@
 class AvailabilitiesController < ApplicationController
+
+  before_action :logged_in_user, except: [:index]
+
   def index
     @studio = Studio.find_by(id: params[:studio_id])
-    session[:studio_id] = @studio.id
+    if @studio
+      session[:studio_id] = @studio.id
+    else
+      flash[:notice] = "That studio does not exist"
+      redirect_to root_path
+    end
   end
 
   def new

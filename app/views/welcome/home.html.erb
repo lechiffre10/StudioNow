@@ -1,3 +1,7 @@
+<% if flash[:danger] %>
+  <%= flash[:danger] %>
+<% end %>
+
 <% if current_user %>
   <%= link_to 'List Your Studio', new_studio_path %>
 <% end %>
