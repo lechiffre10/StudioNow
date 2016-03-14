@@ -45,7 +45,7 @@ $(document).ready(function(){
             ||
             ( Math.round(end) > Math.round(estart) && Math.round(end) < Math.round(eend) )
             ||
-            ( Math.round(start) < Math.round(estart) && Math.round(end) > Math.round(eend) )
+            ( Math.round(start) <= Math.round(estart) && Math.round(end) >= Math.round(eend) )
             );
         });
          if (overlap.length){
@@ -106,7 +106,7 @@ $(document).ready(function(){
             ||
             ( Math.round(end) > Math.round(estart) && Math.round(end) < Math.round(eend) )
             ||
-            ( Math.round(start) < Math.round(estart) && Math.round(end) > Math.round(eend) )
+            ( Math.round(start) <= Math.round(estart) && Math.round(end) >= Math.round(eend) )
             );
         });
         if (overlap.length){
@@ -133,7 +133,7 @@ $(document).ready(function(){
             ||
             ( Math.round(end) > Math.round(estart) && Math.round(end) < Math.round(eend) )
             ||
-            ( Math.round(start) < Math.round(estart) && Math.round(end) > Math.round(eend) )
+            ( Math.round(start) <= Math.round(estart) && Math.round(end) >= Math.round(eend) )
             );
         });
          if (overlap.length){
