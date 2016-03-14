@@ -626,8 +626,21 @@ nav#footer p{
 }
 
 
+.login-partial {
+	padding-top: 3px;
+	padding-right: 5px;
+	padding-bottom: 3px;
+}
 
-
+.btn.tf-btn.btn-default.login-partial-button {
+	margin-left: 17px;
+	background: #FCAC45;
+	border: 0;
+	border-radius: 0;
+	padding: 10px 40px;
+	color: #ffffff;
+	text-transform: uppercase;
+}
 
 
 
