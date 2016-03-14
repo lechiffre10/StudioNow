@@ -30,7 +30,9 @@
                 error: error,
                 getContainer: getContainer,
                 info: info,
-                options: {},
+                options: {
+                    "timeOut": "1000"
+                },
                 subscribe: subscribe,
                 success: success,
                 version: '2.1.1',
