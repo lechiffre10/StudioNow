@@ -4,7 +4,7 @@ describe Studio do
 	  it { should have_many(:availabilities) }
 	  it { should belong_to(:owner)}
 	  it { should have_many(:reviews) }
-	  it { should have_many(:ratings) }
+	  it { should have_many(:rates_without_dimension) }
 	  it { should have_many(:bookings) }
 	end
 
