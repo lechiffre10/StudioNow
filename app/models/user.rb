@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
+  ratyrate_rater
+  ratyrate_rateable
 
   has_many :bookings
   has_many :studios, foreign_key: :owner_id

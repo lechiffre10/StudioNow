@@ -24,11 +24,11 @@ studios = 10.times.map do
 end
 
 15.times.map do
-  users.sample.ratings.create!(value: rand(1..5), rater: studio_owners.sample)
+  users.sample.ratings.create!(score: rand(1..5), rater: studio_owners.sample)
 end
 
 15.times.map do
-  studio_owners.sample.ratings.create!(value: rand(1..5), rater: studio_owners.sample)
+  studio_owners.sample.ratings.create!(score: rand(1..5), rater: studio_owners.sample)
 end
 
 15.times.map do

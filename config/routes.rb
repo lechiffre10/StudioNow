@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   resources :users, except: [:index] do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-    resources :ratings, only: [:new, :create, :update, :destroy]
+    resources :ratings, only: [:update]
   end
   resources :studios do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-    resources :ratings, only: [:new, :create, :update, :destroy]
+    resources :ratings, only: [:update]
     resources :images, only: [:index, :show, :new, :create, :destroy]
     resources :availabilities do
       resources :bookings, only:[:create, :destroy]
