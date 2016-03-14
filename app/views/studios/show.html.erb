@@ -36,7 +36,6 @@
   <% end %>
   </script>
 
-<p id="basicExampleStatus"></p>
 <h3>Request Studio Time:</h3>
 <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
@@ -50,13 +49,14 @@
 
 <script>
   $('#basicExample .time').timepicker({
-      'showDuration': true,
-      'timeFormat': 'g:ia'
+      showDuration: true,
+      timeFormat: 'g:ia',
+      step: 60
   });
 
   $('#basicExample .date').datepicker({
-      'format': 'm/d/yyyy',
-      'autoclose': true
+      format: 'm/d/yyyy',
+      autoclose: true
   });
 
   // initialize datepair
@@ -70,15 +70,16 @@
       var startTime = $("#s_time").val();
       var endDate = $("#end_date").val();
       var endTime = $("#e_time").val();
-      if (startDate == '' || startTime == '' || endDate == '' || endTime == '') {
+      var convertedStartTime = moment(startTime, ["h:mm A"]).format("HH:mm");
+      var convertedEndTime = moment(endTime, ["h:mm A"]).format("HH:mm");
+      var startObj = new Date(startDate + " " + convertedStartTime)
+      var endObj = new Date(endDate + " " + convertedEndTime)
+      if (startDate === '' || startTime === '' || endDate === '' || endTime === '') {
         e.preventDefault();
-        alert("Please Enter a Value for All Fields");
-      } else if (startDate > endDate){
+        toastr.error("Please Enter a Value for All Fields");
+      } else if (startObj > endObj){
         e.preventDefault();
-        alert("INVALID DATES: End Date must be later than Start Date!");
-      } else if (startDate <= endDate && startTime >= endTime){
-        e.preventDefault();
-        alert("INVALID TIMES: End Time must be later than Start Time!");
+        toastr.error("INVALID DATES: End Date/Time must be later than Start Date/Time!");
       }
     });
   });
