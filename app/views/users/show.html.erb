@@ -1,4 +1,4 @@
-<div id="user-page">
+<div class="page">
 	<script type="text/javascript">
 	<% if flash[:notice] %>
 	  toastr.success("<%= flash[:notice] %>")
@@ -33,7 +33,7 @@
 			<%= render partial: "studios/studio", locals: {studio: studio } %>
 		<% end %>
 	<% end %>
-	<div id="review-user">
+	<div id="create-new-review">
 		<p>rate this user! (add restriction later)</p>
 		<%= link_to "Review this Musician!", new_user_review_path(@user), remote: true %>
 	</div>
@@ -46,7 +46,7 @@
 
 	<h5>Reviews of <%= @user.first_name %> </h5>
 
-	<div id="user-reviews">
+	<div id="reviews">
 		<% @user.reviews.each do |review| %>
 			<%= render partial: "reviews/review", locals: {review: review } %>
 		<% end %>

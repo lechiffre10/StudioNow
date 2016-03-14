@@ -1,3 +1,2 @@
-$("#user-reviews").prepend("<%= escape_javascript(render partial: 'review', locals: {review: @review}) %>");
-$('#user-page').find('#new-review').remove()
-
+$("#reviews").prepend("<%= escape_javascript(render partial: 'review', locals: {review: @review}) %>");
+  $('.page').find('#new-review').remove()
