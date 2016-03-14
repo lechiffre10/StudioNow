@@ -27,37 +27,37 @@ class Availability < ActiveRecord::Base
     final_array
   end
 
-  def valid_availability
-    valid_start && valid_end ? return : errors.add(:start_time, "You cannot have an overlap of availabilities")
-  end
+  # def valid_availability
+  #   valid_start && valid_end ? return : errors.add(:start_time, "You cannot have an overlap of availabilities")
+  # end
 
-  def valid_start
-    studio = Studio.find_by(id: self.studio_id)
-    unavailable_times = studio.availabilities.select do |av|
-      existing_start = av.start_time
-      existing_end = av.end_time
-      self.start_time.between?(existing_start, existing_end) == true
-    end
-    empty_array?(unavailable_times)
-  end
+  # def valid_start
+  #   studio = Studio.find_by(id: self.studio_id)
+  #   unavailable_times = studio.availabilities.select do |av|
+  #     existing_start = av.start_time
+  #     existing_end = av.end_time
+  #     self.start_time.between?(existing_start, existing_end) == true
+  #   end
+  #   empty_array?(unavailable_times)
+  # end
 
-  def valid_end
-    studio = Studio.find_by(id: self.studio_id)
-    unavailable_times = studio.availabilities.select do |av|
-      existing_start = av.start_time
-      existing_end = av.end_time
-      self.start_time.between?(existing_start, existing_end) == true
-    end
-    empty_array?(unavailable_times)
-  end
+  # def valid_end
+  #   studio = Studio.find_by(id: self.studio_id)
+  #   unavailable_times = studio.availabilities.select do |av|
+  #     existing_start = av.start_time
+  #     existing_end = av.end_time
+  #     self.start_time.between?(existing_start, existing_end) == true
+  #   end
+  #   empty_array?(unavailable_times)
+  # end
 
-  def empty_array?(array)
-    if array.length > 0
-      return false
-    else
-      return true
-    end
-  end
+  # def empty_array?(array)
+  #   if array.length > 0
+  #     return false
+  #   else
+  #     return true
+  #   end
+  # end
 
 end
 
