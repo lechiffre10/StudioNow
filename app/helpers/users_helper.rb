@@ -10,4 +10,5 @@ module UsersHelper
   def session_user?
   	session[:user_id] = params[:id] ? true : false
   end
+
 end

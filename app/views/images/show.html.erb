@@ -1,2 +1,4 @@
 <p>hello</p>
-<%= image_tag @image.media.url(:standard)  %>
+<% if @image %>
+  <%= image_tag @image.media.url(:standard)  %>
+<% end %>
