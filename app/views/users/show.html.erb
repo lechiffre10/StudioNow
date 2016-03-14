@@ -1,8 +1,9 @@
-<div>
-	<% if flash[:notice] %>
-	   <%= flash[:notice] %>
-	 <% end %>
-</div>
+<script type="text/javascript">
+<% if flash[:notice] %>
+  toastr.success("<%= flash[:notice] %>")
+    <% end %>
+</script>
+
 
 <h2><%= @user.first_name %></h2>
 

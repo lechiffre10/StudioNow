@@ -1,11 +1,12 @@
+<script type="text/javascript">
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+  	toastr.error("<%= error %>")
+	<% end %>
+<% end %>
+</script>
+
 <h1>Register</h1>
 
 <%= render 'form' %>
-
-<div>
-  <% if flash[:errors] %>
-     <%= flash[:errors] %>
-   <% end %>
-</div>
-
 

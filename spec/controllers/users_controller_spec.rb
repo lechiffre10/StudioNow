@@ -43,6 +43,8 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe '#edit' do
+    before { allow(controller).to receive(:current_user) {@user}}
+
     it 'finds the right user' do
       get :edit, id: @user.id
       expect(assigns(:user)).to eq(@user)
