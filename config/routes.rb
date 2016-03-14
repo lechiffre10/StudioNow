@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   resources :users, except: [:index] do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-    resources :ratings, only: [:create, :update, :destroy]
+    resources :ratings, only: [:new, :create, :update, :destroy]
   end
   resources :studios do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-    resources :ratings, only: [:create, :update, :destroy]
+    resources :ratings, only: [:new, :create, :update, :destroy]
     resources :images, only: [:index, :show, :new, :create, :destroy]
     resources :availabilities do
       resources :bookings, only:[:create, :destroy]
