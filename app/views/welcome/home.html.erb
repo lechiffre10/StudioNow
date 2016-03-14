@@ -11,7 +11,7 @@
             <form class="location-search" action="/studios", method: "get">
               <input class="form-control search-input" name="search" type="text" placeholder="Search for a studio...">
             </form>
-            <a href="#location-search" class="fa fa-angle-down page-scroll"></a>
+            <a href="#listings" class="fa fa-angle-down page-scroll"></a>
           </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
         <div class="line">
           <hr>
         </div>
-        <div id="team" class="owl-carousel owl-theme row">
+        <div id="listings" class="owl-carousel owl-theme row">
           <% if @studios && @studios.any? %>
           <% @studios.each do |studio| %>
           <%= render partial: "studios/studio", locals: { studio: studio } %>
