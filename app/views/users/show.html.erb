@@ -33,6 +33,25 @@
 			<%= render partial: "studios/studio", locals: {studio: studio } %>
 		<% end %>
 	<% end %>
+
+	<% if @user.image.exists? %>
+		<%= image_tag @user.image.url(:medium) %><br>
+	<% end %>
+
+<% if current_user == @user %>
+	<%= link_to "Edit Profile", edit_user_path(current_user) %><br>
+	<h5>Here are your upcoming studio bookings:</h5>
+	<ul>
+		<% @user.future_bookings.each do |booking| %>
+			<%= render partial: "bookings/show", locals: {booking: booking } %>
+		<% end %>
+	</ul>
+	<h5>Here are your past studio bookings:</h5>
+	<ul>
+		<% @user.past_bookings.each do |booking| %>
+			<%= render partial: "bookings/show", locals: {booking: booking } %>
+		<% end %>
+<% end  %>
 	<div id="create-new-review">
 		<p>rate this user! (add restriction later)</p>
 		<%= link_to "Review this Musician!", new_user_review_path(@user), remote: true %>
