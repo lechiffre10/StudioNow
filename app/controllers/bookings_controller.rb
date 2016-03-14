@@ -14,12 +14,10 @@ class BookingsController < ApplicationController
     requested_end_time = Booking.convert_to_datetime(concat_end)
 
     @availability = Booking.find_timeslot(requested_start_time, requested_end_time, @studio)
-
     price = Booking.total_price(requested_start_time, requested_end_time, @studio.price)
 
     if @availability
       @booking = @availability.bookings.new(start_time: requested_start_time, end_time: requested_end_time, user_id: session[:user_id], total_price: price)
-
       if @booking.save
         flash[:notice] = "Your booking has been submitted."
         redirect_to studio_path(@studio)
@@ -31,6 +29,7 @@ class BookingsController < ApplicationController
       flash[:errors] = ['There are no availabilities that match those requested times.']
       redirect_to studio_path(@studio)
     end
+
   end
 
   def destroy
