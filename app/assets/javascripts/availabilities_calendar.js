@@ -49,6 +49,7 @@ $(document).ready(function(){
             );
         });
          if (overlap.length){
+          toastr.error("Your availabilities cannot overlap!");
           return false;
         } else {
           var eventData;
@@ -110,6 +111,7 @@ $(document).ready(function(){
             );
         });
         if (overlap.length){
+          toastr.error("Your availabilities cannot overlap!");
           revertFunc();
           return false;
         }else {moveEvent(event, dayDelta, minuteDelta, allDay);}
@@ -137,6 +139,7 @@ $(document).ready(function(){
             );
         });
          if (overlap.length){
+          toastr.error("Your availabilities cannot overlap!");
           revertFunc();
           return false;
         }else {resizeEvent(event, dayDelta, minuteDelta);}
