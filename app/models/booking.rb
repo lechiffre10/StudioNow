@@ -25,8 +25,8 @@ class Booking < ActiveRecord::Base
   end
 
   # This method takes in a date and time string and returns a datetime object:
-  def self.convert_to_datetime(time)
-    DateTime.strptime(time, '%m/%d/%Y %I:%M%p')
+  def self.convert_to_datetime(datetime_string)
+    DateTime.strptime(datetime_string, '%m/%d/%Y %I:%M%p')
   end
 
   def self.total_price(start_time, end_time, price)

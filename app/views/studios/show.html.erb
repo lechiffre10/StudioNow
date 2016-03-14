@@ -40,33 +40,48 @@
 <h3>Request Studio Time:</h3>
 <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
   <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
-  <input type="text" class="date start" name="start_date"/>
-  <input type="text" class="time start" name="s_time"/> to
-  <input type="text" class="date end" name="end_date"/>
-  <input type="text" class="time end" name="e_time"/>
+  <input type="text" id="start_date" class="date start" name="start_date"/>
+  <input type="text" id="s_time" class="time start" name="s_time"/> to
+  <input type="text" id="end_date" class="date end" name="end_date"/>
+  <input type="text" id="e_time" class="time end" name="e_time"/>
   <input type="submit" value="Request Studio Time">
 </form>
 
 
-
 <script>
-    $('#basicExample .time').timepicker({
-        'showDuration': true,
-        'timeFormat': 'g:ia'
-    });
+  $('#basicExample .time').timepicker({
+      'showDuration': true,
+      'timeFormat': 'g:ia'
+  });
 
-    $('#basicExample .date').datepicker({
-        'format': 'm/d/yyyy',
-        'autoclose': true
-    });
+  $('#basicExample .date').datepicker({
+      'format': 'm/d/yyyy',
+      'autoclose': true
+  });
 
-    // initialize datepair
-    var basicExampleEl = document.getElementById('basicExample');
-    var datepair = new Datepair(basicExampleEl);
+  // initialize datepair
+  var basicExampleEl = document.getElementById('basicExample');
+  var datepair = new Datepair(basicExampleEl);
 
-    $('#basicExample').on('rangeIncomplete', function(){
-        $('#basicExampleStatus').text('Incomplete range');
+  // Prevent booking form submission if fields are left blank or date/times are invalid:
+  $(document).ready(function() {
+    $("#basicExample").on('submit', function(e) {
+      var startDate = $("#start_date").val();
+      var startTime = $("#s_time").val();
+      var endDate = $("#end_date").val();
+      var endTime = $("#e_time").val();
+      if (startDate == '' || startTime == '' || endDate == '' || endTime == '') {
+        e.preventDefault();
+        alert("Please Enter a Value for All Fields");
+      } else if (startDate > endDate){
+        e.preventDefault();
+        alert("INVALID DATES: End Date must be later than Start Date!");
+      } else if (startDate <= endDate && startTime >= endTime){
+        e.preventDefault();
+        alert("INVALID TIMES: End Time must be later than Start Time!");
+      }
     });
+  });
 
 </script>
 
