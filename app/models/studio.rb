@@ -5,6 +5,7 @@ class Studio < ActiveRecord::Base
   has_many :ratings, as: :ratable
   has_many :bookings, through: :availabilities
   has_many :images
+  ratyrate_rateable
 
   geocoded_by :full_address
   after_validation :geocode, if: :full_address_changed?
@@ -24,8 +25,8 @@ class Studio < ActiveRecord::Base
   end
 
   def average_rating
-    total = self.ratings.length
-    total != 0 ? self.ratings.inject(0) { |sum, rating| sum += rating.value }/self.ratings.count : 0
+    total = self.rates.length
+    total != 0 ? self.rates.inject(0) { |sum, rating| sum += rating.stars.to_i }/self.rates.count : 0
   end
 
   def unbooked_times

@@ -23,6 +23,14 @@
   <p>$<%= @studio.price %> per hour</p>
 
   <p><%= @studio.website %></p>
+
+  <div id="rating">
+    <%= rating_for @studio  %>
+    <% 5.times do |index| %>
+      <i class="em em-gun">  </i>
+    <% end %>
+  </div>
+
   <div id="reviews">
     <h3><%= @studio.name  %>'s reviews</h3>
       <ul>
