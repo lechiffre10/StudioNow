@@ -34,7 +34,7 @@
 
 <% if @studio.images.any? %>
   <% @studio.images.each do |image| %>
-    <%= image_tag image.media.url(:standard)  %>
+    <%= image_tag image.media.url(:medium)  %>
   <% end %>
 <% end %><br>
 <%= link_to 'Set Availabilities', studio_availabilities_path(@studio) %><br>

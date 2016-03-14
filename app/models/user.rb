@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, uniqueness: true
   validates :first_name, :last_name, :email, presence: true
-  has_attached_file :image, :styles => {:standard => "150x150"}
+  has_attached_file :image, :styles => {:standard => "150x150", :medium => "300x300", :large => "600x600"}
   validates_attachment :image, :content_type => {:content_type => /^image\/(jpeg|png|gif|tiff)$/}
   validates :password, :length => { :within => 6..20 }
   validate :valid_email
@@ -40,5 +40,5 @@ class User < ActiveRecord::Base
   def past_bookings
     self.bookings.reject { |booking| booking.start_time.future? }
   end
-  
+
 end
