@@ -21,7 +21,7 @@ class AvailabilitiesController < ApplicationController
   end
 def get_available_timeslots
     @studio = Studio.find_by(id: session[:studio_id])
-    @timeslots = @studio.unbooked_times
+    @timeslots = @studio.unbooked_times.select{ |av| av[1] >= DateTime.now }
     timeslots = []
     @timeslots.each do |timeslot|
       timeslots << { :color => '#34AADC', :title => 'Open', :start => DateTime.parse(timeslot[0].to_s).iso8601, :end => DateTime.parse(timeslot[1].to_s).iso8601, :allDay => false, :overlap => false}
@@ -31,14 +31,14 @@ def get_available_timeslots
 
   def get_availabilities
     @studio = Studio.find_by(id: session[:studio_id])
-    @availabilities = @studio.availabilities
+    @availabilities = @studio.availabilities.select{ |av| av.end_time >= DateTime.now }
     availabilities = []
     @availabilities.each do |availability|
-      availabilities << {:id => availability.id, :color => '#34AADC', :title => 'Available for Booking', :start => "#{availability.start_time.iso8601}", :end => "#{availability.end_time.iso8601}", :allDay => false, :overlap => false}
+      availabilities << {:id => availability.id, :color => '#34AADC', :title => 'Available for Booking', :start => "#{availability.start_time.iso8601}", :description => "You've listed this time slot as available for rent. To remove this slot, click Delete below.", :end => "#{availability.end_time.iso8601}", :allDay => false, :overlap => false}
     end
-    @bookings = @studio.bookings
+    @bookings = @studio.bookings.select{ |av| av.end_time >= DateTime.now }
     @bookings.each do |booking|
-      availabilities << { :color => 'red', :title => 'Booked', :start => "#{booking.start_time.iso8601}", :end => "#{booking.start_time.iso8601}", :allDay => false, :overlap => false}
+      availabilities << { :color => 'red', :title => "Booked", :start => "#{booking.start_time.iso8601}", :end => "#{booking.start_time.iso8601}", :description => "This slot is currently booked by #{booking.user.first_name} #{booking.user.last_name}, who booked #{booking.user.bookings.count} studios in the past with an average rating of #{booking.user.average_rating}. You can contact your renter at #{booking.user.email}." , :allDay => false, :overlap => false}
     end
     render :text => availabilities.to_json
   end
