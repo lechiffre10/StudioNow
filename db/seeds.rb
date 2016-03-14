@@ -1,7 +1,7 @@
 User.destroy_all
 Studio.destroy_all
 Review.destroy_all
-Rating.destroy_all
+Rate.destroy_all
 Availability.destroy_all
 Booking.destroy_all
 
@@ -24,11 +24,11 @@ studios = 10.times.map do
 end
 
 15.times.map do
-  users.sample.ratings.create!(score: rand(1..5), rater: studio_owners.sample)
+  users.sample.rate(rand(1..5), studio_owners.sample)
 end
 
 15.times.map do
-  studio_owners.sample.ratings.create!(score: rand(1..5), rater: studio_owners.sample)
+  studio_owners.sample.rate(rand(1..5), studio_owners.sample)
 end
 
 15.times.map do
