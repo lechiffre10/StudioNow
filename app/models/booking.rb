@@ -35,7 +35,7 @@ class Booking < ActiveRecord::Base
   end
 
   def valid_booking
-    if self.start_time >= self.end_time
+    if self.start_time && self.end_time && self.start_time >= self.end_time
       errors.add(:invalid_booking, "Your booking start date cannot be after the end date")
       puts errors.full_messages
     end

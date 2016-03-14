@@ -1,4 +1,6 @@
-<%= link_to 'Create a Studio', new_studio_path %>
+<% if @current_user %>
+  <%= link_to 'List Your Studio', new_studio_path %>
+<% end %>
 
 <div>
   <%= image_tag "jumbotron.png" %>

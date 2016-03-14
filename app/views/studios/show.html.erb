@@ -6,22 +6,10 @@
 
 <h3><%= @studio.name %></h3>
 <p>Average Rating: <%=@studio.average_rating  %> </p>
-
-<h3> <%=@studio.name%>'s Availabilities</h3>
-	<% if @studio.availabilities.nil? %>
-		<p>This Studio currently has no availabilities</p>
-	<% else %>
-		<ul>
-			<% @studio.sorted_availabilities.each do |availability| %>
-				<p>New availability </p>
-				<% availability.unbooked_times.each do |time| %>
-					<li><%= render partial: "availabilities/show", locals: {time: time } %></li>
-				<% end %>
-			<% end %>
-		</ul>
-	<% end %>
-
-
+<div class="studio-cal-container" style="width: 600px">
+  <div id='studiocal'>
+  </div>
+</div>
 
 <p>Address:<br>
 <p><%= @studio.full_address %></p>

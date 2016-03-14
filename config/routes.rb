@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/availabilities/get' => 'availabilities#get_availabilities'
   post '/availabilities/move' => 'availabilities#move'
   post '/availabilities/resize' => 'availabilities#resize'
+  get '/availabilities/get_slots' => 'availabilities#get_available_timeslots'
   root 'welcome#index'
 
 

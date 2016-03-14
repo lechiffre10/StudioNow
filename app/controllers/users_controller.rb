@@ -32,12 +32,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    # binding.pry
     @user = User.find_by_id(params[:id])
     if @user.update(user_params)
+      flash[:notice] = "Your account has been updated!"
       redirect_to @user
     else
-      redirect_to @user
+      flash.now[:errors] = "Please fill out all fields"
+      render "edit"
     end
   end
 
