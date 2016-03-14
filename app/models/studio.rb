@@ -2,7 +2,7 @@ class Studio < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   has_many :availabilities
   has_many :reviews, as: :reviewable
-  has_many :ratings, as: :ratable
+  has_many :rates_without_dimension, -> { where dimension: nil}, as: :rateable, class_name: 'Rate', dependent: :destroy
   has_many :bookings, through: :availabilities
   has_many :images
   ratyrate_rateable
