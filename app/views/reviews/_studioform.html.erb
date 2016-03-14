@@ -1,4 +1,10 @@
 <div id="new-review">
+  <div id="rating">
+    <%= rating_for @studio %>
+    <% 5.times do |index| %>
+      <i class="em em-gun">  </i>
+    <% end %>
+  </div>
   <%= form_for [@studio, @review], remote: true do |f|  %>
     <%= f.text_area :content  %>
     <%= f.submit %>

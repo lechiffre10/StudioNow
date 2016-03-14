@@ -52,8 +52,16 @@
 			<%= render partial: "bookings/show", locals: {booking: booking } %>
 		<% end %>
 <% end  %>
+
+	<div id="rating">
+		<%= rating_for @user %>
+		<% 25.times do |index| %>
+			<i class="em em-gun">  </i>
+		<% end %>
+	</div>
+
 	<div id="create-new-review">
-		<p>rate this user! (add restriction later)</p>
+		<p>(add restriction later)</p>
 		<%= link_to "Review this Musician!", new_user_review_path(@user), remote: true %>
 	</div>
 
