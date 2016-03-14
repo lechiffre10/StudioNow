@@ -25,8 +25,8 @@ describe User do
     @availability_past = Availability.create!(start_time: "2016-01-26 01:00:00", end_time: "2016-01-26 20:00:00", studio: @studio1)
     @booking_future = Booking.create(start_time: '2016-04-26 01:00:00.000000000 +0000', end_time: '2016-04-26 02:00:00.000000000 +0000', user: @user1, availability: @availability_future)
     @booking_past = Booking.create(start_time: '2016-01-26 01:00:00.000000000 +0000', end_time: '2016-01-26 02:00:00.000000000 +0000', user: @user1, availability: @availability_future)
-    @rating1 = Rating.new(ratable_id: @user1.id, rater: @user1, ratable_type: 'User', value: 2)
-    @rating2 = Rating.new(ratable_id: @user1.id, rater: @user1, ratable_type: 'User', value: 4)
+    @rating1 = Rating.create(ratable_id: @user1.id, rater_id: @user1.id, ratable_type: 'User', value: 2)
+    @rating2 = Rating.create(ratable_id: @user1.id, rater_id: @user1.id, ratable_type: 'User', value: 4)
   end
 
   context '#has_studios' do
@@ -49,7 +49,6 @@ describe User do
 
   context '#average_rating' do
     it 'returns the average of any ratings of the user' do
-      puts @user1.ratings.length
       expect(@user1.average_rating).to eq 3
     end
   end
