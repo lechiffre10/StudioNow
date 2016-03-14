@@ -1,6 +1,6 @@
 class AvailabilitiesController < ApplicationController
 
-  before_action :logged_in_user, except: [:index]
+  before_action :logged_in_user, except: [:index, :get_availabilities]
 
   def index
     @studio = Studio.find_by(id: params[:studio_id])
