@@ -3,14 +3,12 @@
 <%= render 'form' %>
 
 
+<script type="text/javascript">
 <% if @studio.errors.any? %>
-<div class="errors">
-  <ul>
     <% @errors.each do |error| %>
-      <li><%= error %></li>
+      toastr.error("<%= error %>")
     <% end %>
-  </ul>
   <% end %>
-</div>
+  </script>
 
 

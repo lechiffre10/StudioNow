@@ -1,21 +1,12 @@
-<%= link_to "Home", root_path %><br>
+<script type="text/javascript">
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+  	toastr.error("<%= error %>")
+	<% end %>
+<% end %>
+</script>
 
 <h1>Register</h1>
 
-<%= form_for @user do |f| %>
-	First Name: <%= f.text_field :first_name %><br>
-	Last Name: <%= f.text_field :last_name %><br>
-	A few words about yourself: <%= f.text_area :description %><br>
-	Email: <%= f.text_field :email %><br>
-	Music Style: <%= f.text_field :genres %><br>
-	Username: <%= f.text_field :username %><br>
-	Password: <%= f.text_field :password, type: "password" %><br>
-	<%= f.submit "Register" %><br>
-<% end %>
+<%= render 'form' %>
 
-<h1>Login</h1>
-<%= form_for @user, url: login_path do |f| %>
-	Username: <%= f.text_field :username %><br>
-	Password: <%= f.text_field :password, type: "password" %><br>
-	<%= f.submit "Login" %>
-<% end %>

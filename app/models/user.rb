@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   has_attached_file :image, :styles => {:standard => "150x150", :medium => "300x300", :large => "600x600"}
   validates_attachment :image, :content_type => {:content_type => /^image\/(jpeg|png|gif|tiff)$/}
-  validates :password, :length => { :within => 6..20 }
+  validates :password, :length => { :within => 6..20 }, on: :create
   validate :valid_email
 
   def valid_email

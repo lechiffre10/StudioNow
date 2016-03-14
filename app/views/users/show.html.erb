@@ -1,10 +1,42 @@
-<div>
+<div class="page">
+	<script type="text/javascript">
 	<% if flash[:notice] %>
-	   <%= flash[:notice] %>
-	 <% end %>
-</div>
+	  toastr.success("<%= flash[:notice] %>")
+	    <% end %>
+	</script>
 
-<h2><%= @user.first_name %></h2>
+
+	<h2><%= @user.first_name %></h2>
+
+	<% if current_user == @user %>
+		<%= link_to "Edit Profile", edit_user_path(current_user) %><br>
+		<h5>Here are your upcoming studio bookings:</h5>
+		<ul>
+			<% @user.future_bookings.each do |booking| %>
+				<%= render partial: "bookings/show", locals: {booking: booking } %>
+			<% end %>
+		</ul>
+		<h5>Here are your past studio bookings:</h5>
+		<ul>
+			<% @user.past_bookings.each do |booking| %>
+				<%= render partial: "bookings/show", locals: {booking: booking } %>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<h5>Preferred Music Styles: <%=@user.genres %></h5>
+	<h5>Average Rating: <%=@user.average_rating  %> </h5>
+
+	<h5>Your Studio Listings:</h5>
+	<% if @user.has_studios && logged_in? %>
+		<% @user.studios.each do |studio| %>
+			<%= render partial: "studios/studio", locals: {studio: studio } %>
+		<% end %>
+	<% end %>
+
+	<% if @user.image.exists? %>
+		<%= image_tag @user.image.url(:medium) %><br>
+	<% end %>
 
 <% if current_user == @user %>
 	<%= link_to "Edit Profile", edit_user_path(current_user) %><br>
@@ -19,33 +51,26 @@
 		<% @user.past_bookings.each do |booking| %>
 			<%= render partial: "bookings/show", locals: {booking: booking } %>
 		<% end %>
-	</ul>
-<% end %>
+<% end  %>
+	<div id="create-new-review">
+		<p>rate this user! (add restriction later)</p>
+		<%= link_to "Review this Musician!", new_user_review_path(@user), remote: true %>
+	</div>
 
-<h5>Preferred Music Styles: <%=@user.genres %></h5>
-<h5>Average Rating: <%=@user.average_rating  %> </h5>
+	<h5><%=@user.first_name %>'s reviews of Other Users: </h5>
 
-<h5>Your Studio Listings:</h5>
-<% if @user.has_studios && logged_in? %>
-	<% @user.studios.each do |studio| %>
-		<%= render partial: "studios/studio", locals: {studio: studio } %>
+	<% @user.written_reviews.each do |review| %>
+		<%= render partial: "reviews/review", locals: {review: review } %>
 	<% end %>
-<% end %>
 
+	<h5>Reviews of <%= @user.first_name %> </h5>
 
-<h5><%=@user.first_name %>'s reviews of Other Users: </h5>
-
-<% @user.written_reviews.each do |review| %>
-	<%= render partial: "reviews/review", locals: {review: review } %>
-<% end %>
-
-<h5>Reviews of <%= @user.first_name %> </h5>
-
-<% @user.reviews.each do |review| %>
-	<%= render partial: "reviews/review", locals: {review: review } %>
-<% end %>
-
-
+	<div id="reviews">
+		<% @user.reviews.each do |review| %>
+			<%= render partial: "reviews/review", locals: {review: review } %>
+		<% end %>
+	</div>
+</div>
 
 
 
