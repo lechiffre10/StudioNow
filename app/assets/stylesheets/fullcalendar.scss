@@ -268,10 +268,12 @@ html .fc,
   color: #fff;               /* default TEXT color */
   font-size: .85em;
   cursor: default;
+
   }
 
 a.fc-event {
   text-decoration: none;
+
   }
 
 a.fc-event,
@@ -287,6 +289,10 @@ a.fc-event,
   width: 100%;
   height: 100%;
   overflow: hidden;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;
+  font-family: 'Helvetica Neue';
   }
 
 .fc-event-time,
@@ -540,6 +546,8 @@ table.fc-border-separate {
   border-bottom-width: 1px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  border-radius: 6px;
+  box-shadow: inset 0px 0px 20px 2px rgba(0,0,0,0.2);
   }
 
 .fc-event-vert .fc-event-time {
