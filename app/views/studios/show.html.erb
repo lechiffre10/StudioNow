@@ -15,6 +15,16 @@
     </div>
   </div>
 
+  <h3>Request Studio Time:</h3>
+  <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
+    <input type="text" id="start_date" class="date start prevent" name="start_date"/>
+    <input type="text" id="s_time" class="time start prevent" name="s_time"/> to
+    <input type="text" id="end_date" class="date end prevent" name="end_date"/>
+    <input type="text" id="e_time" class="time end prevent" name="e_time"/>
+    <input type="submit" value="Request Studio Time">
+  </form>
+
   <p>Address:<br>
   <p><%= @studio.full_address %></p>
 
@@ -42,68 +52,59 @@
   <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
 
   <script type="text/javascript">
-  <% if flash[:errors] %>
+    <% if flash[:errors] %>
       <% flash[:errors].each do |error| %>
         toastr.error("<%= error %>")
       <% end %>
     <% end %>
-    </script>
-
-
-
-
-  <p id="basicExampleStatus"></p>
-  <h3>Request Studio Time:</h3>
-  <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
-    <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
-    <input type="text" id="start_date" class="date start" name="start_date"/>
-    <input type="text" id="s_time" class="time start" name="s_time"/> to
-    <input type="text" id="end_date" class="date end" name="end_date"/>
-    <input type="text" id="e_time" class="time end" name="e_time"/>
-    <input type="submit" value="Request Studio Time">
-  </form>
-
-
-  <script>
-    $('#basicExample .time').timepicker({
-        'showDuration': true,
-        'timeFormat': 'g:ia'
-    });
-
-    $('#basicExample .date').datepicker({
-        'format': 'm/d/yyyy',
-        'autoclose': true
-    });
-
-    // initialize datepair
-    var basicExampleEl = document.getElementById('basicExample');
-    var datepair = new Datepair(basicExampleEl);
-
-    // Prevent booking form submission if fields are left blank or date/times are invalid:
-    $(document).ready(function() {
-      $("#basicExample").on('submit', function(e) {
-        var startDate = $("#start_date").val();
-        var startTime = $("#s_time").val();
-        var endDate = $("#end_date").val();
-        var endTime = $("#e_time").val();
-        if (startDate == '' || startTime == '' || endDate == '' || endTime == '') {
-          e.preventDefault();
-          alert("Please Enter a Value for All Fields");
-        } else if (startDate > endDate){
-          e.preventDefault();
-          alert("INVALID DATES: End Date must be later than Start Date!");
-        } else if (startDate <= endDate && startTime >= endTime){
-          e.preventDefault();
-          alert("INVALID TIMES: End Time must be later than Start Time!");
-        }
-      });
-    });
-
   </script>
+
+
+<script>
+  $('#basicExample .time').timepicker({
+      showDuration: true,
+      timeFormat: 'g:ia',
+      step: 60
+  });
+
+  $('#basicExample .date').datepicker({
+      format: 'm/d/yyyy',
+      autoclose: true
+  });
+
+  // initialize datepair
+  var basicExampleEl = document.getElementById('basicExample');
+  var datepair = new Datepair(basicExampleEl);
+
+  $(document).ready(function() {
+    // Prevent screen jump when date/time fields are clicked:
+    // $(".prevent").click(function(e){
+    //   e.preventDefault();
+    // });
+    // Prevent booking form submission if fields are left blank or date/times are invalid:
+    $("#basicExample").on('submit', function(e) {
+      var startDate = $("#start_date").val();
+      var startTime = $("#s_time").val();
+      var endDate = $("#end_date").val();
+      var endTime = $("#e_time").val();
+      var convertedStartTime = moment(startTime, ["h:mm A"]).format("HH:mm");
+      var convertedEndTime = moment(endTime, ["h:mm A"]).format("HH:mm");
+      var startObj = new Date(startDate + " " + convertedStartTime)
+      var endObj = new Date(endDate + " " + convertedEndTime)
+      if (startDate === '' || startTime === '' || endDate === '' || endTime === '') {
+        e.preventDefault();
+        toastr.error("Please Enter a Value for All Fields");
+      } else if (startObj > endObj) {
+        e.preventDefault();
+        toastr.error("End Date/Time must be later than Start Date/Time!");
+      }
+    })
+  });
+</script>
 
   <div class="row">
     <div class="col-md-12">
-    <div id="map"></div>
+      <div id="map"></div>
 
   <script type="text/javascript">
     handler = Gmaps.build('Google');
