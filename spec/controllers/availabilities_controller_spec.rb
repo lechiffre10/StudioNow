@@ -15,6 +15,7 @@ RSpec.describe AvailabilitiesController, type: :controller do
   end
 
   describe "create" do
+    before { allow(controller).to receive(:current_user) {@user1}}
 
     it "adds an availability to a studio's collection" do
       add_availability_to_collection
@@ -45,6 +46,8 @@ RSpec.describe AvailabilitiesController, type: :controller do
   end
 
   describe '#new' do
+    before { allow(controller).to receive(:current_user) {@user1}}
+
     it 'finds the right studio based on id' do
       get :new, studio_id: @studio1.id
       expect(assigns(:studio)).to eq @studio1
@@ -57,6 +60,7 @@ RSpec.describe AvailabilitiesController, type: :controller do
   end
 
   describe '#get_availabilities' do
+
     it 'assigns the studio as the right studio' do
      session[:studio_id] = @studio1.id
      get :get_availabilities
@@ -68,33 +72,40 @@ RSpec.describe AvailabilitiesController, type: :controller do
      get :get_availabilities
      expect(assigns(:availabilities)).to include @availability1
    end
+ end
+
+ describe '#move' do
+  before { allow(controller).to receive(:current_user) {@user1}}
+
+  it 'finds the right availability by id' do
+    post :move, id: @availability1.id, minute_delta: 60, day_delta: 1
+    expect(assigns(:availability)).to eq @availability1
+  end
+end
+
+describe '#resize' do
+  before { allow(controller).to receive(:current_user) {@user1}}
+
+
+  it 'finds the right availability by id' do
+    post :resize, id: @availability1.id, minute_delta: 60, day_delta: 1
+    expect(assigns(:availability)).to eq @availability1
+  end
+end
+
+describe '#destroy' do
+  before { allow(controller).to receive(:current_user) {@user1}}
+
+  it 'finds the right availability by id' do
+    post :destroy, id: @availability1.id, studio_id: @studio1.id
+    expect(assigns(:availability)).to eq @availability1
   end
 
-  describe '#move' do
-    it 'finds the right availability by id' do
-      post :move, id: @availability1.id, minute_delta: 60, day_delta: 1
-      expect(assigns(:availability)).to eq @availability1
-    end
+  it 'finds the right availability by id' do
+    post :destroy, id: @availability1.id, studio_id: @studio1.id
+    expect(assigns(:studio)).to eq @studio1
   end
-
-  describe '#resize' do
-    it 'finds the right availability by id' do
-      post :resize, id: @availability1.id, minute_delta: 60, day_delta: 1
-      expect(assigns(:availability)).to eq @availability1
-    end
-  end
-
-  describe '#destroy' do
-    it 'finds the right availability by id' do
-      post :destroy, id: @availability1.id, studio_id: @studio1.id
-      expect(assigns(:availability)).to eq @availability1
-    end
-
-    it 'finds the right availability by id' do
-      post :destroy, id: @availability1.id, studio_id: @studio1.id
-      expect(assigns(:studio)).to eq @studio1
-    end
-  end
+end
 end
 
 
