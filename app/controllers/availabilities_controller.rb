@@ -36,7 +36,7 @@ def get_available_timeslots
     @availabilities.each do |availability|
       availabilities << {:id => availability.id, :color => '#34AADC', :title => 'Available for Booking', :start => "#{availability.start_time.iso8601}", :description => "You've listed this time slot as available for rent. To remove this slot, click Delete below.", :end => "#{availability.end_time.iso8601}", :allDay => false, :overlap => false}
     end
-    @bookings = @studio.bookings.select{ |av| av.start_time >= DateTime.now }
+    @bookings = @studio.bookings.select{ |av| av.end_time >= DateTime.now }
     @bookings.each do |booking|
       availabilities << { :color => 'red', :title => "Booked", :start => "#{booking.start_time.iso8601}", :end => "#{booking.start_time.iso8601}", :description => "This slot is currently booked by #{booking.user.first_name} #{booking.user.last_name}, who booked #{booking.user.bookings.count} studios in the past with an average rating of #{booking.user.average_rating}. You can contact your renter at #{booking.user.email}." , :allDay => false, :overlap => false}
     end
