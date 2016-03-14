@@ -1,15 +1,16 @@
 <% if current_user == @user %>
 
-  <%= link_to "Back to Profile", user_path(current_user) %>
+<%= link_to "Back to Profile", user_path(current_user) %>
 
-  <h1>Edit <%= current_user.first_name %>'s Profile:</h1>
+<h1>Edit <%= current_user.first_name %>'s Profile:</h1>
 
-  <%= render 'form' %>
+<%= render 'form' %>
 
-<div>
-  <% if flash[:errors] %>
-     <%= flash[:errors] %>
-   <% end %>
-</div>
-
+<script type="text/javascript">
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+  toastr.error("<%= error %>")
+<% end %>
+    <% end %>
+</script>
 <% end %>

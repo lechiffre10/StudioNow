@@ -11,8 +11,10 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.save
       session[:user_id] = user.id
+      flash[:notice] = "Welcome to StudioNow! You are now registered!"
       redirect_to "/users/#{user.id}"
     else
+      flash[:errors] = user.errors.full_messages
       redirect_to :back
     end
   end
@@ -20,8 +22,10 @@ class UsersController < ApplicationController
   def login
     if user = User.find_by(username: params[:user][:username]).try(:authenticate, params[:user][:password])
       session[:user_id] = user.id
+      flash[:notice] = "You have successfully logged in!"
       redirect_to "/users/#{session[:user_id]}"
     else
+      flash[:errors] = ["Username/Password mismatch!"]
       redirect_to :back
     end
   end
@@ -37,7 +41,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Your account has been updated!"
       redirect_to @user
     else
-      flash.now[:errors] = "Please fill out all fields"
+      flash.now[:errors] = ["Please fill out all fields"]
       render "edit"
     end
   end

@@ -28,15 +28,13 @@
 <%= link_to 'Set Availabilities', studio_availabilities_path(@studio) %><br>
 <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
 
-<% if @errors %>
-<div class="errors">
-  <ul>
-    <% @errors.each do |error| %>
-      <li><%= error %></li>
+<script type="text/javascript">
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+      toastr.error("<%= error %>")
     <% end %>
-  </ul>
   <% end %>
-</div>
+  </script>
 
 <p id="basicExampleStatus"></p>
 <h3>Request Studio Time:</h3>
