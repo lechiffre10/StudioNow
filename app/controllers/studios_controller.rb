@@ -42,6 +42,7 @@ class StudiosController < ApplicationController
   end
 
   def new
+    @user = User.find(params[:user_id])
     @studio = Studio.new
   end
 

@@ -1,5 +1,5 @@
 class AvailabilitiesController < ApplicationController
-
+  skip_before_filter :verify_authenticity_token
   before_action :logged_in_user, except: [:index, :get_availabilities]
 
   def index

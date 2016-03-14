@@ -86,4 +86,38 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to redirect_to '/'
     end
   end
+
+  describe '#update' do
+    before { allow(controller).to receive(:current_user) {@user}}
+
+    it 'finds the right user' do
+      post :update, id: @user.id, user: {first_name: 'Tyler', last_name: 'Mackenzie', username: 'tytyty', email: 'tyler@tyler.com'}
+      expect(assigns(:user)).to eq(@user)
+    end
+
+    it 'gives the right flash notice when account is updated' do
+      post :update, id: @user.id, user: {first_name: 'Tyler', last_name: 'Mackenzie', username: 'tytyty', email: 'tyler@tyler.com'}
+      expect(flash[:notice]).to eq('Your account has been updated!')
+    end
+
+    it 'redirects to the user page' do
+      post :update, id: @user.id, user: {first_name: 'Tyler', last_name: 'Mackenzie', username: 'tytyty', email: 'tyler@tyler.com'}
+      expect(response).to redirect_to("/users/#{@user.id}")
+    end
+
+    it 'updates the users information' do
+      post :update, id: @user.id, user: {first_name: 'Tyler', last_name: 'Mackenzie', username: 'tytyty', email: 'tyler@tyler.com'}
+      expect(assigns(:user).last_name).to eq('Mackenzie')
+    end
+
+    it 'flashes errors if some fields are blank' do
+      post :update, id: @user.id, user: {first_name: '', username: 'tytyty', email: 'tyler@tyler.com'}
+      expect(flash[:errors]).to eq(["Please fill out all fields"])
+    end
+
+    it 're-renders the edit page if the user does not fill out all fields' do
+      post :update, id: @user.id, user: {first_name: '', username: 'tytyty', email: 'tyler@tyler.com'}
+      expect(response).to render_template :edit
+    end
+  end
 end

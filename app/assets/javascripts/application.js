@@ -17,6 +17,14 @@
 //= require underscore
 //= require gmaps/google
 //= require moment
+//= require bootstrap
+//= require bootstrap.min
+//= require main
+//= require jquery.1.11.1
+//= require jquery.isotope
+//= require modernizr.custom
+//= require owl.carousel
+//= require SmoothScroll
 //= require_tree .
 
 function moveEvent(event, dayDelta, minuteDelta, allDay){
@@ -48,7 +56,11 @@ function showEventDetails(event){
     }
     else {
         title = event.title;
-        $('#delete_event').html("<a href = 'javascript:void(0);' onclick ='deleteEvent(" + event.id + ", " + false + ")'>Delete</a>");
+        if(event.id != undefined) {
+            $('#delete_event').html("<a href = 'javascript:void(0);' onclick ='deleteEvent(" + event.id + ", " + false + ")'>Delete</a>");
+        } else {
+            $('#delete_event').html('');
+        }
     }
     $('#desc_dialog').dialog({
         title: title,
