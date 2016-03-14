@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'bootstrap-sass', '~> 3.3.6'
+gem "font-awesome-rails"
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'faker'

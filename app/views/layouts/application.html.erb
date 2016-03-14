@@ -11,8 +11,8 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
+  <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
       <div class="navbar-header">
         <% if logged_in? %>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -25,8 +25,8 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to current_user.username, user_path(current_user) %></li>
-            <li><%= link_to("Logout", logout_path) %></li>
+            <li class="page-scroll"><%= link_to current_user.username, user_path(current_user) %></li>
+            <li class="page-scroll"><%= link_to("Logout", logout_path) %></li>
           </ul>
         </div>
       </div>
@@ -41,8 +41,8 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to("Register", new_user_path) %></li>
-            <li><%= link_to("Login", new_user_path) %></li>
+            <li class="page-scroll"><%= link_to("Register", new_user_path) %></li>
+            <li class="page-scroll"><%= link_to("Login", new_user_path) %></li>
           </ul>
         </div>
       </div>

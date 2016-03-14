@@ -6,6 +6,9 @@ RSpec.describe StudiosController, type: :controller do
     before(:each) do
       @studio1 = Studio.create(name: "Studio1", full_address: "907 Caprice Dr. Shorewood, IL 60404", description: Faker::Hipster.sentence(rand(3..20)), price: 100, website: Faker::Internet.url)
       @studio2 = Studio.create(name: "Studio2", full_address: "2833 N Sheffield Ave, Chicago, IL 60657", description: Faker::Hipster.sentence(rand(3..20)), price: 100, website: Faker::Internet.url)
+      user = User.create(username: "Test", password: "password", first_name: "Catie", last_name: "Stallings", description: "Testing this user", email: "test@gmail.com", genres: "rock")
+
+
     end
 
     describe "studio#index" do
@@ -45,6 +48,7 @@ RSpec.describe StudiosController, type: :controller do
 
      describe "studios#new" do
       it "creates a new studio instance" do
+        post :login, :user => {:user_name => 'Test', :password =>'password'}
         get :new
         expect(assigns(:studio)).to be_a(Studio)
       end
