@@ -30,8 +30,13 @@
 </p>
 
 <p>
-  <%= f.label :password %>
-  <%= f.password_field :password, type: "password" %>
+  <%= f.label :password unless logged_in? %>
+  <%= f.password_field :password, type: "password" unless logged_in? %>
+</p>
+
+<p>
+  <%= f.label :image, 'Profile Picture' %>
+  <%= f.file_field :image %>
 </p>
 
 <p>
