@@ -17,6 +17,14 @@
 //= require underscore
 //= require gmaps/google
 //= require moment
+//= require bootstrap
+//= require bootstrap.min
+//= require main
+//= require jquery.1.11.1
+//= require jquery.isotope
+//= require modernizr.custom
+//= require owl.carousel
+//= require SmoothScroll
 //= require_tree .
 
 function moveEvent(event, dayDelta, minuteDelta, allDay){
