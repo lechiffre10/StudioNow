@@ -6,6 +6,9 @@
 
 <h3><%= @studio.name %></h3>
 <p>Average Rating: <%=@studio.average_rating  %> </p>
+<div id="review-studio">
+  <%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %>
+</div>
 <div class="studio-cal-container" style="width: 600px">
   <div id='studiocal'>
   </div>
@@ -35,6 +38,9 @@
     <% end %>
   <% end %>
   </script>
+
+
+
 
 <p id="basicExampleStatus"></p>
 <h3>Request Studio Time:</h3>

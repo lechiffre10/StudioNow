@@ -1,0 +1,6 @@
+<div id="new-review">
+  <%= form_for [@studio, @review], remote: true do |f|  %>
+    <%= f.text_area :content  %>
+    <%= f.submit %>
+    <% end %>
+</div>
