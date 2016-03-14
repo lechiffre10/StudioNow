@@ -48,7 +48,7 @@ RSpec.describe StudiosController, type: :controller do
       before { allow(controller).to receive(:current_user) {@user1}}
 
       it "creates a new studio instance" do
-        get :new
+        get :new, user_id: @user1.id
         expect(assigns(:studio)).to be_a(Studio)
       end
     end
