@@ -65,5 +65,14 @@ end
   studios.rotate![0].images.create(media: File.open("app/assets/images/studio_photos/#{photo_number}.jpg"))
 end
 
+15.times.map do
+  conversation = users.rotate![0].originated_conversations.create(originator_id: users[0].id, recipient_id: studio_owners.rotate![0].id)
+  rand(2..5).times do
+    conversation.messages.create(sender_id: users[0].id, content: Faker::Hipster.sentence(rand(3..20)))
+    conversation.messages.create(sender_id: studio_owners[0].id, content: Faker::Hipster.sentence(rand(3..20)))
+  end
+end
+
+
 
 

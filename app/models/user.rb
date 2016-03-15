@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :rates_without_dimension, -> { where dimension: nil}, as: :rateable, class_name: 'Rate', dependent: :destroy
   has_many :reviews, as: :reviewable
   has_many :written_reviews, foreign_key: :reviewer_id, class_name: "Review"
+  has_many :originated_conversations, foreign_key: :originator_id, class_name: "Conversation"
+  has_many :received_conversations, foreign_key: :recipient_id, class_name: "Conversation"
+  has_many :messages, foreign_key: :sender_id, class_name: "Message"
 
   validates :username, presence: true, uniqueness: true
   validates :first_name, :last_name, :email, presence: true

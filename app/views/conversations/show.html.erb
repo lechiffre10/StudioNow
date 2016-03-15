@@ -1,0 +1,35 @@
+<br>
+<% if current_user.id == @conversation.originator_id %>
+  <h1>Conversation with <%= find_recipient_name(@conversation) %></h1>
+<% else %>
+  <h1>Conversation with <%= find_originator_name(@conversation) %></h1>
+<% end %>
+
+<div>
+  <% if @conversation.messages.exists? %>
+    <% @conversation.messages.each do |message| %>
+      <% if message.sender_id == @conversation.originator_id %>
+          <div>
+            <% if find_sender(message).image.exists? %>
+              <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
+            <% end %>
+            <%= find_sender_name(message) %>
+            <%= message.content %>
+          </div>
+      <% elsif message.sender_id == @conversation.recipient_id %>
+          <div>
+            <% if find_sender(message).image.exists? %>
+              <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
+            <% end %>
+            <%= find_sender_name(message) %>
+            <%= message.content %>
+          </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<br>
+<div class="new-message-link"><%= link_to "Send New Message", new_conversation_message_path(@conversation), remote: true %></div>
+<div id='append-message'></div>
+

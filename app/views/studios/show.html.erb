@@ -37,6 +37,9 @@
           <hr>
           <div class="clearfix"></div>
           <div class= "studio-info">
+            <% if logged_in? %>
+              <%= link_to "Contact This Studio", create_conversation_path(@studio.owner_id) %>
+            <% end %>
             <p class="lead"><%= @studio.description %></p>
             <p class="lead"><%= @studio.full_address %></p>
             <p class="lead"><%= link_to @studio.website,  @studio.website %></p>
@@ -60,9 +63,9 @@
           <div id='studiocal'>
           </div>
           <div class="request-time">
-            <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
+            <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST' autocomplete="off">
             <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
-            <input type="text" id="start_date" class="date start prevent" name="start_date" placeholder="Enter Date"/>
+            <input type="text" id="start_date" class="date start prevent" name="start_date" placeholder="Enter Date" />
             <input type="text" id="s_time" class="time start prevent" name="s_time" placeholder="Start Time"/>
             <input type="text" id="e_time" class="time end prevent" name="e_time" placeholder="End Time"/>
             <input class="btn tf-btn btn-default login-partial-button" type="submit" value="Request Studio Time">

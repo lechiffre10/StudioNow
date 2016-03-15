@@ -1,0 +1,18 @@
+<h1>These are your conversations!!!</h1>
+
+
+<br>
+<%= link_to "Profile Page", user_path(current_user) %>
+<br>
+  <% if @conversations %>
+    <ul>
+      <% @conversations.each do |conversation| %>
+        <% if current_user.id == conversation.originator_id %>
+          <li>Conversation with <%= link_to find_recipient_name(conversation), conversation_path(conversation) %></li>
+        <% else %>
+          <li>Conversation with <%= link_to find_originator_name(conversation), conversation_path(conversation) %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+
