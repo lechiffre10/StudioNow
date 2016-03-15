@@ -15,6 +15,7 @@
             <% end %>
             <%= find_sender_name(message) %>
             <%= message.content %>
+            <%= display_date(message) %>
           </div>
       <% elsif message.sender_id == @conversation.recipient_id %>
           <div>
@@ -23,6 +24,7 @@
             <% end %>
             <%= find_sender_name(message) %>
             <%= message.content %>
+            <%= display_date(message) %>
           </div>
       <% end %>
     <% end %>
