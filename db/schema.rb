@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20160314183019) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "availabilities", ["studio_id"], name: "index_availabilities_on_studio_id", using: :btree
+
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
     t.integer  "rateable_id"
@@ -44,6 +46,9 @@ ActiveRecord::Schema.define(version: 20160314183019) do
     t.datetime "updated_at",      null: false
   end
 
+  add_index "bookings", ["availability_id"], name: "index_bookings_on_availability_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+
   create_table "images", force: :cascade do |t|
     t.integer  "studio_id"
     t.string   "media_file_name"
@@ -53,6 +58,8 @@ ActiveRecord::Schema.define(version: 20160314183019) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  add_index "images", ["studio_id"], name: "index_images_on_studio_id", using: :btree
 
   create_table "overall_averages", force: :cascade do |t|
     t.integer  "rateable_id"
@@ -96,7 +103,9 @@ ActiveRecord::Schema.define(version: 20160314183019) do
     t.datetime "updated_at",      null: false
   end
 
+  add_index "reviews", ["reviewable_id", "reviewable_type"], name: "index_reviews_on_reviewable_id_and_reviewable_type", using: :btree
   add_index "reviews", ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id", using: :btree
+  add_index "reviews", ["reviewer_id"], name: "index_reviews_on_reviewer_id", using: :btree
 
   create_table "studios", force: :cascade do |t|
     t.string   "name"
@@ -110,6 +119,8 @@ ActiveRecord::Schema.define(version: 20160314183019) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  add_index "studios", ["owner_id"], name: "index_studios_on_owner_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
