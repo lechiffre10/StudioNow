@@ -22,6 +22,9 @@ class ConversationsController < ApplicationController
     end
   end
 
+  def show
+    @conversation = Conversation.find_by(id: params[:id])
+  end
 
 
 

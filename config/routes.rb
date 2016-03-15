@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :conversations do
-    resources :messages
+    resources :messages, only:[:new, :create, :destroy]
   end
 
   get '/logout' => 'users#destroy', as: 'logout'

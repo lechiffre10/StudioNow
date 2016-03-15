@@ -1,7 +1,15 @@
 <h1>These are your conversations!!!</h1>
 
-<% if @conversations %>
-  <% @conversations.each do |conversation| %>
-    <p>Conversation: <%= conversation.id %></p>
+<br>
+  <% if @conversations %>
+    <ul>
+      <% @conversations.each do |conversation| %>
+        <% if current_user.id == conversation.originator_id %>
+          <li>Conversation with <%= link_to find_recipient_name(conversation), conversation_path(conversation) %></li>
+        <% else %>
+          <li>Conversation with <%= link_to find_originator_name(conversation), conversation_path(conversation) %></li>
+        <% end %>
+      <% end %>
+    </ul>
   <% end %>
-<% end %>
+

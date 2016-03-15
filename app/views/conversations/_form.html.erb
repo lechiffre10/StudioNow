@@ -1,6 +1,14 @@
 <% if @conversation.messages.exists? %>
-  <% @conversation.messages.each do |message| %>
-    <%= message.sender_id %>
-    <%= message.content %>
-  <% end %>
+  <table>
+    <tr>
+      <td>Sender</td>
+      <td>Message</td>
+    </tr>
+    <% @conversation.messages.each do |message| %>
+      <tr>
+        <td><%= find_sender_name(message) %></td>
+        <td><%= message.content %></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
