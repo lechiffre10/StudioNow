@@ -1,3 +1,21 @@
+<script>
+  ga('create', {
+    trackingId: 'UA-75060790-1',
+    cookieDomain: 'auto',
+    'name': 'submitStudioForm'
+  });
+
+  document.addEventListener("submit", '#signup-form', function(event) {
+    event.preventDefault();
+    ga('send', 'event', 'Studio Sign Up', 'submit', {
+        hitCallBack:function() {
+        form.submit();
+    }
+  });
+  });
+</script>
+
+
 <script type="text/javascript">
 <% if flash[:errors] %>
   <% flash[:errors].each do |error| %>
@@ -7,6 +25,6 @@
 </script>
 
 <h1>Register</h1>
-
-<%= render 'form' %>
-
+<div id="signup-form">
+  <%= render 'form' %>
+</div>
