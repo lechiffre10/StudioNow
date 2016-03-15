@@ -3,8 +3,6 @@
   <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
   <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 
-
-
   <div id="tf-home" class="text-center">
         <div class="overlay">
             <div class="content">
@@ -37,12 +35,14 @@
             <div id="rating">
               <%= rating_for @studio %>
             </div><br>
-            <button class="show-page-button btn tf-btn btn-default"><strong>
-              <%= link_to 'Set Availabilities', studio_availabilities_path(@studio), :class => "button-link"  %></strong>
-            </button>
-            <button class="show-page-button btn tf-btn btn-default">
-              <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link"  %>
-            </button>
+            <% if is_studio_owner? %>
+              <button class="show-page-button btn tf-btn btn-default"><strong>
+                <%= link_to 'Set Availabilities', studio_availabilities_path(@studio), :class => "button-link"  %></strong>
+              </button>
+              <button class="show-page-button btn tf-btn btn-default">
+                <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link"  %>
+              </button>
+            <% end %>
           </div>
         </div>
       </div>
@@ -51,21 +51,18 @@
           <div class="studio-cal-container show-page-cal" style="width: 600px">
           <div id='studiocal'>
           </div>
-          <div class="request-time"
-            <h3>Request Studio Time:</h3>
+          <div class="request-time">
             <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
             <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
-            <input type="text" id="start_date" class="date start prevent" name="start_date"/>
-            <input type="text" id="s_time" class="time start prevent" name="s_time"/> to
-            <input type="text" id="end_date" class="date end prevent" name="end_date"/>
-            <input type="text" id="e_time" class="time end prevent" name="e_time"/>
+            <input type="text" id="start_date" class="date start prevent" name="start_date" placeholder="Enter Date"/>
+            <input type="text" id="s_time" class="time start prevent" name="s_time" placeholder="Start Time"/>
+            <input type="text" id="e_time" class="time end prevent" name="e_time" placeholder="End Time"/>
             <input class="btn tf-btn btn-default login-partial-button" type="submit" value="Request Studio Time">
             </form>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </section>
 
 <section id="tf-team" class="text-center">
@@ -88,12 +85,12 @@
   </div>
 </section>
 
-<script type="text/javascript">
-  <% if flash[:errors] %>
-    <% flash[:errors].each do |error| %>
-      toastr.error("<%= error %>")
+  <script type="text/javascript">
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |error| %>
+        toastr.error("<%= error %>")
+      <% end %>
     <% end %>
-  <% end %>
 </script>
 
 
@@ -122,7 +119,7 @@
     $("#basicExample").on('submit', function(e) {
       var startDate = $("#start_date").val();
       var startTime = $("#s_time").val();
-      var endDate = $("#end_date").val();
+      var endDate = $("#start_date").val();
       var endTime = $("#e_time").val();
       var convertedStartTime = moment(startTime, ["h:mm A"]).format("HH:mm");
       var convertedEndTime = moment(endTime, ["h:mm A"]).format("HH:mm");
