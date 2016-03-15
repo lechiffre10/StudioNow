@@ -15,4 +15,6 @@ module UsersHelper
     current_user == Studio.find_by(id: session[:studio_id]).owner
   end
 
+
+
 end

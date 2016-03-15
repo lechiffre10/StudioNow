@@ -2,12 +2,33 @@ class AvailabilitiesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :logged_in_user, except: [:index, :get_availabilities]
 
+
+  def redirect_if_not_owner
+    if is_studio_owner?
+      puts is_studio_owner?
+      return true
+    else
+      redirect_to root_path
+    end
+  end
+
+  def is_studio_owner?
+    current_user == Studio.find_by(id: session[:studio_id]).owner
+  end
+
   def index
     @studio = Studio.find_by(id: params[:studio_id])
     if @studio
       session[:studio_id] = @studio.id
+      if is_studio_owner?
+        true
+      else
+        flash[:danger] = ["Only studio owners can edit availabilities"]
+        puts flash[:danger]
+        redirect_to root_path
+      end
     else
-      flash[:notice] = "That studio does not exist"
+      flash[:danger] = ["That studio does not exist"]
       redirect_to root_path
     end
   end
