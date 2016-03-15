@@ -117,7 +117,7 @@ font-weight: 900;
 	}
 /* Home Style */
 #tf-home{
-	background: url(homepage-image.jpeg);
+	background: url("https://s3.amazonaws.com/studio-now/static_images/homepage-image.jpeg");
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -180,7 +180,7 @@ ul.about-list li span{
 
 /* Team Section */
 #tf-team{
-	background: url("featured-studio.jpeg");
+	background: url("https://s3.amazonaws.com/studio-now/static_images/featured-studio.jpeg");
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
