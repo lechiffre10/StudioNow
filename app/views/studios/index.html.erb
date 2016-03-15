@@ -65,7 +65,7 @@
 <% if @studios && @studios.any? %>
   <div id="studio-list">
     <% @studios.each do |studio| %>
-      <%= render partial: "studios/studio", locals: { studio: studio } %>
+      <%= render partial: "studios/studiosearch", locals: { studio: studio } %>
     <% end %>
   </div>
   <% elsif @studios == nil && @searched_coords[1] == 'mOOse' %>
