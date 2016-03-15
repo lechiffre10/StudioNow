@@ -57,7 +57,11 @@ function showEventDetails(event){
     }
     else {
         title = event.title;
-        $('#delete_event').html("<a href = 'javascript:void(0);' onclick ='deleteEvent(" + event.id + ", " + false + ")'>Delete</a>");
+        if(event.id != undefined) {
+            $('#delete_event').html("<a href = 'javascript:void(0);' onclick ='deleteEvent(" + event.id + ", " + false + ")'>Delete</a>");
+        } else {
+            $('#delete_event').html('');
+        }
     }
     $('#desc_dialog').dialog({
         title: title,

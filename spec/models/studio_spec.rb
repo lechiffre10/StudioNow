@@ -4,7 +4,7 @@ describe Studio do
 	  it { should have_many(:availabilities) }
 	  it { should belong_to(:owner)}
 	  it { should have_many(:reviews) }
-	  it { should have_many(:ratings) }
+	  it { should have_many(:rates_without_dimension) }
 	  it { should have_many(:bookings) }
 	end
 
@@ -18,12 +18,14 @@ describe Studio do
 
 	 before(:each) do
     @user1= User.create!(username: Faker::Internet.user_name, password: "passwords", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::StarWars.quote, email: Faker::Internet.email, genres: Faker::Book.genre)
+    @user2= User.create!(username: Faker::Internet.user_name, password: "passwords", first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::StarWars.quote, email: Faker::Internet.email, genres: Faker::Book.genre)
     @studio1= Studio.create!(name: "Studio1", owner: @user1, full_address: "351 W Hubbard St, Chicago, IL 60654", description: "I hate this test", price: 500, website:"http://wikijamz.herokuapp.com")
     @availability_future= Availability.create!(start_time: "2016-04-26 01:00:00", end_time: "2016-04-26 20:00:00", studio: @studio1)
     @availability1= Availability.create!(start_time: "2016-04-05 15:42:04", end_time: "2016-04-05 18:42:04", studio: @studio1)
     @availability_past = Availability.create!(start_time: "2016-01-26 01:00:00", end_time: "2016-01-26 20:00:00", studio: @studio1)
-    @rating1 = Rating.create(ratable_id: @studio1.id, rater_id: @user1.id, ratable_type: 'Studio', value: 2)
-    @rating2 = Rating.create(ratable_id: @studio1.id, rater_id: @user1.id, ratable_type: 'Studio', value: 4)
+    @studio1.rate(2, @user1)
+    @studio1.rate(4, @user2)
+
   end
 
 	context '#future_availabilities' do
