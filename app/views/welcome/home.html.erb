@@ -3,6 +3,10 @@
   <% flash[:danger].each do |error| %>
   toastr.error("<%= error %>")
   <% end %>
+<% elsif flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    toastr.error("<%= error %>")
+  <% end %>
 <% end %>
 </script>
 
