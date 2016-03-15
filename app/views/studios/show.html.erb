@@ -18,6 +18,12 @@
                 </div>
             </div>
         </div>
+
+<script type="text/javascript">
+<% if flash[:notice] %>
+      toastr.success("<%= flash[:notice] %>")
+  <% end %>
+  </script>
     </div>
 
 <section id="tf-studio-details">
@@ -176,5 +182,6 @@
 
       </ul>
   </div>
+
 
 
