@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
     @studio = Studio.find_by_id(params[:studio_id])
     @image = @studio.images.new(images_params)
     if @image.save
-      redirect_to studio_image_path(@studio, @image)
+      redirect_to studio_path(@studio)
     end
   end
 

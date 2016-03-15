@@ -2,36 +2,36 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name" %>
+                <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name", :autocomplete => :off %>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
-              <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last_name" %>
+              <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last name", :autocomplete => :off %>
             </div>
         </div>
     </div>
       <div class="row">
       <div class="col-md-6">
           <div class="form-group">
-            <%= f.text_field :email, :class => "form-control", :placeholder => "Email" %>
+            <%= f.text_field :email, :class => "form-control", :placeholder => "Email", :autocomplete => :off %>
           </div>
       </div>
       <div class="col-md-6">
           <div class="form-group">
-            <%= f.text_field :genres, :class => "form-control", :placeholder => "Your style of music" %>
+            <%= f.text_field :genres, :class => "form-control", :placeholder => "Your style of music", :autocomplete => :off %>
           </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
           <div class="form-group">
-            <%= f.text_field :username, :class => "form-control", :placeholder => "Username" unless logged_in? %>
+            <%= f.text_field :username, :class => "form-control", :placeholder => "Username", :autocomplete => :off unless logged_in? %>
           </div>
       </div>
       <div class="col-md-6">
           <div class="form-group">
-            <%= f.text_field :password, :class => "form-control", :placeholder => "Password" unless logged_in? %>
+            <%= f.text_field :password, :class => "form-control", :placeholder => "Password", :autocomplete => :off unless logged_in? %>
           </div>
       </div>
     </div>
@@ -43,12 +43,12 @@
       </div>
       <div class="col-md-6">
           <div class="form-group">
-            <%= f.text_field :soundcloud_url, :class => "form-control", :placeholder => "Your soundcloud url" %>
+            <%= f.text_field :soundcloud_url, :class => "form-control", :placeholder => "Your soundcloud url", :autocomplete => :off %>
           </div>
       </div>
     </div>
     <div class="form-group studio-description">
-      <%= f.text_area :description, :class => "form-control", :placeholder => "A little about yourself" %>
+      <%= f.text_area :description, :class => "form-control", :placeholder => "A little about yourself", :autocomplete => :off %>
     </div>
     <button type="submit" class="btn tf-btn btn-default">Submit</button>
 <% end %>
