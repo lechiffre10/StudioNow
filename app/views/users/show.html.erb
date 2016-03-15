@@ -81,9 +81,7 @@
 	    </div>
 	  </div>
 	</section>
-
-
-
+		<%= rating_for @user %>
 	<h5><%=@user.first_name %>'s reviews of Other Users: </h5>
 
 	<% @user.written_reviews.each do |review| %>
@@ -98,6 +96,14 @@
 		<% end %>
 	</div>
 </div>
+
+<div id="soundcloud">
+	<script src="http://connect.soundcloud.com/sdk.js" type="text/javascript"></script>
+	<a href="<%=@user.soundcloud_url  %>"><%=@user.first_name%>'s SoundCloud </a>
+</div>
+
+
+
 
 
 
