@@ -1,0 +1,6 @@
+<% if @conversation.messages.exists? %>
+  <% @conversation.messages.each do |message| %>
+    <%= message.sender_id %>
+    <%= message.content %>
+  <% end %>
+<% end %>

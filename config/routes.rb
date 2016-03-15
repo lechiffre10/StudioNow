@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   resources :users, except: [:index] do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
     resources :rates, only: [:create, :update]
-    resources :conversations
-    resources :messages
   end
   resources :studios do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
@@ -15,6 +13,10 @@ Rails.application.routes.draw do
     resources :availabilities do
       resources :bookings, only:[:create, :destroy]
     end
+  end
+
+  resources :conversations do
+    resources :messages
   end
 
   get '/logout' => 'users#destroy', as: 'logout'
