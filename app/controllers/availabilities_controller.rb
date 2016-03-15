@@ -2,12 +2,33 @@ class AvailabilitiesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :logged_in_user, except: [:index, :get_availabilities]
 
+
+  def redirect_if_not_owner
+    if is_studio_owner?
+      puts is_studio_owner?
+      return true
+    else
+      redirect_to root_path
+    end
+  end
+
+  def is_studio_owner?
+    current_user == Studio.find_by(id: session[:studio_id]).owner
+  end
+
   def index
     @studio = Studio.find_by(id: params[:studio_id])
     if @studio
       session[:studio_id] = @studio.id
+      if is_studio_owner?
+        true
+      else
+        flash[:danger] = ["Only studio owners can edit availabilities"]
+        puts flash[:danger]
+        redirect_to root_path
+      end
     else
-      flash[:notice] = "That studio does not exist"
+      flash[:danger] = ["That studio does not exist"]
       redirect_to root_path
     end
   end
@@ -47,7 +68,7 @@ class AvailabilitiesController < ApplicationController
     end
     @bookings = @studio.bookings.select{ |av| av.end_time >= DateTime.now-7 }
     @bookings.each do |booking|
-      availabilities << { :color => 'red', :title => "Booked", :start => "#{booking.start_time.iso8601}", :end => "#{booking.start_time.iso8601}", :description => "This slot is currently booked by #{booking.user.first_name} #{booking.user.last_name}, who booked #{booking.user.bookings.count} studios in the past with an average rating of #{booking.user.average_rating}. You can contact your renter at #{booking.user.email}." , :allDay => false, :overlap => false}
+      availabilities << { :color => 'red', :title => "Booked", :start => "#{booking.start_time.iso8601}", :end => "#{booking.end_time.iso8601}", :description => "This slot is currently booked by #{booking.user.first_name} #{booking.user.last_name}, who booked #{booking.user.bookings.count} studios in the past with an average rating of #{booking.user.average_rating}. You can contact your renter at #{booking.user.email}." , :allDay => false, :overlap => false}
     end
     render :text => availabilities.to_json
   end

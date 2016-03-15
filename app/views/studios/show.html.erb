@@ -18,10 +18,9 @@
   <h3>Request Studio Time:</h3>
   <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
     <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
-    <input type="text" id="start_date" class="date start prevent" name="start_date"/>
-    <input type="text" id="s_time" class="time start prevent" name="s_time"/> to
-    <input type="text" id="end_date" class="date end prevent" name="end_date"/>
-    <input type="text" id="e_time" class="time end prevent" name="e_time"/>
+    <input type="text" id="start_date" class="date start prevent" name="start_date" placeholder='Enter Date'/>
+    <input type="text" id="s_time" class="time start prevent" name="s_time" placeholder='Start Time' /> to
+    <input type="text" id="e_time" class="time end prevent" name="e_time" placeholder="End Time"/>
     <input type="submit" value="Request Studio Time">
   </form>
 
@@ -36,9 +35,6 @@
 
   <div id="rating">
     <%= rating_for @studio  %>
-    <% 25.times do |index| %>
-      <i class="em em-gun">  </i>
-    <% end %>
   </div>
 
   <div id="reviews">
@@ -56,8 +52,11 @@
       <%= image_tag image.media.url(:medium)  %>
     <% end %>
   <% end %><br>
-  <%= link_to 'Set Availabilities', studio_availabilities_path(@studio) %><br>
-  <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
+
+  <% if is_studio_owner? %>
+    <%= link_to 'Set Availabilities', studio_availabilities_path(@studio) %><br>
+    <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
+  <% end %>
 
   <script type="text/javascript">
     <% if flash[:errors] %>
@@ -93,7 +92,7 @@
     $("#basicExample").on('submit', function(e) {
       var startDate = $("#start_date").val();
       var startTime = $("#s_time").val();
-      var endDate = $("#end_date").val();
+      var endDate = $("#start_date").val();
       var endTime = $("#e_time").val();
       var convertedStartTime = moment(startTime, ["h:mm A"]).format("HH:mm");
       var convertedEndTime = moment(endTime, ["h:mm A"]).format("HH:mm");

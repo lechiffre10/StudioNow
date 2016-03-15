@@ -33,7 +33,7 @@ class Studio < ActiveRecord::Base
     all_unbooked_times = availabilities.map do |availability|
       availability.unbooked_times.map{ |array_of_times| array_of_times << availability.id}
     end
-    all_unbooked_times.flatten(1)
+    all_unbooked_times.flatten(1).select{ |start_and_end_array| start_and_end_array[0] != start_and_end_array[1]}
   end
 
 end
