@@ -17,11 +17,11 @@ class Booking < ActiveRecord::Base
   end
 
   def pretty_print_start_time
-  	self.start_time.strftime('%a, %d %b %Y %H:%M:%S')
+  	self.start_time.strftime('%a, %b %d %Y %H:%M')
   end
 
   def pretty_print_end_time
-  	self.end_time.strftime('%a, %d %b %Y %H:%M:%S')
+  	self.end_time.strftime('%a, %b %d %Y %H:%M')
   end
 
   # This method takes in a date and time string and returns a datetime object:

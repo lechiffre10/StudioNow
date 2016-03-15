@@ -1,0 +1,11 @@
+<div class="item">
+  <div class="thumbnail">
+    <% if studio.images.any? %>
+      <%= image_tag studio.images[0].media.url(:large), :class => "team-img" %>
+    <% end %>
+    <div class="caption">
+      <h3><%= link_to studio.name, studio %></h3>
+    </div>
+  </div>
+</div>
+
