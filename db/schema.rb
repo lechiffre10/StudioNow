@@ -119,8 +119,9 @@ ActiveRecord::Schema.define(version: 20160314183019) do
     t.text     "description"
     t.string   "email"
     t.string   "genres"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "soundcloud_url",     default: "https://soundcloud.com/subpop/kristin-kontrol-x-communicate"
+    t.datetime "created_at",                                                                                 null: false
+    t.datetime "updated_at",                                                                                 null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
