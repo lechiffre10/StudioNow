@@ -11,4 +11,8 @@ module UsersHelper
   	session[:user_id] = params[:id] ? true : false
   end
 
+  def is_studio_owner?
+    current_user == Studio.find_by_id(id: session[:studio_id]).owner
+  end
+
 end
