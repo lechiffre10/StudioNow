@@ -16,7 +16,7 @@
 			<% end %>
     	<div>
 	    	<% if current_user == @user %>
-	    		<%= link_to "Edit Profile", edit_user_path(current_user) %>
+	    		<%= link_to "Edit Profile", edit_user_path(current_user) %><br>
 	    		<%= link_to "Show Conversations", conversations_path %><br>
 	    	<% end %>
 	    	<div id="create-new-review">
