@@ -1,0 +1,4 @@
+<%= form_for @message, url: conversation_messages_path(@conversation) do |f| %>
+  <%= f.text_field :content, :placeholder => "Message" %><br>
+  <%= f.submit "Send" %>
+<% end %>

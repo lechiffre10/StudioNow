@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   post '/rate' => 'rater#create', :as => 'rate'
   resources :users, except: [:index] do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
@@ -14,9 +15,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :conversations, except: [:new, :create] do
+    resources :messages, only:[:new, :create, :destroy]
+  end
+
 
   get '/logout' => 'users#destroy', as: 'logout'
   post '/login' => 'users#login', as: 'login'
+
+  get '/conversations/:recipient_id/create' => 'conversations#create', as: 'create_conversation'
 
   get '/availabilities/get' => 'availabilities#get_availabilities'
   post '/availabilities/move' => 'availabilities#move'

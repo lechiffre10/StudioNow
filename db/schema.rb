@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314183019) do
+ActiveRecord::Schema.define(version: 20160315014630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,13 @@ ActiveRecord::Schema.define(version: 20160314183019) do
   add_index "bookings", ["availability_id"], name: "index_bookings_on_availability_id", using: :btree
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "originator_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.integer  "studio_id"
     t.string   "media_file_name"
@@ -60,6 +67,14 @@ ActiveRecord::Schema.define(version: 20160314183019) do
   end
 
   add_index "images", ["studio_id"], name: "index_images_on_studio_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "conversation_id"
+    t.integer  "sender_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "overall_averages", force: :cascade do |t|
     t.integer  "rateable_id"

@@ -35,6 +35,9 @@
           <hr>
           <div class="clearfix"></div>
           <div class= "studio-info">
+            <% if logged_in? %>
+              <%= link_to "Contact This Studio", create_conversation_path(@studio.owner_id) %>
+            <% end %>
             <p class="lead"><%= @studio.description %></p>
             <p class="lead"><%= @studio.full_address %></p>
             <p class="lead"><%= link_to @studio.website,  @studio.website %></p>
