@@ -12,7 +12,7 @@ module UsersHelper
   end
 
   def is_studio_owner?
-    current_user == Studio.find_by_id(id: session[:studio_id]).owner
+    current_user == Studio.find_by(id: session[:studio_id]).owner
   end
 
 end

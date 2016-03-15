@@ -52,8 +52,11 @@
       <%= image_tag image.media.url(:medium)  %>
     <% end %>
   <% end %><br>
-  <%= link_to 'Set Availabilities', studio_availabilities_path(@studio) %><br>
-  <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
+
+  <% if is_studio_owner? %>
+    <%= link_to 'Set Availabilities', studio_availabilities_path(@studio) %><br>
+    <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
+  <% end %>
 
   <script type="text/javascript">
     <% if flash[:errors] %>
