@@ -37,6 +37,8 @@ RSpec.describe AvailabilitiesController, type: :controller do
   end
 
   describe '#index' do
+      before { allow(controller).to receive(:current_user) {@user1}}
+
     it 'finds the right studio based on id' do
       get :index, studio_id: @studio1.id
       expect(assigns(:studio)).to eq @studio1
@@ -49,7 +51,7 @@ RSpec.describe AvailabilitiesController, type: :controller do
 
     it 'gives a flash notice if the studio does not exist' do
       get :index, studio_id: 4854739487383947839
-      expect(flash[:notice]).to eq 'That studio does not exist'
+      expect(flash[:danger]).to eq ['That studio does not exist']
     end
 
     it 'redirects to the root if the studio is not found' do
