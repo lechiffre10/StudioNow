@@ -27,6 +27,10 @@ html .fc,
   vertical-align: top;
   }
 
+.fc-day {
+  background-color: gray;
+}
+
 
 
 /* Header
@@ -123,7 +127,7 @@ html .fc,
   }
 
 .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
-  background: #fcf8e3;
+  background: #gray;
   }
 
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */

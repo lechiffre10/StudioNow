@@ -71,9 +71,9 @@ $(document).ready(function(){
         }
       },
       header: {
-        left: 'prev,next today',
+        left: 'prev,next',
         center: 'title',
-        right: 'agendaWeek,agendaDay'
+        right: ''
       },
       defaultView: 'agendaWeek',
       height: 500,
