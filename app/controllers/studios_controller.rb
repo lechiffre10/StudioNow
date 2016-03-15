@@ -50,6 +50,7 @@ class StudiosController < ApplicationController
   def create
       user = User.find_by_id(session[:user_id])
       @studio = user.studios.new(studio_params)
+      @studio.update_attribute(:price, params[:studio][:price].gsub(/[^\d]/, '').to_i)
       if @studio.save
         redirect_to studio_path(@studio)
       else
