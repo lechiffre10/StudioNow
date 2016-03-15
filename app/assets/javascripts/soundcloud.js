@@ -1,18 +1,11 @@
 $(document).ready(function() {
-  $("button").on("click", function(event) {
+  var link = $('#soundcloud').find('a')
+  $(link).on("click", function(event) {
+    event.preventDefault();
     SC.initialize({
       client_id: '0ee875aff73dfd839ecb62780db4cbca'
     });
-    var track_url = 'https://soundcloud.com/josh-tagaloa/jumping-in-puddles';
-
-    $.ajax (
-      method: GET,
-      url
-
-      )
-
-
-
+    var track_url = 'https://soundcloud.com/subpop/kristin-kontrol-x-communicate';
     SC.oEmbed(track_url, { auto_play: true }, function(response){
       var divCount = $('#soundcloud').children().length;
       if (divCount <= 2 ) {
