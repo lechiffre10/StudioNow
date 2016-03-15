@@ -19,6 +19,11 @@ class User < ActiveRecord::Base
   validates_attachment :image, :content_type => {:content_type => /^image\/(jpeg|png|gif|tiff)$/}
   validates :password, :length => { :within => 6..20 }, on: :create
   validate :valid_email
+  before_save :valid_soundcloud_url
+
+  def valid_soundcloud_url
+    self.soundcloud_url ||= "https://soundcloud.com/subpop/kristin-kontrol-x-communicate"
+  end
 
   def valid_email
    unless self.email =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i

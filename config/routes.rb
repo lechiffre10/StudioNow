@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :messages, only:[:new, :create, :destroy]
   end
 
+
   get '/logout' => 'users#destroy', as: 'logout'
   post '/login' => 'users#login', as: 'login'
 

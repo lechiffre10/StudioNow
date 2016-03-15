@@ -6,5 +6,7 @@ class CreateImages < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :images, :studio_id
   end
 end
