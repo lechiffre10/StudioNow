@@ -4,14 +4,26 @@
 <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 
-<form id="location-search" action="/studios", method: "get">
-  <input name="search" type="text" placeholder="Search for a studio">
-  <input type="submit" value="search">
-</form>
+ <div id="tf-search" class="text-center search-results">
+        <div class="overlay">
+            <div class="content">
+                <% if @studios != nil %>
+                  <h1>Search Results <strong><span class="color"><%= @studio_count %> Studios found</span></strong></h1>
+                <% elsif @studios == nil %>
+                  <h1>Search Results</h1>
+                <% end %>
+                <div class="form-group">
+                  <form class="location-search" action="/studios", method: "get">
+                    <input class="form-control search-input" name="search" type="text" placeholder="Search for a studio">
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="row search-results-map">
-  <div class="col-md-6">
-  <div id="map"></div>
+<div id="wrapper">
+  <div id="sidebar">
+  <div id="map" class="sticky"></div>
 
 <script type="text/javascript">
   handler = Gmaps.build('Google');
@@ -50,18 +62,22 @@
 </div>
 </div>
 
+
+
 <% if @studios && @studios.any? %>
   <div id="studio-list">
     <% @studios.each do |studio| %>
-      <%= render partial: "studios/studio", locals: { studio: studio } %>
+      <%= render partial: "studios/studiosearch", locals: { studio: studio } %>
     <% end %>
   </div>
-<% elsif @studios == nil && @searched_coords[1] == 'mOOse' %>
-  <div class="no-location-found-error">No location was found for your search. Please try again!</div>
-<% elsif @studios == nil %>
-<% elsif @studios.empty? %>
-  <div class="no-studio-error">No studios were found in that area.</div>
+  <% elsif @studios == nil && @searched_coords[1] == 'mOOse' %>
+    <div class="no-location-found-error">No location was found for your search. Please try again!</div>
+  <% elsif @studios == nil %>
+  <% elsif @studios.empty? %>
+    <div class="no-studio-error">No studios were found in that area.</div>
 <% end %>
+</div>
+
 
 
 

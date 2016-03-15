@@ -117,7 +117,7 @@ font-weight: 900;
 	}
 /* Home Style */
 #tf-home{
-	background: url("homepage-image.jpeg");
+	background: url(homepage-image.jpeg);
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -625,11 +625,22 @@ nav#footer p{
 	margin-left: 350px;
 }
 
-.featured-background {
 
+.login-partial {
+	padding-top: 3px;
+	padding-right: 5px;
+	padding-bottom: 3px;
 }
 
-
+.btn.tf-btn.btn-default.login-partial-button {
+	margin-left: 17px;
+	background: #FCAC45;
+	border: 0;
+	border-radius: 0;
+	padding: 10px 40px;
+	color: #ffffff;
+	text-transform: uppercase;
+}
 
 
 

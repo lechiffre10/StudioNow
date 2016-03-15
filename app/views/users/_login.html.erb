@@ -1,6 +1,10 @@
-<br>
+
 <%= form_for @user, url: login_path do |f| %>
-  Username: <%= f.text_field :username %><br>
-  Password: <%= f.text_field :password, type: "password" %><br>
-  <%= f.submit "Login" %>
+ <li><%= f.text_field :username, :class => "page-scroll", :placeholder => "username" %></li>
+  <li class="login-partial"><%= f.text_field :password, type: "password", :class => "page-scroll", :placeholder => "password"%></li>
+
+  <li class="login-partial"><%= f.submit "Login", :class => "btn tf-btn btn-default login-partial-button" %></li>
+
 <% end %>
+
+
