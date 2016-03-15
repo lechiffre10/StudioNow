@@ -7,6 +7,7 @@ class StudiosController < ApplicationController
     if params[:search] && params[:search] != ''
 
       @studios = Studio.search(params[:search])
+      @studio_count = @studios.length
 
       @hash = Gmaps4rails.build_markers(@studios) do |studio, marker|
         marker.infowindow render_to_string(:partial => "/studios/infowindow", :locals => { :studio => studio})

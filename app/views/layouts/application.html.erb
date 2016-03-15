@@ -54,15 +54,14 @@
           <a class="navbar-brand"><%= link_to("StudioNow", root_path, :class => "navbar-brand") %></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right" id="append-login">
             <li class="page-scroll"><%= link_to("Register", new_user_path) %></li>
-            <li class="page-scroll"><%= link_to("Login", new_user_path, remote: true) %></li>
+            <li class="page-scroll login"><%= link_to("Login", new_user_path, remote: true) %></li>
           </ul>
         </div>
       </div>
     <% end %>
   </nav>
-  <div id='login' class="right pad-r-1"></div>
 
   <%= yield %>
 

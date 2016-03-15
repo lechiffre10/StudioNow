@@ -25,6 +25,7 @@
 //= require modernizr.custom
 //= require owl.carousel
 //= require SmoothScroll
+//= require search-results
 //= require_tree .
 
 function moveEvent(event, dayDelta, minuteDelta, allDay){
