@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.text :description
       t.string :email
       t.string :genres
+      t.string :soundcloud_url
 
       t.timestamps null: false
     end
