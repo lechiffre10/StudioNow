@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'message/index'
+
+  get 'message/new'
+
+  get 'message/create'
+
+  get 'conversation/index'
+
   post '/rate' => 'rater#create', :as => 'rate'
   resources :users, except: [:index] do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
