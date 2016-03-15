@@ -12,5 +12,6 @@ class CreateStudios < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :studios, :owner_id
   end
 end
