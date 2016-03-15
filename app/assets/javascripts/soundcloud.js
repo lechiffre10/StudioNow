@@ -5,20 +5,12 @@ $(document).ready(function() {
     });
     var track_url = 'https://soundcloud.com/josh-tagaloa/jumping-in-puddles';
     SC.oEmbed(track_url, { auto_play: true }, function(response){
-
-      $('#soundcloud').append('<p>'+response.html+'</p>');
+      var divCount = $('#soundcloud').children().length;
+      if (divCount <= 2 ) {
+        $('#soundcloud').append('<p>'+response.html+'</p>');
+      } else {
+        $('#soundcloud').find('p').remove();
+      }
     });
-
-
-
-   //  soundcloud.addEventListener('onPlayerReady', function(player, data) {
-   //   player.api_play();
-   // });
-
-    // SC.get('/tracks', { genres: 'rock' }, function(tracks) {
-    //   $(tracks).each(function(index, track) {
-    //     $('#soundcloud').append($('<li></li>').html(track.title + ' - ' + track.genre));
-    //   });
-    // });
   });
 });
