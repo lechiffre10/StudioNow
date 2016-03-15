@@ -43,14 +43,6 @@
             <button class="show-page-button btn tf-btn btn-default">
               <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link"  %>
             </button>
-            <div id="detail-photos" class="owl-carousel owl-theme row">
-              <% if @studios && @studios.any? %>
-                <% @studios.each do |studio| %>
-                <%= render partial: "studios/studio", locals: { studio: studio } %>
-                <% end %>
-              <% end %>
-            </div>
-
           </div>
         </div>
       </div>
@@ -80,14 +72,14 @@
   <div class="overlay">
     <div class="container">
       <div class="section-title center">
-        <h2>Check out <strong>featured studios</strong></h2>
+        <h2><strong>Studio Photos</strong></h2>
         <div class="line">
           <hr>
         </div>
         <div id="detail-photos" class="owl-carousel owl-theme row">
-          <% if @studios && @studios.any? %>
-            <% @studios.each do |studio| %>
-            <%= render partial: "studios/studio", locals: { studio: studio } %>
+          <% if @studio.images %>
+            <% @studio.images.each do |image| %>
+              <%= image_tag image.media.url(:large), :class => "team-img" %>
             <% end %>
           <% end %>
         </div>
