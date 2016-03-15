@@ -1,32 +1,31 @@
 <%= form_for @studio do |f| %>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <%= f.text_field :name, :class => "form-control", :placeholder => "Enter studio name" %>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+              <%= f.text_field :full_address, :class => "form-control", :placeholder => "Enter full address" %>
+            </div>
+        </div>
+    </div>
+      <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.text_field :price, :class => "form-control", :placeholder => "Enter price per hour" %>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.text_field :website, :class => "form-control", :placeholder => "Enter website" %>
+          </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.text_area :description, :class => "form-control", :placeholder => "Enter a brief description" %>
+    </div>
 
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.label :full_address %><br>
-    <%= f.text_field :full_address %>
-  </p>
-
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </p>
-
-  <p>
-    <%= f.label :name, "Price Per Hour" %><br>
-    <%= f.text_field :price %>
-  </p>
-
-  <p>
-    <%= f.label :website %><br>
-    <%= f.text_field :website %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-
+    <button type="submit" class="btn tf-btn btn-default">Submit</button>
 <% end %>
