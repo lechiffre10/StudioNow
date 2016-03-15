@@ -1,5 +1,5 @@
 .content.show-page-content {
-  padding: 5% 0 0;
+  padding: 3% 0 0;
 }
 
 .studio-cal-container.show-page-cal {
@@ -48,6 +48,24 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
   height: 400px;
   background-attachment: fixed;
+}
+
+.container.studio-details {
+  width: 100%;
+}
+
+.section-title.description {
+  width: 50%;
+  margin: auto;
+}
+
+.studio-cal-container.show-page-cal {
+  margin-left: 16%;
+  float: left;
+}
+
+.show-page-button.btn.tf-btn.btn-default {
+  margin-right: 8%;
 }
 
 

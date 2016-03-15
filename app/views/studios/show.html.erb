@@ -3,12 +3,18 @@
   <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
   <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 
-  <div id="tf-search" class="text-center search-results">
+
+
+  <div id="tf-home" class="text-center">
         <div class="overlay">
-            <div class="content show-page-content">
+            <div class="content">
                 <h1><strong><span class="color">Studio Details</span></strong></stron></h1>
                 <h3 class="lead"><%= @studio.name %></h3>
+                <p class="lead">$<%= @studio.price %> per hour</p>
                 <p class="lead">Average Rating: <%=@studio.average_rating  %> </p>
+                <% if @studio.images.any? %>
+                  <%= image_tag @studio.images[0].media.url(:standard), :class => "img-circle team-img" %>
+                <% end %>
                 <div id="create-new-review">
                   <%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %>
                 </div>
@@ -16,48 +22,87 @@
         </div>
     </div>
 
+<section id="tf-studio-details">
+  <div class="container studio-details">
+    <div class="row">
+      <div class="col-md-6 border-left details-left">
+        <div class="section-title description">
+          <h3>Description</h3>
+          <hr>
+          <div class="clearfix"></div>
+          <div class= "studio-info">
+            <p class="lead"><%= @studio.description %></p>
+            <p class="lead"><%= @studio.full_address %></p>
+            <p class="lead"><%= link_to @studio.website,  @studio.website %></p>
+            <div id="rating">
+              <%= rating_for @studio %>
+            </div><br>
+            <button class="show-page-button btn tf-btn btn-default"><strong>
+              <%= link_to 'Set Availabilities', studio_availabilities_path(@studio), :class => "button-link"  %></strong>
+            </button>
+            <button class="show-page-button btn tf-btn btn-default">
+              <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link"  %>
+            </button>
+            <div id="detail-photos" class="owl-carousel owl-theme row">
+              <% if @studios && @studios.any? %>
+                <% @studios.each do |studio| %>
+                <%= render partial: "studios/studio", locals: { studio: studio } %>
+                <% end %>
+              <% end %>
+            </div>
 
-  <div class="studio-cal-container show-page-cal" style="width: 600px">
-    <div id='studiocal'>
-    </div>
-    <div class="request-time"
-        <h3>Request Studio Time:</h3>
-        <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
-          <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
-          <input type="text" id="start_date" class="date start prevent" name="start_date"/>
-          <input type="text" id="s_time" class="time start prevent" name="s_time"/> to
-          <input type="text" id="end_date" class="date end prevent" name="end_date"/>
-          <input type="text" id="e_time" class="time end prevent" name="e_time"/>
-          <input class="btn tf-btn btn-default login-partial-button" type="submit" value="Request Studio Time">
-        </form>
+          </div>
+        </div>
       </div>
-  </div>
 
-  <div class= "studio-info">
-    <p><%= @studio.full_address %></p>
-    <p><%= @studio.description %></p>
-    <p>$<%= @studio.price %> per hour</p>
-    <p><%= @studio.website %></p>
-    <div id="rating">
-      <%= rating_for @studio %>
+      <div class="col-md-6 calendar-right">
+          <div class="studio-cal-container show-page-cal" style="width: 600px">
+          <div id='studiocal'>
+          </div>
+          <div class="request-time"
+            <h3>Request Studio Time:</h3>
+            <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST'>
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
+            <input type="text" id="start_date" class="date start prevent" name="start_date"/>
+            <input type="text" id="s_time" class="time start prevent" name="s_time"/> to
+            <input type="text" id="end_date" class="date end prevent" name="end_date"/>
+            <input type="text" id="e_time" class="time end prevent" name="e_time"/>
+            <input class="btn tf-btn btn-default login-partial-button" type="submit" value="Request Studio Time">
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <% if @studio.images.any? %>
-    <% @studio.images.each do |image| %>
-      <%= image_tag image.media.url(:medium)  %>
-    <% end %>
-  <% end %><br>
-  <%= link_to 'Set Availabilities', studio_availabilities_path(@studio) %><br>
-  <%= link_to 'Add Photos', new_studio_image_path(@studio) %>
+<section id="tf-team" class="text-center">
+  <div class="overlay">
+    <div class="container">
+      <div class="section-title center">
+        <h2>Check out <strong>featured studios</strong></h2>
+        <div class="line">
+          <hr>
+        </div>
+        <div id="detail-photos" class="owl-carousel owl-theme row">
+          <% if @studios && @studios.any? %>
+            <% @studios.each do |studio| %>
+            <%= render partial: "studios/studio", locals: { studio: studio } %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <script type="text/javascript">
-    <% if flash[:errors] %>
-      <% flash[:errors].each do |error| %>
-        toastr.error("<%= error %>")
-      <% end %>
+<script type="text/javascript">
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+      toastr.error("<%= error %>")
     <% end %>
-  </script>
+  <% end %>
+</script>
 
 
 <script>

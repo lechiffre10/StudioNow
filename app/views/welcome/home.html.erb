@@ -43,11 +43,11 @@
     <div>
       <p>WLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer t</p>
       <% if current_user %>
-        <button class="float-left btn tf-btn btn-default">
+        <button class="btn tf-btn btn-default">
           <%= link_to 'List Your Studio', new_studio_path, :class => "button-link"  %>
         </button>
       <% else  %>
-        <button class="float-left btn tf-btn btn-default">
+        <button class="btn tf-btn btn-default">
           <%= link_to 'List Your Studio', new_user_path, :class => "button-link" %>
         </button>
       <% end %>
