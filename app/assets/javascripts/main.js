@@ -62,8 +62,7 @@ function main() {
 				      ],
   	  });
 
-  	  $("#clients").owlCarousel({
-
+  	  $("#test").owlCarousel({
   	      navigation : false, // Show next and prev buttons
   	      slideSpeed : 300,
   	      paginationSpeed : 400,
@@ -80,13 +79,19 @@ function main() {
 				      ],
   	  });
 
-      $("#testimonial").owlCarousel({
+      $("#detail-photos").owlCarousel({
         navigation : false, // Show next and prev buttons
         slideSpeed : 300,
         paginationSpeed : 400,
         singleItem:true
         });
 
+      $("#profile-studio-photos").owlCarousel({
+        navigation : false, // Show next and prev buttons
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true
+        });
   	});
 
   	/*====================================

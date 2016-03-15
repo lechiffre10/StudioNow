@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
     @studio = Studio.find_by(id: params[:studio_id])
 
     concat_start = "#{params[:start_date]} #{params[:s_time]}"
-    concat_end = "#{params[:end_date]} #{params[:e_time]}"
+    concat_end = "#{params[:start_date]} #{params[:e_time]}"
 
     requested_start_time = Booking.convert_to_datetime(concat_start)
     requested_end_time = Booking.convert_to_datetime(concat_end)
