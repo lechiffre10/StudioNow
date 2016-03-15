@@ -46,16 +46,15 @@ ActiveRecord::Schema.define(version: 20160315014630) do
     t.datetime "updated_at",      null: false
   end
 
+  add_index "bookings", ["availability_id"], name: "index_bookings_on_availability_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+
   create_table "conversations", force: :cascade do |t|
     t.integer  "originator_id"
     t.integer  "recipient_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
-
-  add_index "bookings", ["availability_id"], name: "index_bookings_on_availability_id", using: :btree
-  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
-
 
   create_table "images", force: :cascade do |t|
     t.integer  "studio_id"
@@ -67,6 +66,8 @@ ActiveRecord::Schema.define(version: 20160315014630) do
     t.datetime "updated_at",         null: false
   end
 
+  add_index "images", ["studio_id"], name: "index_images_on_studio_id", using: :btree
+
   create_table "messages", force: :cascade do |t|
     t.text     "content"
     t.integer  "conversation_id"
@@ -74,9 +75,6 @@ ActiveRecord::Schema.define(version: 20160315014630) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
-
-  add_index "images", ["studio_id"], name: "index_images_on_studio_id", using: :btree
-
 
   create_table "overall_averages", force: :cascade do |t|
     t.integer  "rateable_id"
