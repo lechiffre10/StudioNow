@@ -85,6 +85,13 @@ function main() {
         paginationSpeed : 400,
         singleItem:true
         });
+
+      $("#profile-studio-photos").owlCarousel({
+        navigation : false, // Show next and prev buttons
+        slideSpeed : 300,
+        paginationSpeed : 400,
+        singleItem:true
+        });
   	});
 
   	/*====================================
