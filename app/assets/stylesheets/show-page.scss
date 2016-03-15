@@ -1,3 +1,7 @@
+html {
+  overflow: hidden;
+}
+
 .content.show-page-content {
   padding: 3% 0 0;
 }
@@ -65,7 +69,28 @@
 }
 
 .show-page-button.btn.tf-btn.btn-default {
-  margin-right: 8%;
+  float: left;
+  margin-right: 3%;
+}
+
+.large-icon.img-circle.team-img {
+  height: 200px;
+  width: 200px;
+}
+
+.details-header {
+  display: inline-block;
+  margin-left: 21%;
+  margin-right: 7%;
+}
+
+.map-container {
+  display: inline-block;
+  width: 50%;
+}
+
+.map-header {
+  display: inline-block;
 }
 
 
