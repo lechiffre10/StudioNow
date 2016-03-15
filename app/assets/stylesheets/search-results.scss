@@ -4,6 +4,7 @@
 }
 
 #sidebar {
+  margin-top: 2%;
   float: right;
   width: 400px;
 }
@@ -38,4 +39,23 @@ div#tf-search {
   height: 328px;
  }
 
+ div#studio-list {
+  margin-top: 2%;
+  width: 70%;
+  margin-left: 26px;
+ }
+
+.search-thumbnail {
+  width: 100%;
+  text-align: center;
+}
+
+.search-card {
+  background-color: #2B2B2B;
+}
+
+.caption.search {
+  color: white;
+  text-align: center;
+}
 

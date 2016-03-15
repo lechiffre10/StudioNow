@@ -1,9 +1,9 @@
 <div class="search-item col-md-3">
-  <div class="thumbnail">
+  <div class="thumbnail search-card">
     <% if studio.images.any? %>
-      <%= image_tag studio.images[0].media.url(:standard), :class => "img-circle team-img" %>
+      <%= image_tag studio.images[0].media.url(:standard), :class => "search-thumbnail" %>
     <% end %>
-    <div class="caption">
+    <div class="caption search">
       <h3><%= link_to studio.name, studio %></h3>
       <p><%= studio.full_address %></p>
       <p>$<%= studio.price %>/hour</p>
