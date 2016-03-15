@@ -1,0 +1,7 @@
+<h1>These are your conversations!!!</h1>
+
+<% if @conversations %>
+  <% @conversations.each do |conversation| %>
+    <p>Conversation: <%= conversation.id %></p>
+  <% end %>
+<% end %>
