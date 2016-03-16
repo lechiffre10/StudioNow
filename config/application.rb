@@ -14,9 +14,11 @@ require "sprockets/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+PrivatePub.load_config(File.expand_path("../private_pub.yml", __FILE__), ENV["RAILS_ENV"] || "production")
 
 module StudioNow
   class Application < Rails::Application
+    Faye::WebSocket.load_adapter('thin')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
