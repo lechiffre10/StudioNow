@@ -16,8 +16,10 @@
           <% if @studio.images.any? %>
             <%= image_tag @studio.images[0].media.url(:standard), :class => "large-icon img-circle team-img" %>
           <% end %>
-          <div id="create-new-review">
-            <strong class="lead"><%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %></strong>
+          <% if can_review_studio?(@studio) %>
+            <div id="create-new-review">
+              <strong class="lead"><%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %></strong>
+            <% end %>
           </div>
         </div>
         <div class="map-container">
@@ -53,9 +55,12 @@
             <p class="lead"><%= @studio.description %></p>
             <p class="lead"><%= @studio.full_address %></p>
             <p class="lead"><%= link_to @studio.website,  @studio.website %></p>
-            <div id="rating">
-              <%= rating_for @studio %>
-            </div><br>
+            <% if can_review_studio?(@studio)  %>
+              <div id="rating">
+                <%= rating_for @studio %>
+              </div><br>
+            <% end %>
+
             <% if is_studio_owner? %>
             <button class="show-page-button btn tf-btn btn-default"><strong>
                 <%= link_to 'Edit Studio Details', edit_studio_path(@studio), :class => "button-link", :id => 'no-hover'   %></strong>
