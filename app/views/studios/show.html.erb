@@ -17,7 +17,7 @@
             <%= image_tag @studio.images[0].media.url(:standard), :class => "large-icon img-circle team-img" %>
           <% end %>
           <div id="create-new-review">
-            <strong class="lead"><%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %></strong>
+            <strong class="lead"><%= link_to "Review this Studio", new_studio_review_path(@studio), remote: true %></strong>
           </div>
         </div>
         <div class="map-container">
@@ -47,15 +47,15 @@
           <hr>
           <div class="clearfix"></div>
           <div class= "studio-info">
-            <% if logged_in? %>
-              <%= link_to "Contact This Studio", create_conversation_path(@studio.owner_id) %>
-            <% end %>
             <p class="lead"><%= @studio.description %></p>
             <p class="lead"><%= @studio.full_address %></p>
             <p class="lead"><%= link_to @studio.website,  @studio.website %></p>
+            <% if logged_in? %>
+              <strong class="lead"><%= link_to "Contact This Studio", create_conversation_path(@studio.owner_id) %></strong>
+            <% end %></br>
             <div id="rating">
-              <%= rating_for @studio %>
-            </div><br>
+              <p><%= rating_for @studio %></p>
+            </div>
             </div>
             <% if is_studio_owner? %>
             <button class="show-page-button btn tf-btn btn-default"><strong>
