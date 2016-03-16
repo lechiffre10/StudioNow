@@ -61,6 +61,7 @@ html {
 .section-title.description {
   width: 50%;
   margin: auto;
+  display: table;
 }
 
 .studio-cal-container.show-page-cal {
@@ -98,5 +99,12 @@ input.btn.tf-btn.btn-default.login-partial-button {
   margin-top: 1%;
 }
 
-
+@media screen and (max-width: 1299px) {
+.map-container {
+  display:none;
+}
+.details-header {
+  margin-left: 10%;
+}
+}
 
