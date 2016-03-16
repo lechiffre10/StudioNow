@@ -12,15 +12,9 @@
 <div id="">
   <% if @conversation.messages.exists? %>
     <ul>
-      <div id='prepend-message'></div>
-      <div>
+      <div id='messages-list'>
         <% @conversation.messages.reverse.each do |message| %>
-          <li><% if find_sender(message).image.exists? %>
-          <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
-          <% end %>
-          <%= find_sender_name(message) %>
-          <%= message.content %>
-          <%= display_date(message) %></li>
+          <%= render partial: 'messages/create', locals: {message: message} %>
         <% end %>
       <div>
     </ul>
@@ -28,7 +22,7 @@
 </div>
 
 <br>
-<div>
+<div id="new-message-link-container">
   <%= link_to "Create New Message", new_conversation_message_path(@conversation), remote: true, :class => "new-message-link" %></div>
 <div id='append-message'></div>
 

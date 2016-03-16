@@ -14,11 +14,16 @@ class MessagesController < ApplicationController
     @conversation = Conversation.find_by(id: params[:conversation_id])
     message = Message.create(content: params[:message][:content], sender_id: current_user.id, conversation_id: @conversation.id)
     if message.save
-      redirect_to conversation_path(@conversation)
+      respond_to do |format|
+        format.js { render "create", :locals => {:message => message } }
+      end
+      # render partial: 'messages/create', locals: {message: message}
+      # redirect_to conversation_path(@conversation)
     else
       flash[:errors] = message.errors.full_messages
       redirect_to :back
     end
+    # erb the partial that we talked about from show.html.erb
   end
 
 
