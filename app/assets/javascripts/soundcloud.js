@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var link = $('#soundcloud').find('a')
+  var link = $('#soundcloud').find('a');
   $(link).on("click", function(event) {
     event.preventDefault();
     SC.initialize({
@@ -14,5 +14,15 @@ $(document).ready(function() {
         $('#soundcloud').find('p').remove();
       }
     });
+  });
+  $("#rating").on("click", function() {
+    var userId = JSON.stringify($(".content").data("user-id"));
+    var originalHTMLArray = $('.lead').html().match(/[a-zA-Z|\s|<|>|:\/]*: <\/strong>/);
+    $.ajax({
+      method: 'GET',
+      url: "/find_average/" + userId
+    }).done(function(response) {
+      $('.lead').replaceWith("<h3 class='lead'>" +originalHTMLArray + response + "</h3>")
+      });
   });
 });
