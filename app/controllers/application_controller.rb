@@ -18,4 +18,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def send_message_to_owner(musician, studio)
+    studio_owner = User.find_by(id: studio.owner_id)
+    if Conversation.between(musician, studio_owner)
+      conversation = Conversation.between(musician, studio_owner)
+    else
+      conversation = Conversation.create(originator_id: musician.id, recipient_id: studio_owner.id)
+    end
+    conversation.messages.create(sender_id: musician.id, content: "You have a booking request for your studio from #{musician.username}!")
+  end
+
 end

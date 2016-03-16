@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
 
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -12,6 +11,10 @@ gem 'activesupport'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'responders'
+
+gem 'private_pub'
+gem 'thin'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record

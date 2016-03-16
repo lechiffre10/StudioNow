@@ -28,9 +28,12 @@
   </div>
 </div>
 
+
 <script type="text/javascript">
   <% if flash[:notice] %>
   toastr.success("<%= flash[:notice] %>")
+  <% elsif flash[:danger] %>
+  toastr.info("<%= flash[:danger] %>")
   <% end %>
 </script>
 
@@ -55,13 +58,13 @@
             </div><br>
             <% if is_studio_owner? %>
             <button class="show-page-button btn tf-btn btn-default"><strong>
-                <%= link_to 'Edit Studio Details', edit_studio_path(@studio), :class => "button-link"  %></strong>
+                <%= link_to 'Edit Studio Details', edit_studio_path(@studio), :class => "button-link", :id => 'no-hover'   %></strong>
               </button>
               <button class="show-page-button btn tf-btn btn-default"><strong>
-                <%= link_to 'Set Availabilities', studio_availabilities_path(@studio), :class => "button-link"  %></strong>
+                <%= link_to 'Set Availabilities', studio_availabilities_path(@studio), :class => "button-link", :id => 'no-hover'   %></strong>
               </button>
               <button class="show-page-button btn tf-btn btn-default">
-                <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link"  %>
+                <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link", :id => 'no-hover'   %>
               </button>
             <% end %>
           </div>

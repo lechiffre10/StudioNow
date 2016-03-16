@@ -19,7 +19,7 @@
             <form class="location-search" action="/studios", method: "get">
               <input class="form-control search-input" name="search" type="text" placeholder="Search for a studio by location..." autocomplete="off">
             </form>
-            <a href="#listings" class="fa fa-angle-down page-scroll"></a>
+            <a href="#listings"  class="fa fa-angle-down page-scroll"></a>
           </div>
         </div>
     </div>
@@ -48,11 +48,11 @@
       <p>WLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer t</p>
       <% if current_user %>
         <button class="show-page-button btn tf-btn btn-default">
-          <%= link_to 'List Your Studio', new_studio_path, :class => "button-link"  %>
+          <%= link_to 'List Your Studio', new_studio_path, :class => "button-link", :id => 'no-hover'  %>
         </button>
       <% else  %>
         <button class="btn tf-btn btn-default">
-          <%= link_to 'Register with StudioNow', new_user_path, :class => "button-link" %>
+          <%= link_to 'Register with StudioNow', new_user_path, :class => "button-link", :id => 'no-hover'  %>
         </button>
       <% end %>
     </div>
