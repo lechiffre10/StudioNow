@@ -54,6 +54,11 @@ class UsersController < ApplicationController
     redirect_to :root
   end
 
+  def find_average
+    @user = User.find(params[:speed])
+    render layout: false
+  end
+
 
   private
 

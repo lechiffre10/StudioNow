@@ -1,3 +1,7 @@
-$('#messages-list').prepend("<%= escape_javascript(render partial: 'create', locals: {message: message}) %>");
+<% publish_to conversation_path(@conversation) do %>
+  $('#messages-list').prepend("<%= escape_javascript(render partial: 'create', locals: {message: message}) %>");
+<% end %>
+$('.content-text-field').val("");
 $('#append-new-message-form').hide();
 $('.new-message-link').show();
+
