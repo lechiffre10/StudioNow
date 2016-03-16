@@ -25,5 +25,6 @@
 //= require owl.carousel
 //= require SmoothScroll
 //= require search-results
+//= require private_pub
 //= require_tree .
 
