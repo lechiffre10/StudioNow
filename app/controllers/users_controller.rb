@@ -11,14 +11,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
-    if user.save
+    @user = User.create(user_params)
+    if @user.save
       session[:user_id] = user.id
       flash[:notice] = "Welcome to StudioNow! You are now registered!"
-      redirect_to "/users/#{user.id}"
+      redirect_to "/users/#{@user.id}"
     else
-      flash[:errors] = user.errors.full_messages
-      redirect_to :back
+      flash[:errors] = @user.errors.full_messages
+      render 'new'
     end
   end
 
