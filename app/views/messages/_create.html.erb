@@ -1,6 +1,6 @@
-<% if find_sender(message).image.exists? %>
+<li><% if find_sender(message).image.exists? %>
   <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
 <% end %>
 <%= find_sender_name(message) %>
 <%= message.content %>
-<%= display_date(message) %>
+<%= display_date(message) %></li>
