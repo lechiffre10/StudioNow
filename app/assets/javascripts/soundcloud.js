@@ -5,7 +5,7 @@ $(document).ready(function() {
     SC.initialize({
       client_id: '0ee875aff73dfd839ecb62780db4cbca'
     });
-    var track_url = 'https://soundcloud.com/subpop/kristin-kontrol-x-communicate';
+    var track_url = $('#soundcloud').find('a').attr('href');
     SC.oEmbed(track_url, { auto_play: true }, function(response){
       var divCount = $('#soundcloud').children().length;
       if (divCount <= 2 ) {
