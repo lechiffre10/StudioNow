@@ -95,8 +95,9 @@
     <p>Jim put link to new conversation message here</p>
 	<% end %>
 
-	<%= rating_for @user %>
-
+  <% if can_review_user?(@user) %>
+  	<%= rating_for @user %>
+  <% end %>
 <div id="tf-services" class="text-center">
     <div id="reviews" class="container">
         <div class="section-title center">
