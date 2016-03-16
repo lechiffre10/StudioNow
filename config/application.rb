@@ -36,6 +36,6 @@ module StudioNow
 
     config.serve_static_files = true
 
-    config.middleware.use PrivatePub.faye_app
+    # config.middleware.use PrivatePub.faye_app
   end
 end
