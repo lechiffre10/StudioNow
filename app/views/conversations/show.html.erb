@@ -11,7 +11,10 @@
 
 <div id="new-message-link-container">
   <%= link_to "Create New Message", new_conversation_message_path(@conversation), remote: true, :class => "new-message-link" %></div>
-<div id='append-new-message-form'></div>
+<div id='append-new-message-form' style='display:none'>
+  <%= render partial: 'messages/new' %>
+</div>
+<br>
 <div>
   <% if @conversation.messages.exists? %>
     <ul>
@@ -24,7 +27,7 @@
   <% end %>
 </div>
 
-<br>
+<%= subscribe_to conversation_path(@conversation) %>
 
 
 
