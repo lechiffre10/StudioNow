@@ -79,6 +79,11 @@ class StudiosController < ApplicationController
   def destroy
   end
 
+  def find_average
+    @studio = Studio.find(params[:speed])
+    render layout: false
+  end
+
 
   private
   def studio_params
