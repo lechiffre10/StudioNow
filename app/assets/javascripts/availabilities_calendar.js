@@ -85,7 +85,7 @@ $(document).ready(function(){
           $('#loading').hide();
       },
       events: "/availabilities/get",
-      timeFormat: 'hh:mm t{ - hh:mm t} ',
+      timeFormat: 'hh tt{ - hh tt}',
       dragOpacity: "0.5",
       eventOverlap: function(stillEvent, movingEvent) {
         return false;

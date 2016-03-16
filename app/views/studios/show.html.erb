@@ -47,6 +47,9 @@
               <%= rating_for @studio %>
             </div><br>
             <% if is_studio_owner? %>
+            <button class="show-page-button btn tf-btn btn-default"><strong>
+                <%= link_to 'Edit Studio Details', edit_studio_path(@studio), :class => "button-link"  %></strong>
+              </button>
               <button class="show-page-button btn tf-btn btn-default"><strong>
                 <%= link_to 'Set Availabilities', studio_availabilities_path(@studio), :class => "button-link"  %></strong>
               </button>
@@ -59,7 +62,7 @@
       </div>
 
       <div class="col-md-6 calendar-right">
-          <div class="studio-cal-container show-page-cal" style="width: 600px">
+          <div class="studio-cal-container show-page-cal">
           <div id='studiocal'>
           </div>
           <div class="request-time">
