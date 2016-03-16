@@ -19,14 +19,25 @@ $(document).ready(function() {
       }
     });
   });
-  $("#rating").on("click", function() {
+  $("#user-rating").on("click", function() {
     var userId = JSON.stringify($(".content").data("user-id"));
     var originalHTMLArray = $('.lead').html().match(/[a-zA-Z|\s|<|>|:\/]*: <\/strong>/);
     $.ajax({
       method: 'GET',
       url: "/find_average/" + userId
     }).done(function(response) {
-      $('.lead').replaceWith("<h3 class='lead'>" +originalHTMLArray + response + "</h3>")
+      $('h3.lead').replaceWith("<h3 class='lead'>" +originalHTMLArray + response + "</h3>")
       });
+  });
+  $("#studio-rating").on("click", function() {
+    var studioId = JSON.stringify($(".content").data("studio-id"));
+    var originalHTMLArray = JSON.stringify($("#average-rating").html().match(/[a-zA-Z\s]*:\s/));
+    var string = $("#average-rating").html().match(/[a-zA-Z\s]*:\s/);
+    $.ajax({
+      method: 'GET',
+      url: "/find_average/" + studioId,
+    }).done(function(response) {
+      $('p#average-rating').replaceWith("<p class='lead' id='average-rating'>"+ string[0] + response +"</p>")
+    });
   });
 });

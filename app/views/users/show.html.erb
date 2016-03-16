@@ -9,9 +9,9 @@
 
 <div id="tf-home" class="text-center">
     <div class="overlay">
-      <div class="content">
+      <div class="content" data-user-id="<%=@user.id %>">
         <div class="details-header user-details-content">
-          <h1><%= @user.first_name %>'s <strong><span class="color">Profile</span></strong></stron></h1>
+          <h1><%= @user.first_name %>'s <strong><span class="color">Profile</span></strong></strong></h1>
           <h3 class="lead"><strong>Music Style:</strong> <%=@user.genres %>  |  <strong>Average Rating: </strong><%=@user.average_rating %> </h3>
           <% if @user.image.exists? %>
             <%= image_tag @user.image.url(:standard), :class => "img-circle team-img" %><br>
@@ -94,9 +94,10 @@
 	<% if current_user != @user %>
     <p>Jim put link to new conversation message here</p>
 	<% end %>
-
   <% if can_review_user?(@user) %>
-  	<%= rating_for @user %>
+    <div id="user-rating">
+    	<%= rating_for @user %>
+    </div>
   <% end %>
 <div id="tf-services" class="text-center">
     <div id="reviews" class="container">
