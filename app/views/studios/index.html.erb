@@ -5,7 +5,7 @@
 
  <div id="tf-search" class="text-center search-results">
         <div class="overlay">
-            <div class="content">
+            <div class="content" id="search-results-media">
                 <% if @studios != nil %>
                   <h1>Search Results <strong><span class="color"><%= @studio_count %> Studios found</span></strong></h1>
                 <% elsif @studios == nil %>
@@ -13,7 +13,7 @@
                 <% end %>
                 <div class="form-group">
                   <form class="location-search" action="/studios", method: "get">
-                    <input class="form-control search-input" name="search" type="text" placeholder="Search for a studio" autocomplete="off">
+                    <input class="form-control search-input" name="search" type="text" placeholder="Search for a studio by location" autocomplete="off">
                   </form>
                 </div>
             </div>

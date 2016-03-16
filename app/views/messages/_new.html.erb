@@ -1,4 +1,4 @@
 <%= form_for @message, :class => "new-message-form", remote: true, url: conversation_messages_path(@conversation) do |f| %>
-  <%= f.text_field :content, :placeholder => "Message" %><br>
+  <%= f.text_field :content, :placeholder => "Message", :class => "content-text-field" %><br>
   <%= f.submit "Send" %>
 <% end %>
