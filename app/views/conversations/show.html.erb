@@ -6,10 +6,13 @@
 <% end %>
 
 <br>
-<%= link_to "Profile Page", user_path(current_user) %>
+<%= link_to "Conversations List", conversations_path %>
 <br>
 
-<div id="">
+<div id="new-message-link-container">
+  <%= link_to "Create New Message", new_conversation_message_path(@conversation), remote: true, :class => "new-message-link" %></div>
+<div id='append-new-message-form'></div>
+<div>
   <% if @conversation.messages.exists? %>
     <ul>
       <div id='messages-list'>
@@ -22,9 +25,7 @@
 </div>
 
 <br>
-<div id="new-message-link-container">
-  <%= link_to "Create New Message", new_conversation_message_path(@conversation), remote: true, :class => "new-message-link" %></div>
-<div id='append-message'></div>
+
 
 
 
