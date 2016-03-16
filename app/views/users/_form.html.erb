@@ -1,50 +1,56 @@
 <%= form_for @user do |f| %>
-<p>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-</p>
-
-<p>
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-</p>
-
-<p>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-</p>
-
-<p>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-</p>
-
-<p>
-  <%= f.label :genres %>
-  <%= f.text_field :genres %>
-</p>
-
-<p>
-  <%= f.label :username unless logged_in? %>
-  <%= f.text_field :username unless logged_in? %>
-</p>
-
-<p>
-  <%= f.label :password unless logged_in? %>
-  <%= f.password_field :password, type: "password" unless logged_in? %>
-</p>
-
-<p>
-  <%= f.label :image, 'Profile Picture' %>
-  <%= f.file_field :image %>
-</p>
-
-<p>
-  <%= f.label :soundcloud_url, 'Soundcloud Url'  %>
-  <%= f.text_field :soundcloud_url  %>
-</p>
-
-<p>
-  <%= f.submit "Submit" %>
-</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name", :autocomplete => :off %>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+              <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last name", :autocomplete => :off %>
+            </div>
+        </div>
+    </div>
+      <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.text_field :email, :class => "form-control", :placeholder => "Email", :autocomplete => :off %>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.text_field :genres, :class => "form-control", :placeholder => "Your style of music", :autocomplete => :off %>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.text_field :username, :class => "form-control", :placeholder => "Username", :autocomplete => :off unless logged_in? %>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.text_field :password, :class => "form-control", :placeholder => "Password", :autocomplete => :off unless logged_in? %>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.file_field :image, :class => "form-control" %>
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+            <%= f.text_field :soundcloud_url, :class => "form-control", :placeholder => "Your soundcloud url", :autocomplete => :off %>
+          </div>
+      </div>
+    </div>
+    <div class="form-group studio-description">
+      <%= f.text_area :description, :class => "form-control", :placeholder => "A little about yourself", :autocomplete => :off %>
+    </div>
+    <button type="submit" class="btn tf-btn btn-default">Submit</button>
 <% end %>
+
+

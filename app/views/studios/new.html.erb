@@ -5,14 +5,16 @@
     </div>
   </div>
 
-<%= render 'form' %>
+<div class="studio-sign-up-form">
+  <%= render 'form' %>
+</div>
 
 <script type="text/javascript">
-<% if @studio.errors.any? %>
+  <% if @studio.errors.any? %>
     <% @errors.each do |error| %>
       toastr.error("<%= error %>")
     <% end %>
   <% end %>
-  </script>
+</script>
 
 

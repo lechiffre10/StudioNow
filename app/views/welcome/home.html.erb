@@ -17,7 +17,7 @@
             <p class="lead">We are passionate about <strong>fostering creativity</strong> and <strong>bringing musicians together.</strong></p>
             <div class="form-group">
             <form class="location-search" action="/studios", method: "get">
-              <input class="form-control search-input" name="search" type="text" placeholder="Search for a studio...">
+              <input class="form-control search-input" name="search" type="text" placeholder="Search for a studio by location..." autocomplete="off">
             </form>
             <a href="#listings" class="fa fa-angle-down page-scroll"></a>
           </div>
@@ -47,7 +47,7 @@
     <div>
       <p>WLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer t</p>
       <% if current_user %>
-        <button class="btn tf-btn btn-default">
+        <button class="show-page-button btn tf-btn btn-default">
           <%= link_to 'List Your Studio', new_studio_path, :class => "button-link"  %>
         </button>
       <% else  %>
@@ -70,10 +70,10 @@
           <hr>
         </div>
         <div id="listings" class="owl-carousel owl-theme row">
-          <% if @studios && @studios.any? %>
-          <% @studios.each do |studio| %>
-          <%= render partial: "studios/studio", locals: { studio: studio } %>
-          <% end %>
+          <% if @highest_rated_studios && @highest_rated_studios.any? %>
+            <% @highest_rated_studios.each do |studio| %>
+              <%= render partial: "studios/studio", locals: { studio: studio } %>
+            <% end %>
           <% end %>
         </div>
       </div>
