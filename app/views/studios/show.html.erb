@@ -7,12 +7,12 @@
 
   <div id="tf-home" class="text-center">
     <div class="overlay">
-      <div class="content studio-details-content">
-        <div class="details-header">
+      <div class="content studio-details-content" data-studio-id="<%=@studio.id%>">
+        <div class="details-header" data-studio-id="<%=@studio.id%>">
           <h1><strong><span class="color">Studio Details</span></strong></strong></h1>
           <h3 class="lead"><%= @studio.name %></h3>
           <p class="lead">$<%= @studio.price %> per hour</p>
-          <p class="lead">Average Rating: <%=@studio.average_rating  %> </p>
+          <p class="lead" id="average-rating">Average Rating: <%=@studio.average_rating  %> </p>
           <% if @studio.images.any? %>
             <%= image_tag @studio.images[0].media.url(:standard), :class => "large-icon img-circle team-img" %>
           <% end %>
@@ -57,10 +57,11 @@
             <% end %></br>
 
             <% if can_review_studio?(@studio)  %>
-              <div id="rating">
+              <div id="studio-rating">
                 <%= rating_for @studio %>
               </div><br>
             <% end %>
+
             <% if is_studio_owner? %>
             <button class="show-page-button btn tf-btn btn-default"><strong>
                 <%= link_to 'Edit Studio Details', edit_studio_path(@studio), :class => "button-link", :id => 'no-hover'   %></strong>
