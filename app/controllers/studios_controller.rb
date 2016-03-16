@@ -61,9 +61,19 @@ class StudiosController < ApplicationController
 
   def edit
     @studio = Studio.find_by_id(params[:id])
+    render :new
   end
 
   def update
+    @studio = Studio.find_by_id(params[:id])
+    @studio.update_attributes(studio_params)
+    @studio.update_attribute(:price, params[:studio][:price].gsub(/[^\d]/, '').to_i)
+    if @studio.save
+      redirect_to studio_path(@studio)
+    else
+      @errors = @studio.errors.full_messages
+      render :new
+    end
   end
 
   def destroy
