@@ -19,7 +19,7 @@ RSpec.describe UsersController, type: :controller do
 
     it 'redirects back to the same page if not passed the right info' do
       post :create, user: {username: 'arg', password: 'veee'}
-      expect(response).to redirect_to('where_i_came_from')
+      expect(response).to render_template :new
     end
   end
 
