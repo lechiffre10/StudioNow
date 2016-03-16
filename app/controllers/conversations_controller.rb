@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
 
+  respond_to :html, :js
+
   def index
     @conversations = Conversation.involving(current_user)
   end
@@ -27,6 +29,12 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find_by(id: params[:id])
+  end
+
+  def destroy
+    conversation = Conversation.find_by(id: params[:id])
+    conversation.destroy
+    redirect_to user_path(current_user)
   end
 
 

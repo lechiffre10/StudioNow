@@ -12,4 +12,8 @@ module ConversationsHelper
     Studio.find_by(owner_id: conversation.recipient_id)
   end
 
+  def display_date(message)
+    message.created_at.strftime('%v') + " " + message.created_at.strftime('%r')
+  end
+
 end

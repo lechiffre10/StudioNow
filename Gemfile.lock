@@ -167,6 +167,8 @@ GEM
     ratyrate (1.2.2.alpha)
     rdoc (4.2.2)
       json (~> 1.4)
+    responders (2.1.1)
+      railties (>= 4.2.0, < 5.1)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -251,6 +253,7 @@ DEPENDENCIES
   pry-byebug
   rails (= 4.2.5.1)
   ratyrate
+  responders
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
