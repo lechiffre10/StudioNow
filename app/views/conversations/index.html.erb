@@ -8,9 +8,13 @@
     <ul>
       <% @conversations.each do |conversation| %>
         <% if current_user.id == conversation.originator_id %>
-          <li>Conversation with <%= link_to find_recipient_name(conversation), conversation_path(conversation) %></li>
+          <li>Conversation with <%= link_to find_recipient_name(conversation), conversation_path(conversation) %><br>
+            <%= link_to "Delete Conversation", conversation, method: :delete, data: { confirm: "This will delete all messages in this conversation. Are you sure you want to proceed?" } %>
+          </li>
         <% else %>
-          <li>Conversation with <%= link_to find_originator_name(conversation), conversation_path(conversation) %></li>
+          <li>Conversation with <%= link_to find_originator_name(conversation), conversation_path(conversation) %>
+            <%= link_to "Delete Conversation", conversation, method: :delete, data: { confirm: "This will delete all messages in this conversation. Are you sure you want to proceed?" } %>
+          </li>
         <% end %>
       <% end %>
     </ul>
