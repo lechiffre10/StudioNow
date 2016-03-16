@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   get '/find_average/*speed' => 'users#find_average', :constraints => { :speed => /.*/ }
 
-
+  get '/find_average/*speed' => 'studios#find_average', :constraints => { :speed => /.*/ }
 
 
 
