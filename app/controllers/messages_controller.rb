@@ -29,4 +29,6 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:content, :sender_id, :conversation_id)
   end
 
+# ("<%= escape_javascript(render partial: 'new') %>")
+
 end
