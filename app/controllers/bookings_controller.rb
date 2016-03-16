@@ -17,6 +17,7 @@ class BookingsController < ApplicationController
     if @availability
       @booking = @availability.bookings.new(start_time: requested_start_time, end_time: requested_end_time, user_id: session[:user_id], total_price: price)
       if @booking.save
+        send_message_to_owner(current_user, @studio)
         flash[:notice] = "Your booking has been submitted."
         redirect_to studio_path(@studio)
       else
