@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-
+  respond_to :html, :js
 
   def new
     @conversation = Conversation.find_by(id: params[:conversation_id])
@@ -7,6 +7,10 @@ class MessagesController < ApplicationController
   end
 
   def create
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
     @conversation = Conversation.find_by(id: params[:conversation_id])
     message = Message.create(content: params[:message][:content], sender_id: current_user.id, conversation_id: @conversation.id)
     if message.save

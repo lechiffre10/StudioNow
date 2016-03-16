@@ -9,33 +9,28 @@
 <%= link_to "Profile Page", user_path(current_user) %>
 <br>
 
-<div>
+<div id="">
   <% if @conversation.messages.exists? %>
-    <% @conversation.messages.each do |message| %>
-      <% if message.sender_id == @conversation.originator_id %>
-          <div>
-              <% if find_sender(message).image.exists? %>
-                <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
-              <% end %>
-              <%= find_sender_name(message) %>
-              <%= message.content %>
-              <%= display_date(message) %>
-          </div>
-      <% elsif message.sender_id == @conversation.recipient_id %>
-          <div>
-              <% if find_sender(message).image.exists? %>
-                <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
-              <% end %>
-              <%= find_sender_name(message) %>
-              <%= message.content %>
-              <%= display_date(message) %>
-          </div>
-      <% end %>
-    <% end %>
+    <ul>
+      <div id='prepend-message'></div>
+      <div>
+        <% @conversation.messages.reverse.each do |message| %>
+          <li><% if find_sender(message).image.exists? %>
+          <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
+          <% end %>
+          <%= find_sender_name(message) %>
+          <%= message.content %>
+          <%= display_date(message) %></li>
+        <% end %>
+      <div>
+    </ul>
   <% end %>
 </div>
 
 <br>
-<div class="new-message-link"><%= link_to "Send New Message", new_conversation_message_path(@conversation), remote: true %></div>
+<div>
+  <%= link_to "Create New Message", new_conversation_message_path(@conversation), remote: true, :class => "new-message-link" %></div>
 <div id='append-message'></div>
+
+
 

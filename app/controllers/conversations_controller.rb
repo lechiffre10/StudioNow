@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
 
+  respond_to :html, :js
+
   def index
     @conversations = Conversation.involving(current_user)
   end
