@@ -29,6 +29,12 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find_by(id: params[:id])
   end
 
+  def destroy
+    conversation = Conversation.find_by(id: params[:id])
+    conversation.destroy
+    redirect_to user_path(current_user)
+  end
+
 
 
 end

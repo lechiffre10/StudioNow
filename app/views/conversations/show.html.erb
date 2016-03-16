@@ -5,26 +5,30 @@
   <h1>Conversation with <%= find_originator_name(@conversation) %></h1>
 <% end %>
 
+<br>
+<%= link_to "Profile Page", user_path(current_user) %>
+<br>
+
 <div>
   <% if @conversation.messages.exists? %>
     <% @conversation.messages.each do |message| %>
       <% if message.sender_id == @conversation.originator_id %>
           <div>
-            <% if find_sender(message).image.exists? %>
-              <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
-            <% end %>
-            <%= find_sender_name(message) %>
-            <%= message.content %>
-            <%= display_date(message) %>
+              <% if find_sender(message).image.exists? %>
+                <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
+              <% end %>
+              <%= find_sender_name(message) %>
+              <%= message.content %>
+              <%= display_date(message) %>
           </div>
       <% elsif message.sender_id == @conversation.recipient_id %>
           <div>
-            <% if find_sender(message).image.exists? %>
-              <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
-            <% end %>
-            <%= find_sender_name(message) %>
-            <%= message.content %>
-            <%= display_date(message) %>
+              <% if find_sender(message).image.exists? %>
+                <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
+              <% end %>
+              <%= find_sender_name(message) %>
+              <%= message.content %>
+              <%= display_date(message) %>
           </div>
       <% end %>
     <% end %>
