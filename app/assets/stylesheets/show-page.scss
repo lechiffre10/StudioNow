@@ -108,3 +108,35 @@ input.btn.tf-btn.btn-default.login-partial-button {
 }
 }
 
+@media screen and (max-width: 989px) {
+  #map {
+  display:none;
+  }
+
+  div#studio-list {
+    margin:0 auto;
+  }
+
+  #search-results-media {
+    padding: 20% 0 0;
+  }
+
+  .search-input {
+  width: 60%
+  }
+}
+
+@media (max-width: 767px) {
+  #map {
+  display:none;
+  }
+
+  div#studio-list {
+    margin:0 auto;
+  }
+
+  #search-results-media {
+    padding: 20% 0 0;
+  }
+}
+
