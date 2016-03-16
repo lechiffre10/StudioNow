@@ -1,6 +1,14 @@
 class BookingsController < ApplicationController
 
-  before_action :logged_in_user, only: [:new, :create, :destroy]
+  before_action :logged_in_booking, only: [:create, :destroy]
+
+  def logged_in_booking
+    unless logged_in?
+      @studio = Studio.find_by(id: params[:studio_id])
+      flash[:danger] = "Please log in."
+      redirect_to studio_path(@studio)
+    end
+  end
 
   def create
     @studio = Studio.find_by(id: params[:studio_id])
