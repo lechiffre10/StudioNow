@@ -40,7 +40,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'fullcalendar_engine', '~> 1.0', '>= 1.0.6'
 
 gem 'ratyrate'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 # Use Unicorn as the app server
 # gem 'unicorn'
