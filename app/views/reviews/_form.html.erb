@@ -1,7 +1,6 @@
-<div id="new-review">
-  <%= form_for [@user, @review], remote: true do |f|  %>
-    <%= f.text_area :content  %>
-    <%= f.submit %>
-    <% end %>
-</div>
-
+<%= form_for [@user, @review], remote: true do |f|  %>
+  <div class="form-group">
+    <%= f.text_area :content, :placeholder => "Write your review", :autocomplete => :off, :class => "review-textarea" %>
+  </div>
+  <button type="submit" class="btn tf-btn btn-default user-review-button">Create Review</button>
+<% end %>

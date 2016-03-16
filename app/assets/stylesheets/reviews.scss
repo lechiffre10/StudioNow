@@ -5,6 +5,7 @@ textarea#review_content::-webkit-input-placeholder {
 }
 
 textarea#review_content.review-textarea {
+  color: #696969;
   font-size: 18px;
   padding-top: 2px;
   width: 315px;
@@ -46,6 +47,27 @@ textarea#review_content.review-textarea {
   width: 85px;
   height: 85px;
 }
+
+.details-header.user-details-content {
+  display: inline-block;
+  margin-left: 21%;
+  margin-right: 18%;
+}
+
+#soundcloud {
+  width: 100%;
+}
+
+button.btn.tf-btn.btn-default.user-review-button {
+  margin-right: 6%;
+}
+
+
+
+
+
+
+
 
 
 
