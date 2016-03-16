@@ -1,6 +1,14 @@
 class BookingsController < ApplicationController
 
-  before_action :logged_in_user, only: [:new, :create, :destroy]
+  before_action :logged_in_booking, only: [:create, :destroy]
+
+  def logged_in_booking
+    unless logged_in?
+      @studio = Studio.find_by(id: params[:studio_id])
+      flash[:danger] = "Please log in."
+      redirect_to studio_path(@studio)
+    end
+  end
 
   def create
     @studio = Studio.find_by(id: params[:studio_id])
@@ -17,6 +25,7 @@ class BookingsController < ApplicationController
     if @availability
       @booking = @availability.bookings.new(start_time: requested_start_time, end_time: requested_end_time, user_id: session[:user_id], total_price: price)
       if @booking.save
+        send_message_to_owner(current_user, @studio)
         flash[:notice] = "Your booking has been submitted."
         redirect_to studio_path(@studio)
       else
