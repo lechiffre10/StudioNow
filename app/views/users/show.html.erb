@@ -10,7 +10,7 @@
 
 	<div id="tf-search" class="text-center">
   <div class="overlay">
-    <div class="content header-profile">
+    <div class="content header-profile" data-user-id="<%=@user.id %>">
     	<h1><%= @user.first_name %>'s <strong><span class="color"> Profile</span></strong></h1>
     	<h3 class="lead"><strong>Music Style:</strong> <%=@user.genres %>  |  <strong>Average Rating: </strong><%=@user.average_rating %> </h3>
     	<% if @user.image.exists? %>
@@ -95,9 +95,10 @@
 	<% if current_user != @user %>
 		<%= link_to "Send a Message to this Musician!", new_conversation_path(current_user, @user) %>
 	<% end %>
-
-	<%= rating_for @user %>
-	<h5><%=@user.first_name %>'s reviews of Other Users: </h5>
+  <div id="rating">
+  	<%= rating_for @user %>
+	</div>
+  <h5><%=@user.first_name %>'s reviews of Other Users: </h5>
 
 	<% @user.written_reviews.each do |review| %>
 		<%= render partial: "reviews/review", locals: {review: review } %>

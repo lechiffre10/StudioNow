@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get '/availabilities/get_slots' => 'availabilities#get_available_timeslots'
   root 'welcome#index'
 
-
+  get '/find_average/*speed' => 'users#find_average', :constraints => { :speed => /.*/ }
 
 
 
