@@ -31,7 +31,7 @@
                 getContainer: getContainer,
                 info: info,
                 options: {
-                    "timeOut": "1000"
+                    "timeOut": "2500"
                 },
                 subscribe: subscribe,
                 success: success,

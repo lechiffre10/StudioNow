@@ -18,7 +18,7 @@ $(document).ready(function(){
         $('#loading').hide();
     },
     events: "/availabilities/get_slots",
-    timeFormat: 'hh:mm t{ - hh:mm t} '
+    timeFormat: 'hh tt{ - hh tt}'
   });
 });
 

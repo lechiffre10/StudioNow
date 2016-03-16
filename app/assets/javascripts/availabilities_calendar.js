@@ -71,9 +71,9 @@ $(document).ready(function(){
         }
       },
       header: {
-        left: 'prev,next today',
+        left: 'prev,next',
         center: 'title',
-        right: 'agendaWeek,agendaDay'
+        right: ''
       },
       defaultView: 'agendaWeek',
       height: 500,
@@ -85,7 +85,7 @@ $(document).ready(function(){
           $('#loading').hide();
       },
       events: "/availabilities/get",
-      timeFormat: 'hh:mm t{ - hh:mm t} ',
+      timeFormat: 'hh tt{ - hh tt}',
       dragOpacity: "0.5",
       eventOverlap: function(stillEvent, movingEvent) {
         return false;

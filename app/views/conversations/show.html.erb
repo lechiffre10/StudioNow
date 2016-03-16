@@ -1,0 +1,36 @@
+<br>
+<% if current_user.id == @conversation.originator_id %>
+  <h1>Conversation with <%= find_recipient_name(@conversation) %></h1>
+<% else %>
+  <h1>Conversation with <%= find_originator_name(@conversation) %></h1>
+<% end %>
+
+<br>
+<%= link_to "Profile Page", user_path(current_user) %>
+<br>
+
+<div id="">
+  <% if @conversation.messages.exists? %>
+    <ul>
+      <div id='prepend-message'></div>
+      <div>
+        <% @conversation.messages.reverse.each do |message| %>
+          <li><% if find_sender(message).image.exists? %>
+          <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
+          <% end %>
+          <%= find_sender_name(message) %>
+          <%= message.content %>
+          <%= display_date(message) %></li>
+        <% end %>
+      <div>
+    </ul>
+  <% end %>
+</div>
+
+<br>
+<div>
+  <%= link_to "Create New Message", new_conversation_message_path(@conversation), remote: true, :class => "new-message-link" %></div>
+<div id='append-message'></div>
+
+
+
