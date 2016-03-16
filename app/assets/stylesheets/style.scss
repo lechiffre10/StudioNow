@@ -659,3 +659,22 @@ nav#footer p{
 	color:white;
 }
 
+#back-to-top {
+	padding: 10px 15px;
+	background-color: #fcac45;
+	border: 2px solid white;
+	border-radius: 50%;
+	font-size: 24px;
+	transition: all 0.5s;
+}
+
+.fa.fa-angle-up {
+	color: white;
+}
+
+#back-to-top:hover {
+	border: 2px solid #b4b4b4;
+}
+
+
+
