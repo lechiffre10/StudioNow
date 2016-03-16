@@ -7,30 +7,27 @@
 	    <% end %>
 	</script>
 
-
-	<div id="tf-search" class="text-center">
-  <div class="overlay">
-    <div class="content header-profile" data-user-id="<%=@user.id %>">
-    	<h1><%= @user.first_name %>'s <strong><span class="color"> Profile</span></strong></h1>
-    	<h3 class="lead"><strong>Music Style:</strong> <%=@user.genres %>  |  <strong>Average Rating: </strong><%=@user.average_rating %> </h3>
-    	<% if @user.image.exists? %>
-				<%= image_tag @user.image.url(:standard), :class => "img-circle team-img" %><br>
-			<% end %>
-    	<div>
-	    	<% if current_user == @user %>
-	    		<%= link_to "Edit Profile", edit_user_path(current_user) %><br>
-	    		<%= link_to "Show Conversations", conversations_path %><br>
-	    	<% end %>
-	    	<div id="create-new-review">
-					<%= link_to "Review this Musician!", new_user_review_path(@user), remote: true %>
-				</div>
+<div id="tf-home" class="text-center">
+    <div class="overlay">
+      <div class="content">
+        <div class="details-header user-details-content">
+          <h1><%= @user.first_name %>'s <strong><span class="color">Profile</span></strong></stron></h1>
+          <h3 class="lead"><strong>Music Style:</strong> <%=@user.genres %>  |  <strong>Average Rating: </strong><%=@user.average_rating %> </h3>
+          <% if @user.image.exists? %>
+            <%= image_tag @user.image.url(:standard), :class => "img-circle team-img" %><br>
+          <% end %>
+          <% if current_user == @user %>
+            <strong class="lead"><%= link_to "Edit Profile", edit_user_path(current_user) %></strong><br>
+            <strong class="lead"><%= link_to "Show Conversations", conversations_path %><br></strong>
+          <% end %></strong>
         <div id="soundcloud">
-
           <script src="http://connect.soundcloud.com/sdk.js" type="text/javascript"></script>
-          <a href="<%=@user.soundcloud_url  %>"><%=@user.first_name%>'s SoundCloud </a>
-
+          <strong class="lead"><a href="<%=@user.soundcloud_url  %>"><%=@user.first_name%>'s SoundCloud</a></strong>
         </div>
-    	</div>
+        <div id="create-new-review">
+          <strong class="lead"><%= link_to "Review this Musician", new_user_review_path(@user), remote: true %></strong>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -95,22 +92,24 @@
 	<% if current_user != @user %>
 		<%= link_to "Send a Message to this Musician!", new_conversation_path(current_user, @user) %>
 	<% end %>
-  <div id="rating">
-  	<%= rating_for @user %>
-	</div>
-  <h5><%=@user.first_name %>'s reviews of Other Users: </h5>
 
-	<% @user.written_reviews.each do |review| %>
-		<%= render partial: "reviews/review", locals: {review: review } %>
-	<% end %>
+	<%= rating_for @user %>
 
-	<h5>Reviews of <%= @user.first_name %> </h5>
-
-	<div id="reviews">
-		<% @user.reviews.each do |review| %>
-			<%= render partial: "reviews/review", locals: {review: review } %>
-		<% end %>
-	</div>
+<div id="tf-services" class="text-center">
+    <div id="reviews" class="container">
+        <div class="section-title center">
+            <h2>Reviews of <strong><%= @user.first_name %></strong></h2>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="review-list">
+          <% @user.reviews.each do |review|  %>
+              <%= render partial: "reviews/review", locals: {review: review } %>
+          <% end  %>
+        </div>
+    </div>
 </div>
 
 

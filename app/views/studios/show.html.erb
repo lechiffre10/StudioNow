@@ -7,14 +7,14 @@
 
   <div id="tf-home" class="text-center">
     <div class="overlay">
-      <div class="content">
+      <div class="content studio-details-content">
         <div class="details-header">
           <h1><strong><span class="color">Studio Details</span></strong></strong></h1>
           <h3 class="lead"><%= @studio.name %></h3>
           <p class="lead">$<%= @studio.price %> per hour</p>
           <p class="lead">Average Rating: <%=@studio.average_rating  %> </p>
           <% if @studio.images.any? %>
-          <%= image_tag @studio.images[0].media.url(:standard), :class => "large-icon img-circle team-img" %>
+            <%= image_tag @studio.images[0].media.url(:standard), :class => "large-icon img-circle team-img" %>
           <% end %>
           <div id="create-new-review">
             <strong class="lead"><%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %></strong>
@@ -177,16 +177,22 @@
 
 </script>
 
-
-<div id="reviews">
-    <h3><%= @studio.name  %>'s reviews</h3>
-      <ul>
-        <%@studio.reviews.each do |review|  %>
-        <li><%= render partial: "reviews/review", locals: {review: review } %></li>
-        <% end  %>
-
-      </ul>
-  </div>
+<div id="tf-services" class="text-center">
+    <div id="reviews" class="container">
+        <div class="section-title center">
+            <h2><%= @studio.name  %>'s <strong>reviews</strong></h2>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="review-list">
+          <% @studio.reviews.each do |review|  %>
+              <%= render partial: "reviews/review", locals: {review: review } %>
+          <% end  %>
+        </div>
+    </div>
+</div>
 
 
 
