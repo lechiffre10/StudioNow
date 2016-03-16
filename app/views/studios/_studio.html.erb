@@ -1,7 +1,7 @@
 <div class="item">
   <div class="thumbnail">
     <% if studio.images.any? %>
-      <%= image_tag studio.images[0].media.url(:standard), :class => "img-circle team-img" %>
+      <%= link_to image_tag(studio.images[0].media.url(:standard), :class => "img-circle team-img") %>
     <% end %>
     <div class="caption">
       <h3><%= link_to studio.name, studio %></h3>
