@@ -59,8 +59,8 @@ html {
 }
 
 .section-title.description {
-  width: 50%;
-  margin: auto;
+  width: 107%;
+  margin: auto 149px;
   display: table;
 }
 
@@ -93,6 +93,10 @@ html {
 
 .map-header {
   display: inline-block;
+}
+
+.studio-info {
+  margin-bottom: 30px;
 }
 
 input.btn.tf-btn.btn-default.login-partial-button {

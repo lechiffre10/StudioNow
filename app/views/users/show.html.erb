@@ -28,6 +28,11 @@
           <div id="create-new-review">
             <strong class="lead"><%= link_to "Review this Musician", new_user_review_path(@user), remote: true %></strong>
           </div>
+           <% if can_review_user?(@user) %>
+            <div id="user-rating">
+              <%= rating_for @user %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
@@ -94,11 +99,7 @@
 	<% if current_user != @user %>
     <p>Jim put link to new conversation message here</p>
 	<% end %>
-  <% if can_review_user?(@user) %>
-    <div id="user-rating">
-    	<%= rating_for @user %>
-    </div>
-  <% end %>
+
 <div id="tf-services" class="text-center">
     <div id="reviews" class="container">
         <div class="section-title center">
@@ -112,9 +113,12 @@
           <% @user.reviews.each do |review|  %>
               <%= render partial: "reviews/review", locals: {review: review } %>
           <% end  %>
+          <div class="to-top-icon"><a href="#tf-home"  id="back-to-top" class="fa fa-angle-up fa-5x page-scroll"></a></div>
         </div>
     </div>
 </div>
+
+
 
 
 

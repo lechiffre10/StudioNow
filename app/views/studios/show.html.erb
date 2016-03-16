@@ -49,13 +49,14 @@
           <hr>
           <div class="clearfix"></div>
           <div class= "studio-info">
-            <% if logged_in? %>
-              <%= link_to "Contact This Studio", create_conversation_path(@studio.owner_id) %>
-            <% end %>
             <p class="lead"><%= @studio.description %></p>
             <p class="lead"><%= @studio.full_address %></p>
             <p class="lead"><%= link_to @studio.website,  @studio.website %></p>
-            <% if can_review_studio?(@studio) %>
+            <% if logged_in? %>
+              <strong class="lead"><%= link_to "Contact This Studio", create_conversation_path(@studio.owner_id) %></strong>
+            <% end %></br>
+
+            <% if can_review_studio?(@studio)  %>
               <div id="studio-rating">
                 <%= rating_for @studio %>
               </div><br>
@@ -72,7 +73,7 @@
                 <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link", :id => 'no-hover'   %>
               </button>
             <% end %>
-          </div>
+
         </div>
       </div>
 
@@ -195,6 +196,7 @@
           <% @studio.reviews.each do |review|  %>
               <%= render partial: "reviews/review", locals: {review: review } %>
           <% end  %>
+          <div class="to-top-icon"><a href="#tf-home"  id="back-to-top" class="fa fa-angle-up fa-5x page-scroll"></a></div>
         </div>
     </div>
 </div>
