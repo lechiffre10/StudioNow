@@ -1,0 +1,15 @@
+textarea#review_content::-webkit-input-placeholder {
+  color: #696969;
+  width: 315px;
+  height: 100px;
+}
+
+textarea#review_content.review-textarea {
+  padding-top: 2px;
+  width: 315px;
+  height: 100px;
+}
+
+.content.studio-details-content {
+  padding-top: 80px;
+}

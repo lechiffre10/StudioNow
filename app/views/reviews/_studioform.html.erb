@@ -5,8 +5,16 @@
       <i class="em em-gun">  </i>
     <% end %>
   </div>
+
+</div>
+
+
+
+<div id="new-review">
   <%= form_for [@studio, @review], remote: true do |f|  %>
-    <%= f.text_area :content  %>
-    <%= f.submit %>
-    <% end %>
+    <div class="form-group studio-description">
+      <%= f.text_area :content, :placeholder => "Write your review", :autocomplete => :off, :class => "review-textarea"  %>
+    </div>
+    <button type="submit" class="btn tf-btn btn-default">Create Review</button>
+  <% end %>
 </div>
