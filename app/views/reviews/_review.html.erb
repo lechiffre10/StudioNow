@@ -1,3 +1,16 @@
-<p><%= review.content %><%= link_to(review.reviewer.username, user_path(review.reviewer)) %></p>
+<div class="row review-row">
+  <div class="col-md-2 review-style user">
+    <% if review.reviewer.image.exists? %>
+      <%= image_tag review.reviewer.image.url(:standard), :class => "img-circle team-img small-icon" %>
+    <% end %>
+    <%= link_to(review.reviewer.username, user_path(review.reviewer)) %>
+  </div>
+  <div class="col-md-10 review-style body">
+    <%= review.content %>
+  </div>
+</div>
+
+
+
 
 

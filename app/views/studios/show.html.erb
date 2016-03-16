@@ -174,16 +174,22 @@
 
 </script>
 
-
-<div id="reviews">
-    <h3><%= @studio.name  %>'s reviews</h3>
-      <ul>
-        <%@studio.reviews.each do |review|  %>
-        <li><%= render partial: "reviews/review", locals: {review: review } %></li>
-        <% end  %>
-
-      </ul>
-  </div>
+<div id="tf-services" class="text-center">
+    <div id="reviews" class="container">
+        <div class="section-title center">
+            <h2><%= @studio.name  %>'s <strong>reviews</strong></h2>
+            <div class="line">
+                <hr>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="review-list">
+          <%@studio.reviews.each do |review|  %>
+              <%= render partial: "reviews/review", locals: {review: review } %>
+          <% end  %>
+        </div>
+    </div>
+</div>
 
 
 

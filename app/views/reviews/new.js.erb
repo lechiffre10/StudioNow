@@ -1,6 +1,7 @@
 <% if @user.nil?  %>
-$("#create-new-review").empty();
+  $("#create-new-review").empty();
   $("#create-new-review").append("<%= escape_javascript(render partial: 'studioform') %>");
 <% else %>
+  $("#create-new-review").empty();
   $("#create-new-review").append("<%= escape_javascript(render partial: 'form') %>");
 <% end %>
