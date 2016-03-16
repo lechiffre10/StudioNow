@@ -47,11 +47,11 @@
     <div>
       <p>WLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer t</p>
       <% if current_user %>
-        <button class="btn tf-btn btn-default">
+        <button class="show-page-button btn tf-btn btn-default">
           <%= link_to 'List Your Studio', new_studio_path, :class => "button-link"  %>
         </button>
       <% else  %>
-        <button class="btn tf-btn btn-default">
+        <button class="show-page-button btn tf-btn btn-default remove-hover">
           <%= link_to 'List Your Studio', new_user_path, :class => "button-link" %>
         </button>
       <% end %>
@@ -71,9 +71,9 @@
         </div>
         <div id="listings" class="owl-carousel owl-theme row">
           <% if @highest_rated_studios && @highest_rated_studios.any? %>
-          <% @highest_rated_studios.each do |studio| %>
-          <%= render partial: "studios/studio", locals: { studio: studio } %>
-          <% end %>
+            <% @highest_rated_studios.each do |studio| %>
+              <%= render partial: "studios/studio", locals: { studio: studio } %>
+            <% end %>
           <% end %>
         </div>
       </div>

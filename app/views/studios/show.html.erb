@@ -15,7 +15,7 @@
           <%= image_tag @studio.images[0].media.url(:standard), :class => "large-icon img-circle team-img" %>
           <% end %>
           <div id="create-new-review">
-            <%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %>
+            <strong class="lead"><%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %></strong>
           </div>
         </div>
         <div class="map-container">
