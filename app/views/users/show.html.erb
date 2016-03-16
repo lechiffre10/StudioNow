@@ -24,9 +24,11 @@
           <script src="http://connect.soundcloud.com/sdk.js" type="text/javascript"></script>
           <strong class="lead"><a href="<%=@user.soundcloud_url  %>"><%=@user.first_name%>'s SoundCloud</a></strong>
         </div>
-        <div id="create-new-review">
-          <strong class="lead"><%= link_to "Review this Musician", new_user_review_path(@user), remote: true %></strong>
-        </div>
+        <% if can_review_user?(@user)  %>
+          <div id="create-new-review">
+            <strong class="lead"><%= link_to "Review this Musician", new_user_review_path(@user), remote: true %></strong>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -90,7 +92,7 @@
 	</section>
 
 	<% if current_user != @user %>
-		<%= link_to "Send a Message to this Musician!", new_conversation_path(current_user, @user) %>
+    <p>Jim put link to new conversation message here</p>
 	<% end %>
 
 	<%= rating_for @user %>
