@@ -7,7 +7,7 @@
 
   <div id="tf-home" class="text-center">
     <div class="overlay">
-      <div class="content studio-details-content" data-studio-id="<%=@studio.id%>">
+      <div class="content studio-details-content col-md-6" data-studio-id="<%=@studio.id%>">
         <div class="details-header" data-studio-id="<%=@studio.id%>">
           <h1><strong><span class="color">Studio Details</span></strong></strong></h1>
           <h3 class="lead"><%= @studio.name %></h3>
@@ -19,10 +19,11 @@
           <% if can_review_studio?(@studio) %>
             <div id="create-new-review">
               <strong class="lead"><%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %></strong>
+            </div>
             <% end %>
           </div>
-        </div>
-        <div class="map-container">
+      </div>
+        <div class="map-container col-md-5">
           <div id="map" class="map-header"></div>
         </div>
       </div>
@@ -73,7 +74,7 @@
                 <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link", :id => 'no-hover'   %>
               </button>
             <% end %>
-
+          </div>
         </div>
       </div>
 
