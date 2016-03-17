@@ -9,9 +9,6 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.find_by(id: params[:conversation_id])
     message = Message.create(content: params[:message][:content], sender_id: current_user.id, conversation_id: @conversation.id)
-    puts "*************"
-    puts current_user.id
-    puts message.sender_id
     if message.save
       respond_to do |format|
         format.js { render "create", :locals => {:message => message } }
