@@ -14,30 +14,35 @@
           <p class="lead">$<%= @studio.price %> per hour</p>
           <p class="lead" id="average-rating">Average Rating: <%=@studio.average_rating  %> </p>
           <% if @studio.images.any? %>
-            <%= image_tag @studio.images[0].media.url(:standard), :class => "large-icon img-circle team-img" %>
+          <%= image_tag @studio.images[0].media.url(:standard), :class => "large-icon img-circle team-img" %>
           <% end %>
           <% if can_review_studio?(@studio) %>
-            <div id="create-new-review">
-              <strong class="lead"><%= link_to "Review this Studio", new_studio_review_path(@studio), remote: true %></strong>
-            </div>
-            <% end %>
+          <div id="create-new-review">
+            <strong class="lead"><%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %></strong>
           </div>
-      </div>
-        <div class="map-container col-md-5">
-          <div id="map" class="map-header"></div>
+          <% end %>
+          <% if is_studio_owner? %>
+          <div>
+            <strong class="lead"><a href="#tf-studio-details">Manage Your Studio</a></strong>
+          </div>
+          <% end %>
         </div>
+      </div>
+      <div class="map-container col-md-5">
+        <div id="map" class="map-header"></div>
       </div>
     </div>
   </div>
 </div>
+</div>
 
 
 <script type="text/javascript">
-  <% if flash[:notice] %>
-  toastr.success("<%= flash[:notice] %>")
-  <% elsif flash[:danger] %>
-  toastr.info("<%= flash[:danger] %>")
-  <% end %>
+<% if flash[:notice] %>
+toastr.success("<%= flash[:notice] %>")
+<% elsif flash[:danger] %>
+toastr.info("<%= flash[:danger] %>")
+<% end %>
 </script>
 
 
@@ -53,26 +58,26 @@
             <p class="lead"><%= @studio.description %></p>
             <p class="lead"><%= @studio.full_address %></p>
             <p class="lead"><%= link_to @studio.website,  @studio.website %></p>
-            <% if logged_in? %>
-              <strong class="lead"><%= link_to "Contact This Studio", create_conversation_path(@studio.owner_id) %></strong>
+            <% if logged_in?  && !is_studio_owner? %>
+            <strong class="lead"><%= link_to "Contact This Studio", create_conversation_path(@studio.owner_id) %></strong>
             <% end %></br>
 
             <% if can_review_studio?(@studio)  %>
-              <div id="studio-rating">
-                <%= rating_for @studio %>
-              </div><br>
+            <div id="studio-rating">
+              <%= rating_for @studio %>
+            </div><br>
             <% end %>
 
             <% if is_studio_owner? %>
             <button class="show-page-button btn tf-btn btn-default"><strong>
-                <%= link_to 'Edit Studio Details', edit_studio_path(@studio), :class => "button-link", :id => 'no-hover'   %></strong>
-              </button>
-              <button class="show-page-button btn tf-btn btn-default"><strong>
-                <%= link_to 'Set Availabilities', studio_availabilities_path(@studio), :class => "button-link", :id => 'no-hover'   %></strong>
-              </button>
-              <button class="show-page-button btn tf-btn btn-default">
-                <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link", :id => 'no-hover'   %>
-              </button>
+              <%= link_to 'Edit Studio Details', edit_studio_path(@studio), :class => "button-link", :id => 'no-hover'   %></strong>
+            </button>
+            <button class="show-page-button btn tf-btn btn-default"><strong>
+              <%= link_to 'Set Availabilities', studio_availabilities_path(@studio), :class => "button-link", :id => 'no-hover'   %></strong>
+            </button>
+            <button class="show-page-button btn tf-btn btn-default">
+              <%= link_to 'Add Photos', new_studio_image_path(@studio), :class => "button-link", :id => 'no-hover'   %>
+            </button>
             <% end %>
           </div>
         </div>
@@ -81,64 +86,64 @@
       <div class="col-md-6 calendar-right">
         <h3>Current Studio Availability - Choose from open times</h3>
         <hr>
-          <div class="clearfix"></div>
+        <div class="clearfix"></div>
 
-          <div class="studio-cal-container show-page-cal">
+        <div class="studio-cal-container show-page-cal">
           <div id='studiocal'>
           </div>
           <div class="request-time">
             <form id="basicExample" action="/studios/<%= @studio.id %>/availabilities/10/bookings" method='POST' autocomplete="off">
-            <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
-            <input type="text" id="start_date" class="date start prevent" name="start_date" placeholder="Enter Date" />
-            <input type="text" id="s_time" class="time start prevent" name="s_time" placeholder="Start Time"/>
-            <input type="text" id="e_time" class="time end prevent" name="e_time" placeholder="End Time"/>
-            <input class="btn tf-btn btn-default login-partial-button" type="submit" value="Request Studio Time">
+              <input name="authenticity_token" value="<%= form_authenticity_token %>" type='hidden'>
+              <input type="text" id="start_date" class="date start prevent" name="start_date" placeholder="Enter Date" />
+              <input type="text" id="s_time" class="time start prevent" name="s_time" placeholder="Start Time"/>
+              <input type="text" id="e_time" class="time end prevent" name="e_time" placeholder="End Time"/>
+              <input class="btn tf-btn btn-default login-partial-button" type="submit" value="Request Studio Time">
             </form>
           </div>
         </div>
       </div>
     </div>
-</section>
+  </section>
 
-<section id="tf-team" class="text-center">
-  <div class="overlay">
-    <div class="container">
-      <div class="section-title center">
-        <h2><strong>Studio Photos</strong></h2>
-        <div class="line">
-          <hr>
-        </div>
-        <div id="detail-photos" class="owl-carousel owl-theme row">
-          <% if @studio.images %>
+  <section id="tf-team" class="text-center">
+    <div class="overlay">
+      <div class="container">
+        <div class="section-title center">
+          <h2><strong>Studio Photos</strong></h2>
+          <div class="line">
+            <hr>
+          </div>
+          <div id="detail-photos" class="owl-carousel owl-theme row">
+            <% if @studio.images %>
             <% @studio.images.each do |image| %>
-              <%= image_tag image.media.url(:large), :class => "team-img" %>
+            <%= image_tag image.media.url(:large), :class => "team-img" %>
             <% end %>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <script type="text/javascript">
-    <% if flash[:errors] %>
-      <% flash[:errors].each do |error| %>
-        toastr.error("<%= error %>")
-      <% end %>
-    <% end %>
-</script>
+  <% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+  toastr.error("<%= error %>")
+  <% end %>
+  <% end %>
+  </script>
 
 
-<script>
+  <script>
   $('#basicExample .time').timepicker({
-      showDuration: true,
-      timeFormat: 'g:ia',
-      step: 60
+    showDuration: true,
+    timeFormat: 'g:ia',
+    step: 60
   });
 
   $('#basicExample .date').datepicker({
-      format: 'm/d/yyyy',
-      autoclose: true
+    format: 'm/d/yyyy',
+    autoclose: true
   });
 
   // initialize datepair
@@ -173,37 +178,37 @@
 
 
 <script type="text/javascript">
-  handler = Gmaps.build('Google');
-  handler.buildMap({ internal: {id: 'map'}}, function(){
-    marker = handler.addMarkers([
-      {
-        lat: <%= @latitude %>,
-        lng: <%= @longitude %>,
-      }
-    ]);
+handler = Gmaps.build('Google');
+handler.buildMap({ internal: {id: 'map'}}, function(){
+  marker = handler.addMarkers([
+  {
+    lat: <%= @latitude %>,
+    lng: <%= @longitude %>,
+  }
+  ]);
   handler.bounds.extendWith(marker);
   handler.fitMapToBounds();
   handler.getMap().setZoom(10);
-  });
+});
 
 </script>
 
 <div id="tf-services" class="text-center">
-    <div id="reviews" class="container">
-        <div class="section-title center">
-            <h2><%= @studio.name  %>'s <strong>reviews</strong></h2>
-            <div class="line">
-                <hr>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="review-list">
-          <% @studio.reviews.each do |review|  %>
-              <%= render partial: "reviews/review", locals: {review: review } %>
-          <% end  %>
-          <div class="to-top-icon"><a href="#tf-home"  id="back-to-top" class="fa fa-angle-up fa-5x page-scroll"></a></div>
-        </div>
+  <div id="reviews" class="container">
+    <div class="section-title center">
+      <h2><%= @studio.name  %>'s <strong>reviews</strong></h2>
+      <div class="line">
+        <hr>
+      </div>
+      <div class="clearfix"></div>
     </div>
+    <div class="review-list">
+      <% @studio.reviews.each do |review|  %>
+      <%= render partial: "reviews/review", locals: {review: review } %>
+      <% end  %>
+      <div class="to-top-icon"><a href="#tf-home"  id="back-to-top" class="fa fa-angle-up fa-5x page-scroll"></a></div>
+    </div>
+  </div>
 </div>
 
 
