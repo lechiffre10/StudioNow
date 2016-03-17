@@ -1,22 +1,50 @@
-<h1>These are your conversations!!!</h1>
+<div id="tf-search" class="text-center search-results">
+  <div class="overlay">
+    <div class="content">
+      <h1>Your <strong><span class="color">Conversations</span></strong></h1>
+    </div>
+  </div>
 
 
-<br>
-<%= link_to "Profile Page", user_path(current_user) %>
-<br>
-  <% if @conversations %>
-    <ul>
-      <% @conversations.each do |conversation| %>
-        <% if current_user.id == conversation.originator_id %>
-          <li>Conversation with <%= link_to find_recipient_name(conversation), conversation_path(conversation) %><br>
-            <%= link_to "Delete Conversation", conversation, method: :delete, data: { confirm: "This will delete all messages in this conversation. Are you sure you want to proceed?" } %>
-          </li>
-        <% else %>
-          <li>Conversation with <%= link_to find_originator_name(conversation), conversation_path(conversation) %>
-            <%= link_to "Delete Conversation", conversation, method: :delete, data: { confirm: "This will delete all messages in this conversation. Are you sure you want to proceed?" } %>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
-  <% end %>
+<div id="tf-services" class="text-center">
+    <div id="reviews" class="container">
+        <div class="section-title center">
+          <div class="review-list">
+          <% if @conversations %>
+              <% @conversations.each do |conversation| %>
+                <div class="row review-row">
+                <% if current_user.id == conversation.originator_id %>
+                  <div class="col-md-4">
+                    <% if find_recipient(conversation).image.exists? %>
+                      <%= link_to user_path(find_recipient(conversation)) do %>
+                        <%= image_tag find_recipient(conversation).image.url(:standard), :class => "img-circle team-img small-icon" %>
+                        <% end %>
+                    <% end %>
+                  </div>
+                  <div class="col-md-4 lead conversation-text">
+                   Conversation with <%= link_to find_recipient_name(conversation).upcase, conversation_path(conversation), :class => "lead username-text" %>
+                    <%= link_to conversation, method: :delete, :class => "fa fa-trash", data: { confirm: "This will delete all messages in this conversation. Are you sure you want to proceed?" } do %>
+                    <% end %>
+                  </div>
+                </div>
+                <% else %>
+                  <div class="col-md-4">
+                    <% if find_originator(conversation).image.exists? %>
+                      <%= image_tag find_originator(conversation).image.url(:standard), :class => "img-circle team-img small-icon" %>
+                    <% end %>
+                  </div>
+                  <div class="col-md-4 lead conversation-text">
+                  Conversation with <%= link_to find_originator_name(conversation).upcase, conversation_path(conversation), :class => "lead username-text" %>
+                    <%= link_to conversation, method: :delete, :class => "fa fa-trash", data: { confirm: "This will delete all messages in this conversation. Are you sure you want to proceed?" } do %>
+                      <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          <div class="to-top-icon"><a href="#tf-home"  id="back-to-top" class="fa fa-angle-up fa-5x page-scroll"></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 

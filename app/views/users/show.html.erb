@@ -11,7 +11,7 @@
     <div class="overlay">
       <div class="content" data-user-id="<%=@user.id %>">
         <div class="details-header user-details-content">
-          <h1><%= @user.first_name %>'s <strong><span class="color">Profile</span></strong></strong></h1>
+          <h1><%= @user.username %>'s <strong><span class="color">Profile</span></strong></strong></h1>
           <h3 class="lead"><strong>Music Style:</strong> <%=@user.genres %>  |  <strong>Average Rating: </strong><%=@user.average_rating %> </h3>
           <% if @user.image.exists? %>
             <%= image_tag @user.image.url(:standard), :class => "img-circle team-img" %><br>
@@ -22,7 +22,7 @@
           <% end %></strong>
         <div id="soundcloud">
           <script src="http://connect.soundcloud.com/sdk.js" type="text/javascript"></script>
-          <strong class="lead"><a href="<%=@user.soundcloud_url  %>"><%=@user.first_name%>'s SoundCloud</a></strong>
+          <strong class="lead"><a href="<%=@user.soundcloud_url  %>"><%=@user.username%>'s SoundCloud</a></strong>
         </div>
         <% if can_review_user?(@user)  %>
           <div id="create-new-review">
@@ -103,7 +103,7 @@
 <div id="tf-services" class="text-center">
     <div id="reviews" class="container">
         <div class="section-title center">
-            <h2>Reviews of <strong><%= @user.first_name %></strong></h2>
+            <h2>Reviews of <strong><%= @user.username %></strong></h2>
             <div class="line">
                 <hr>
             </div>

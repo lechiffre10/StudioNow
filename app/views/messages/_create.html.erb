@@ -1,6 +1,12 @@
-<li><% if find_sender(message).image.exists? %>
-  <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img" %>
+<% if find_sender(message).image.exists? %>
+  <div class="convo-picture col-md-2">
+    <%= link_to user_path(find_sender(message)) do %>
+      <%= image_tag find_sender(message).image.url(:standard), :class => "img-circle team-img xsmall-icon" %>
+    <% end %>
+  </div>
 <% end %>
-<%= find_sender_name(message) %>
-<%= message.content %>
-<%= display_date(message) %></li>
+<div class="col-md-10 convo-body">
+  <%= message.content %><br>
+  <%= display_date(message) %>
+</div>
+

@@ -1,31 +1,39 @@
-<br>
-<% if current_user.id == @conversation.originator_id %>
-  <h1>Conversation with <%= find_recipient_name(@conversation) %></h1>
-<% else %>
-  <h1>Conversation with <%= find_originator_name(@conversation) %></h1>
-<% end %>
-
-<br>
-<%= link_to "Conversations List", conversations_path %>
-<br>
-
-<div id="new-message-link-container">
-  <%= link_to "Create New Message", new_conversation_message_path(@conversation), remote: true, :class => "new-message-link" %></div>
-<div id='append-new-message-form' style='display:none'>
-  <%= render partial: 'messages/new' %>
+<div id="tf-search" class="text-center search-results">
+  <div class="overlay">
+    <div class="content messages-header">
+      <h1>Messages with <span class="color">
+        <% if current_user.id == @conversation.originator_id %>
+          <%= find_recipient_name(@conversation) %>
+        <% else %>
+          <%= find_originator_name(@conversation) %>
+        <% end %>
+    </div>
+    <div id="new-message-link-container" class="lead">
+      <p><%= link_to "Conversations List", conversations_path %></p>
+      <p><%= link_to "Create New Message", new_conversation_message_path(@conversation), remote: true, :class => "new-message-link" %></p>
+    </div>
+    <div id='append-new-message-form' style='display:none'>
+      <%= render partial: 'messages/new' %>
+    </div>
+  </div>
 </div>
-<br>
-<div>
+
   <% if @conversation.messages.exists? %>
-    <ul>
       <div id='messages-list'>
         <% @conversation.messages.reverse.each do |message| %>
-          <%= render partial: 'messages/create', locals: {message: message} %>
+          <% if current_user.id == message.sender_id %>
+            <div class="row right">
+              <%= render partial: 'messages/create', locals: {message: message} %>
+            </div>
+          <% else %>
+            <div class="row left">
+              <%= render partial: 'messages/create', locals: {message: message} %>
+            </div>
+          <% end %>
         <% end %>
       <div>
-    </ul>
   <% end %>
-</div>
+
 
 <%= subscribe_to conversation_path(@conversation) %>
 
