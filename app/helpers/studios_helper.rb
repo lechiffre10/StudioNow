@@ -4,7 +4,7 @@ module StudiosHelper
     studio_receive_review = Studio.find_by(id: studio.id)
     total = []
     studio_receive_review.bookings.each do |booking|
-      if booking.user_id == current_user.id && booking.end_time.past?
+      if booking.user_id == current_user.id #&& booking.end_time.past?
           total << booking.id
         end
       end
