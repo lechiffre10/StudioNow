@@ -14,7 +14,9 @@ require "sprockets/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-# PrivatePub.load_config(File.expand_path("../private_pub.yml", __FILE__), ENV["RAILS_ENV"] || "development")
+
+# PrivatePub.load_config(File.expand_path("../private_pub.yml", __FILE__), ENV["RAILS_ENV"] || "production")
+
 
 module StudioNow
   class Application < Rails::Application
