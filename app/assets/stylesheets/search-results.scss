@@ -51,6 +51,7 @@ div#tf-search {
 }
 
 .search-card {
+  height: 377px;
   background-color: #2B2B2B;
 }
 
@@ -63,5 +64,9 @@ div#tf-search {
   width: 30%;
   height: 10%;
   margin: 0 auto
+}
+
+.thumbnail > img, .thumbnail a > img {
+  height: 200px;
 }
 
