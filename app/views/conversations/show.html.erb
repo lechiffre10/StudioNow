@@ -21,7 +21,7 @@
   <% if @conversation.messages.exists? %>
       <div id='messages-list'>
         <% @conversation.messages.reverse.each do |message| %>
-            <% render partial: 'messages/create', locals: {message: message} %>
+            <%= render partial: 'messages/create', locals: {message: message} %>
         <% end %>
       <div>
   <% end %>
