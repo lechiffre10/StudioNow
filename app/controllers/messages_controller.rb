@@ -17,10 +17,8 @@ class MessagesController < ApplicationController
       flash[:errors] = message.errors.full_messages
       redirect_to :back
     end
-    # erb the partial that we talked about from show.html.erb
+
   end
-
-
 
 
   private
@@ -29,6 +27,5 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:content, :sender_id, :conversation_id)
   end
 
-# ("<%= escape_javascript(render partial: 'new') %>")
 
 end
