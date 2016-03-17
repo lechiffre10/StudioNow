@@ -96,9 +96,9 @@
 	  </div>
 	</section>
 
-	<% if current_user != @user %>
-    <p>Jim put link to new conversation message here</p>
-	<% end %>
+  <% if current_user != @user %>
+    <strong class="lead"><%= link_to "Contact This Musician", create_conversation_path(@user) %></strong>
+  <% end %></br>
 
 <div id="tf-services" class="text-center">
     <div id="reviews" class="container">
