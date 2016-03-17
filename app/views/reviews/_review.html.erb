@@ -1,7 +1,9 @@
 <div class="row review-row">
   <div class="col-md-2 review-style user">
     <% if review.reviewer.image.exists? %>
-      <%= image_tag review.reviewer.image.url(:standard), :class => "img-circle team-img small-icon" %>
+      <%= link_to user_path(review.reviewer) do %>
+        <%= image_tag review.reviewer.image.url(:standard), :class => "img-circle team-img small-icon" %>
+        <% end %>
     <% end %>
     <%= link_to(review.reviewer.username, user_path(review.reviewer)) %>
   </div>
