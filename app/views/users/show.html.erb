@@ -3,36 +3,38 @@
 <div class="page">
 	<script type="text/javascript">
 	<% if flash[:notice] %>
-	  toastr.success("<%= flash[:notice] %>")
-	    <% end %>
-	</script>
+ toastr.success("<%= flash[:notice] %>")
+ <% elsif flash[:errors] %>
+ toastr.errors("<%= flash[:errors] %>")
+ <% end %>
+ </script>
 
-<div id="tf-home" class="text-center">
-    <div class="overlay">
-      <div class="content" data-user-id="<%=@user.id %>">
-        <div class="details-header user-details-content">
-          <h1><%= @user.first_name %>'s <strong><span class="color">Profile</span></strong></strong></h1>
-          <h3 class="lead"><strong>Music Style:</strong> <%=@user.genres %>  |  <strong>Average Rating: </strong><%=@user.average_rating %> </h3>
-          <% if @user.image.exists? %>
-            <%= image_tag @user.image.url(:standard), :class => "img-circle team-img" %><br>
-          <% end %>
-          <% if current_user == @user %>
-            <strong class="lead"><%= link_to "Edit Profile", edit_user_path(current_user) %></strong><br>
-            <strong class="lead"><%= link_to "Show Conversations", conversations_path %><br></strong>
-          <% end %></strong>
+ <div id="tf-home" class="text-center">
+  <div class="overlay">
+    <div class="content" data-user-id="<%=@user.id %>">
+      <div class="details-header user-details-content">
+        <h1><%= @user.first_name %>'s <strong><span class="color">Profile</span></strong></strong></h1>
+        <h3 class="lead"><strong>Music Style:</strong> <%=@user.genres %>  |  <strong>Average Rating: </strong><%=@user.average_rating %> </h3>
+        <% if @user.image.exists? %>
+        <%= image_tag @user.image.url(:standard), :class => "img-circle team-img" %><br>
+        <% end %>
+        <% if current_user == @user %>
+        <strong class="lead"><%= link_to "Edit Profile", edit_user_path(current_user) %></strong><br>
+        <strong class="lead"><%= link_to "Show Conversations", conversations_path %><br></strong>
+        <% end %></strong>
         <div id="soundcloud">
           <script src="http://connect.soundcloud.com/sdk.js" type="text/javascript"></script>
           <strong class="lead"><a href="<%=@user.soundcloud_url  %>"><%=@user.first_name%>'s SoundCloud</a></strong>
         </div>
         <% if can_review_user?(@user)  %>
-          <div id="create-new-review">
-            <strong class="lead"><%= link_to "Review this Musician", new_user_review_path(@user), remote: true %></strong>
-          </div>
-           <% if can_review_user?(@user) %>
-            <div id="user-rating">
-              <%= rating_for @user %>
-            </div>
-          <% end %>
+        <div id="create-new-review">
+          <strong class="lead"><%= link_to "Review this Musician", new_user_review_path(@user), remote: true %></strong>
+        </div>
+        <% if can_review_user?(@user) %>
+        <div id="user-rating">
+          <%= rating_for @user %>
+        </div>
+        <% end %>
         <% end %>
       </div>
     </div>
@@ -50,72 +52,72 @@
           <div class="clearfix"></div>
           <div class= "studio-info">
           	<ul>
-							<% @user.past_bookings.each do |booking| %>
-								<%= render partial: "bookings/show", locals: {booking: booking } %>
-							<% end %>
-						</ul>
-          </div>
-        </div>
-      </div>
+             <% @user.past_bookings.each do |booking| %>
+             <%= render partial: "bookings/show", locals: {booking: booking } %>
+             <% end %>
+           </ul>
+         </div>
+       </div>
+     </div>
 
-      <div class="col-md-6 border-left details-left">
-        <div class="section-title description">
-          <h3>Your Future Bookings</h3>
-          <hr>
-          <div class="clearfix"></div>
-          <div class= "studio-info">
-          	<ul>
-							<% @user.future_bookings.each do |booking| %>
-								<%= render partial: "bookings/show", locals: {booking: booking } %>
-							<% end %>
-						</ul>
-          </div>
-        </div>
-      </div>
-    </div>
+     <div class="col-md-6 border-left details-left">
+      <div class="section-title description">
+        <h3>Your Future Bookings</h3>
+        <hr>
+        <div class="clearfix"></div>
+        <div class= "studio-info">
+         <ul>
+           <% @user.future_bookings.each do |booking| %>
+           <%= render partial: "bookings/show", locals: {booking: booking } %>
+           <% end %>
+         </ul>
+       </div>
+     </div>
+   </div>
+ </div>
 </section>
 <% end %>
 
-	<section id="tf-team" class="text-center">
-	  <div class="overlay">
-	    <div class="container">
-	      <div class="section-title center">
-	        <h2><strong>Your Studio Listings</strong></h2>
-	        <div class="line">
-	          <hr>
-	        </div>
-	        <div id="profile-studio-photos" class="owl-carousel owl-theme row">
-	          <% if @user.has_studios && logged_in? %>
-	            <% @user.studios.each do |studio| %>
-          			<%= render partial: "users/userstudio", locals: { studio: studio } %>
-          		<% end %>
-	          <% end %>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	</section>
+<section id="tf-team" class="text-center">
+ <div class="overlay">
+   <div class="container">
+     <div class="section-title center">
+       <h2><strong>Your Studio Listings</strong></h2>
+       <div class="line">
+         <hr>
+       </div>
+       <div id="profile-studio-photos" class="owl-carousel owl-theme row">
+         <% if @user.has_studios && logged_in? %>
+         <% @user.studios.each do |studio| %>
+         <%= render partial: "users/userstudio", locals: { studio: studio } %>
+         <% end %>
+         <% end %>
+       </div>
+     </div>
+   </div>
+ </div>
+</section>
 
-  <% if current_user != @user %>
-    <strong class="lead"><%= link_to "Contact This Musician", create_conversation_path(@user) %></strong>
-  <% end %></br>
+<% if current_user != @user %>
+<strong class="lead"><%= link_to "Contact This Musician", create_conversation_path(@user) %></strong>
+<% end %></br>
 
 <div id="tf-services" class="text-center">
-    <div id="reviews" class="container">
-        <div class="section-title center">
-            <h2>Reviews of <strong><%= @user.first_name %></strong></h2>
-            <div class="line">
-                <hr>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="review-list">
-          <% @user.reviews.each do |review|  %>
-              <%= render partial: "reviews/review", locals: {review: review } %>
-          <% end  %>
-          <div class="to-top-icon"><a href="#tf-home"  id="back-to-top" class="fa fa-angle-up fa-5x page-scroll"></a></div>
-        </div>
+  <div id="reviews" class="container">
+    <div class="section-title center">
+      <h2>Reviews of <strong><%= @user.first_name %></strong></h2>
+      <div class="line">
+        <hr>
+      </div>
+      <div class="clearfix"></div>
     </div>
+    <div class="review-list">
+      <% @user.reviews.each do |review|  %>
+      <%= render partial: "reviews/review", locals: {review: review } %>
+      <% end  %>
+      <div class="to-top-icon"><a href="#tf-home"  id="back-to-top" class="fa fa-angle-up fa-5x page-scroll"></a></div>
+    </div>
+  </div>
 </div>
 
 
