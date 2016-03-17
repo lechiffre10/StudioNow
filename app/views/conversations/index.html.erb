@@ -12,7 +12,7 @@
           <div class="review-list">
           <% if @conversations %>
               <% @conversations.each do |conversation| %>
-                <div class="row review-row">
+                <div class="row">
                 <% if current_user.id == conversation.originator_id %>
                   <div class="col-md-4">
                     <% if find_recipient(conversation).image.exists? %>
@@ -41,8 +41,8 @@
                 <% end %>
               <% end %>
             <% end %>
-          <div class="to-top-icon"><a href="#tf-home"  id="back-to-top" class="fa fa-angle-up fa-5x page-scroll"></a></div>
           </div>
+          <div class="to-top-icon"><a href="#tf-home"  id="back-to-top" class="fa fa-angle-up fa-5x page-scroll"></a></div>
         </div>
       </div>
     </div>
