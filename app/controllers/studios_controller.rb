@@ -35,10 +35,15 @@ class StudiosController < ApplicationController
   def show
     @studio = Studio.find_by_id(params[:id])
     session[:studio_id] = params[:id]
-    @latitude = @studio.latitude
-    @longitude = @studio.longitude
-    if @studio.images.any?
-      @images = @studio.images
+    if @studio
+      @latitude = @studio.latitude
+      @longitude = @studio.longitude
+      if @studio.images.any?
+        @images = @studio.images
+      end
+    else
+      flash[:errors] = ["No equipment found for that studio! It doesn't exist!"]
+      redirect_to root_path
     end
   end
 
@@ -48,15 +53,15 @@ class StudiosController < ApplicationController
   end
 
   def create
-      user = User.find_by_id(session[:user_id])
-      @studio = user.studios.new(studio_params)
-      @studio.update_attribute(:price, params[:studio][:price].gsub(/[^\d]/, '').to_i)
-      if @studio.save
-        redirect_to studio_path(@studio)
-      else
-        @errors = @studio.errors.full_messages
-        render :new
-      end
+    user = User.find_by_id(session[:user_id])
+    @studio = user.studios.new(studio_params)
+    @studio.update_attribute(:price, params[:studio][:price].gsub(/[^\d]/, '').to_i)
+    if @studio.save
+      redirect_to studio_path(@studio)
+    else
+      @errors = @studio.errors.full_messages
+      render :new
+    end
   end
 
   def edit

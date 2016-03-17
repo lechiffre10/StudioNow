@@ -12,10 +12,12 @@ $(document).ready(function() {
       var divCount = $('#soundcloud').children().length;
       if (divCount <= 2 ) {
         $('#soundcloud').append('<p>'+response.html+'</p>');
-        link.text("Close Soundcloud")
+        link.text("Close Soundcloud");
+        $('#no-hover-studio').hide();
       } else {
         $('#soundcloud').find('p').remove();
-        link.text(originalText)
+        link.text(originalText);
+        $('#no-hover-studio').show();
       }
     });
   });
