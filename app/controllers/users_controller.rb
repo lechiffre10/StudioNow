@@ -4,6 +4,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    if @user
+      render :show
+    else
+      flash[:errors] = ["Sorry, no Musicians found  !"]
+      redirect_to root_path
+    end
   end
 
   def new
