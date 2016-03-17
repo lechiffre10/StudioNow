@@ -19,7 +19,16 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find_by(id: params[:id])
-    @message = Message.new
+    if @conversation
+      @message = Message.new
+      unless current_user == @conversation.recipient ||current_user == @conversation.originator
+        flash[:errors] = ["You don't have access to this area!"]
+        redirect_to root_path
+      end
+    else
+      flash[:errors] = ["No conversation found!"]
+      redirect_to root_path
+    end
   end
 
   def destroy
