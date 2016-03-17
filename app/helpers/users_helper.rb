@@ -21,7 +21,7 @@ module UsersHelper
     total = []
     current_user.studios.each do |studio|
       studio.bookings.each do |booking|
-        if booking.user_id == user_receive_review.id# && booking.end_time.past?
+        if booking.user_id == user_receive_review.id && booking.end_time.past?
           total << booking.id
         end
       end
