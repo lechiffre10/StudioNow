@@ -18,7 +18,7 @@
           <% end %>
           <% if can_review_studio?(@studio) %>
             <div id="create-new-review">
-              <strong class="lead"><%= link_to "Review this Studio!", new_studio_review_path(@studio), remote: true %></strong>
+              <strong class="lead"><%= link_to "Review this Studio", new_studio_review_path(@studio), remote: true %></strong>
             </div>
             <% end %>
           </div>

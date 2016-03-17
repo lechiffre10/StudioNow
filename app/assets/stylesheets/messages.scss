@@ -13,12 +13,12 @@ a.fa.fa-trash {
 }
 
 .content.messages-header {
-  padding-top: 8%;
+  padding-top: 5%;
 }
 
 .right {
   width: 25%;
-  background-color: #CFCFCF;
+  background-color: #E4E4E4;
   border-radius: 16px;
   margin-left: 48%;
   margin-bottom: 6px;
@@ -39,4 +39,19 @@ a.fa.fa-trash {
 .img-circle.team-img.xsmall-icon {
   width: 50px;
   height: 50px;
+}
+
+.content-text-field.review-textarea {
+  margin-top: -10px;
+  height: 64px;
+  width: 15.5%;
+  color: #555555;
+}
+
+.content-text-field.review-textarea:placeholder {
+
+}
+
+button.btn.tf-btn.btn-default.user-review-button {
+  margin-right: 42.35%;
 }

@@ -1,4 +1,6 @@
 <%= form_for @message, :class => "new-message-form", remote: true, url: conversation_messages_path(@conversation) do |f| %>
-  <%= f.text_field :content, :placeholder => "Message", :class => "content-text-field" %><br>
-  <%= f.submit "Send" %>
+  <div class="form-group">
+    <%= f.text_area :content, :placeholder => "Message", :autocomplete => :off, :class => "content-text-field review-textarea" %>
+  </div>
+  <button type="submit" class="btn tf-btn btn-default user-review-button">Send</button>
 <% end %>
