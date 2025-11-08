@@ -1,4 +1,4 @@
-class Availability < ActiveRecord::Base
+class Availability < ApplicationRecord
   has_many :bookings
   belongs_to :studio
 

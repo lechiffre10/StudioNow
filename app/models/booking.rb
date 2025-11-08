@@ -1,4 +1,4 @@
-class Booking < ActiveRecord::Base
+class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :availability
   has_one :studio, through: :availability

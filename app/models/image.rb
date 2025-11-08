@@ -1,4 +1,4 @@
-class Image < ActiveRecord::Base
+class Image < ApplicationRecord
   belongs_to :studio
   has_attached_file :media, :styles => {:standard => "150x150", :medium => "300x300", :large => "600x600"}, :bucket => 'studio-now', :s3_credentials => {
       :bucket => ENV['S3_BUCKET_NAME'],
