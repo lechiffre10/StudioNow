@@ -25,6 +25,6 @@
 //= require owl.carousel
 //= require SmoothScroll
 //= require search-results
-//= require private_pub
+// private_pub removed - will migrate to Action Cable
 //= require_tree .
 

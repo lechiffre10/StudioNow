@@ -40,6 +40,10 @@ gem 'terser'
 # Keep Sprockets for existing assets (transitional)
 gem 'sprockets-rails'
 
+# Legacy JavaScript dependencies (for Sprockets compatibility)
+gem 'jquery-rails'
+gem 'momentjs-rails'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 

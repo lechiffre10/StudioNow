@@ -169,6 +169,10 @@ GEM
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     jmespath (1.6.2)
+    jquery-rails (4.6.1)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -194,6 +198,8 @@ GEM
       rake
     mini_mime (1.1.5)
     minitest (5.26.0)
+    momentjs-rails (2.29.4.1)
+      railties (>= 3.1)
     msgpack (1.8.0)
     net-imap (0.5.12)
       date
@@ -405,7 +411,9 @@ DEPENDENCIES
   gmaps4rails
   importmap-rails
   jbuilder (~> 2.0)
+  jquery-rails
   listen (~> 3.3)
+  momentjs-rails
   paperclip (~> 6.0)
   pg (~> 1.1)
   pry-byebug
